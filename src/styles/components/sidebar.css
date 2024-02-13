@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .sidebar_title {
+    @apply mb-1.5 select-none text-base font-bold;
+  }
+  .sidebar_tag {
+    @apply cursor-pointer truncate border-2 bg-white px-2 pb-1.5 pt-1 font-semibold leading-snug hover:bg-neutral-50;
+  }
+}

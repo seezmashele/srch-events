@@ -1,0 +1,9 @@
+.tiptap_editor .tiptap {
+  min-height: 20rem;
+  padding: 2rem 1.25rem 4rem 1.25rem !important;
+  outline: none !important;
+}
+
+.tiptap_viewer .tiptap {
+  outline: none !important;
+}

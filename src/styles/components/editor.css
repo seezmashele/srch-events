@@ -1,0 +1,72 @@
+@tailwind components;
+
+.editor_button--active {
+  background: #000 !important;
+}
+
+.editor_button--active:hover {
+  background: #222 !important;
+}
+
+.editor_button {
+  background: #fff !important;
+}
+
+.editor_button:hover {
+  background: #fafafa !important;
+}
+
+@layer components {
+  /* -------------------- buttons -------------------- */
+
+  .editor_border_color {
+    @apply border-neutral-400;
+  }
+
+  .editor_button,
+  .editor_button--active {
+    @apply rounded-md border-neutral-600 px-4 py-3 shadow;
+  }
+
+  .editor_button {
+    @apply hover:bg-neutral-200;
+  }
+
+  .editor_button--active {
+    @apply text-white hover:bg-neutral-600;
+  }
+
+  /* -------------------- sidebar -------------------- */
+
+  .editor_side_column_width {
+    @apply w-96;
+  }
+
+  /* -------------------- container -------------------- */
+
+  .editor_box_style {
+    @apply bg-neutral-100;
+  }
+
+  .editor_box_padding {
+    @apply p-5;
+  }
+
+  .editor_divider_styles {
+    @apply my-12 w-full border-t;
+  }
+
+  .editor_divider_color {
+    @apply border-neutral-200;
+  }
+
+  .editor_detail_box_width {
+    @apply w-72;
+  }
+
+  /* -------------------- inputs -------------------- */
+
+  .input_padding {
+    @apply px-4 py-3;
+  }
+}

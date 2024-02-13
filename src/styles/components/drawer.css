@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  .main_drawer_open {
+    @apply xs:hidden xs:w-[4.5rem] md:flex lg:w-[14.5rem];
+  }
+
+  .main_drawer_minimized {
+    @apply xs:hidden xs:w-[4.5rem] md:flex;
+  }
+
+  .drawer_button_visibility {
+    @apply xs:hidden md:flex;
+  }
+
+  .drawer_section_title {
+    @apply mt-3 overflow-hidden text-ellipsis pb-3 pl-2 text-xs font-semibold uppercase tracking-widest text-neutral-500;
+  }
+}

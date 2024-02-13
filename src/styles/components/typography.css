@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .light_text_color {
+    @apply text-neutral-500;
+  }
+}

@@ -1,0 +1,9 @@
+@tailwind components;
+
+@layer components {
+  .Toastify__toast-container,
+  .Toastify__toast,
+  .Toastify__toast-body {
+    @apply rounded-lg bg-blue-950;
+  }
+}

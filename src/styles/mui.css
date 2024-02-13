@@ -1,0 +1,39 @@
+.MuiDialog-paper {
+  border-radius: 0.5rem !important;
+  box-shadow: 0 12px 42px -8px rgb(0 0 0 / 0.4) !important;
+}
+
+.picker_icon_padding svg {
+  padding: 0.25rem;
+}
+
+.MuiPickersCalendarHeader-root {
+  border-bottom: 1px solid #eee;
+  min-height: 2.75rem !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0.5rem !important;
+  user-select: none;
+}
+
+.MuiPickersPopper-paper {
+  border: 1px solid #bbb !important;
+  box-shadow: 0 6px 12px -4px rgb(0 0 0 / 0.4) !important;
+  border-radius: 0.5rem !important;
+}
+
+.MuiDateCalendar-root .Mui-selected {
+  background: #6366f1 !important;
+}
+
+.MuiAutocomplete-paper {
+  margin: 0.5rem 0;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 24px -4px rgb(0 0 0 / 0.2) !important;
+}
+
+.MuiAutocomplete-inputRoot {
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}

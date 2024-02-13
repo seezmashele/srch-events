@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+  .dashboard_menu_icon {
+    @apply h-4 w-4;
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "name": "events-please",
-  "version": "0.1.6",
+  "name": "srch-events",
+  "version": "0.1.7",
   "private": true,
   "scripts": {
     "dev": "npm run open-browser && next dev -p 3100",
@@ -43,6 +43,7 @@
     "@tiptap/pm": "^2.1.16",
     "@tiptap/react": "^2.1.16",
     "browser-image-compression": "^2.0.2",
+    "countries-list": "^3.0.6",
     "date-fns": "^3.0.0",
     "mathjs": "^12.3.0",
     "nanoid": "^5.0.4",

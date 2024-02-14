@@ -3,7 +3,7 @@
 body {
   margin: 0;
   overflow-y: scroll;
-  font-weight: 500;
+  /* font-weight: 400; */
   font-family: 'Inter', sans-serif;
   /* -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: auto; */

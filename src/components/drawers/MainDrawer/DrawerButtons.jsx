@@ -17,7 +17,7 @@ const DrawerButtons = ({ drawerItems, selectedItemIndex, hidden = false }) => (
           return (
             <Link href={item.link} passHref key={itemKey}>
               <div
-                className={`mt-0 flex cursor-pointer select-none flex-nowrap overflow-hidden rounded-lg px-2.5 py-1.5 hover:bg-neutral-100 ${
+                className={`box_radius mt-0 flex cursor-pointer select-none flex-nowrap overflow-hidden px-2.5 py-1.5 hover:bg-neutral-100 ${
                   selectedItemIndex === index && 'bg-neutral-100'
                 }`}
               >
@@ -43,7 +43,7 @@ const DrawerButtons = ({ drawerItems, selectedItemIndex, hidden = false }) => (
               key={itemKey}
               type="button"
               onClick={item.action}
-              className={`mt-0 flex cursor-pointer select-none items-center rounded-lg px-2.5 py-1.5 hover:bg-neutral-100  ${
+              className={`box_radius mt-0 flex cursor-pointer select-none items-center px-2.5 py-1.5 hover:bg-neutral-100  ${
                 selectedItemIndex === index && 'bg-neutral-100'
               }`}
             >

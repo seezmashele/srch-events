@@ -8,29 +8,32 @@ import imageCompression from 'browser-image-compression'
 import { TextareaAutosize } from '@mui/base/TextareaAutosize'
 import { ToastContainer, toast, Flip } from 'react-toastify'
 import { useEditor, EditorContent } from '@tiptap/react'
-import extensions from '../../components/tiptap/extensions/editor'
-import TiptapToolbar from '../../components/tiptap/Toolbar'
-import BodyWrapper from '../../components/wrappers/BodyWrapper'
-import CropperModal from '../../components/modals/CropperModal'
-import EditorSectionTitle from '../../components/editor/EditorSectionTitle'
-import MainDrawer from '../../components/drawers/MainDrawer'
+import 'react-day-picker/dist/style.css'
 import Nav from '../../components/nav/Nav'
 import PageHead from '../../components/misc/PageHead'
+import MainDrawer from '../../components/drawers/MainDrawer'
+import BodyWrapper from '../../components/wrappers/BodyWrapper'
+import CropperModal from '../../components/modals/CropperModal'
+import DayPickerDropdown from '../../components/dropdowns/DayPickerDropdown'
+import EditorSectionTitle from '../../components/editor/EditorSectionTitle'
+import SelectInput from './components/SelectInput'
+import TiptapToolbar from '../../components/tiptap/Toolbar'
+import YoutubeLinkModal from '../../components/modals/YoutubeLinkModal'
 import categoriesList from '../../utils/constants/categories'
+import extensions from '../../components/tiptap/extensions/editor'
 import { checkEventSubmitData } from '../../utils/helpers/checks'
 import { uploadSupabaseEvent } from '../../utils/supabase/database/create'
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
-import YoutubeLinkModal from '../../components/modals/YoutubeLinkModal'
-// import PreviewImages from './page/PreviewImages'
-import 'react-day-picker/dist/style.css'
-import DayPickerDropdown from '../../components/inputs/DayPickerDropdown'
-import SelectInput from './components/SelectInput'
+import { addTimeToDate } from '../../utils/helpers/time'
 import {
   timePickerAMPM,
   timePickerHours,
   timePickerMinutes
 } from '../../utils/constants/time'
+import { countriesList } from '../../utils/constants/countries'
+import FormNumberInput from '../../components/inputs/FormNumberInput'
+// import PreviewImages from './page/PreviewImages'
 
 // import { DatePicker } from '@mui/x-date-pickers'
 // import Flatpickr from 'react-flatpickr'
@@ -59,6 +62,7 @@ const CreatePage = () => {
   const [resizedThumbnail, setResizedThumbnail] = useState(null)
   const [titleError, setTitleError] = useState('')
   const [eventTitle, setEventTitle] = useState('')
+  const [venueName, setVenueName] = useState('')
   const [eventStartDate, setEventStartDate] = useState(null)
   const [eventEndDate, setEventEndDate] = useState(null)
   const [resizedCoverURL, setResizedCoverURL] = useState(null)
@@ -70,7 +74,13 @@ const CreatePage = () => {
   const [startingTimeAMPM, setStartingTimeAMPM] = useState('AM')
   const [startingTimeHours, setStartingTimeHours] = useState(null)
   const [startingTimeMinutes, setStartingTimeMinutes] = useState(0)
+  const [endTimeAMPM, setEndTimeAMPM] = useState('AM')
+  const [endTimeHours, setEndTimeHours] = useState(null)
+  const [endTimeMinutes, setEndTimeMinutes] = useState(0)
   const [targetAudience, setTargetAudience] = useState(null)
+  const [ageRestriction, setAgeRestriction] = useState(0)
+  const [country, setCountry] = useState('')
+  const [lowestPrice, setLowestPrice] = useState(0)
 
   const eventTypes = [
     {
@@ -84,29 +94,6 @@ const CreatePage = () => {
     {
       label: 'Hybrid',
       value: 3
-    }
-  ]
-
-  const targetAudienceOptions = [
-    {
-      label: 'Everyone',
-      value: null
-    },
-    {
-      label: 'Kids',
-      value: 'kids'
-    },
-    {
-      label: '18+',
-      value: '18+'
-    },
-    {
-      label: '21+',
-      value: '21+'
-    },
-    {
-      label: 'Seniors',
-      value: 'seniors'
     }
   ]
 
@@ -150,6 +137,8 @@ const CreatePage = () => {
   //   setResizedCoverURL(null)
   //   setResizedThumbnailURL(null)
   // }
+
+  console.log('countriesList', typeof countriesList, countriesList)
 
   async function createResizedImages(croppedImageURL) {
     if (croppedImageURL) {
@@ -231,41 +220,10 @@ const CreatePage = () => {
     setShowYoutubeLinkModal(false)
   }
 
-  const addSelectedCategories = (value) => {
-    if (value) {
-      // ? check if the value with same slug is already selected
-      if (selectedCategories) {
-        console.log('selected cats', selectedCategories)
-        const newCategories = Array.from(selectedCategories)
-        newCategories.push(value)
-        console.log('new categories', newCategories)
-        setSelectedCategories(newCategories)
-      } else {
-        setSelectedCategories([value])
-      }
-    }
-  }
-
   const createTagsArray = (categories) => {
     if (!categories) return null
     const tags = categories.map((item) => (item && item.value) || null)
     return tags
-  }
-
-  const addTimeToDate = (date, hours, minutes, ampm) => {
-    if (!date || !hours || !ampm) return null
-
-    const newDate = new Date(date)
-    let hoursToSet
-
-    if (ampm === 'AM') {
-      hoursToSet = hours === 12 ? 0 : hours
-    } else {
-      hoursToSet = hours === 12 ? 12 : hours + 12
-    }
-    newDate.setHours(hoursToSet, minutes)
-
-    return newDate
   }
 
   // submit the event here
@@ -387,7 +345,7 @@ const CreatePage = () => {
                   placeholder="Name"
                   value={eventTitle}
                   maxRows={8}
-                  className="box_radius editor_border_color w-full border px-2.5 py-2 text-lg font-semibold leading-normal"
+                  className="input_radius editor_border_color w-full border px-2.5 py-2 text-base font-semibold leading-normal"
                   onChange={(e) => {
                     setEventTitle(e.target.value)
                   }}
@@ -399,13 +357,15 @@ const CreatePage = () => {
                 )}
               </div>
 
-              {/* ------------------------- */}
-              <div className="mt-4 flex w-full flex-col gap-x-5">
-                {/* ------------------------- */}
+              <div className="my-6 w-full border-b" />
 
+              {/* ------------------------- */}
+
+              <div className="mt-4f flex w-full flex-col gap-x-5">
+                {/* dates ------------------------- */}
                 <div className="flex w-full flex-row gap-5">
                   <div className="w-1/2">
-                    <div className="py-2.5 text-sm font-semibold">
+                    <div className="pb-2.5 text-sm font-semibold">
                       Starting date <span className="text-red-500">*</span>
                     </div>
                     <div className="w-full">
@@ -414,9 +374,9 @@ const CreatePage = () => {
                         setEventDate={setEventStartDate}
                       />
                     </div>
-                    <div className="mt-6 py-2.5 text-sm font-semibold">
-                      End date
-                    </div>
+                  </div>
+                  <div className="w-1/2">
+                    <div className="pb-2.5 text-sm font-semibold">End date</div>
                     <div className="w-full">
                       <DayPickerDropdown
                         selectedDate={eventEndDate}
@@ -424,9 +384,15 @@ const CreatePage = () => {
                       />
                     </div>
                   </div>
+                </div>
+
+                {/* times ------------------------- */}
+                <div className="my-6 w-full border-b" />
+
+                <div className="flex w-full flex-row gap-5">
                   <div className="w-1/2">
-                    <div className="py-2.5 text-sm font-semibold">
-                      Starting time <span className="text-red-500">*</span>
+                    <div className="pb-2.5 text-sm font-semibold">
+                      Starts at <span className="text-red-500">*</span>
                     </div>
                     <div className="flex w-full items-center">
                       <SelectInput
@@ -448,28 +414,27 @@ const CreatePage = () => {
                       />
                     </div>
                   </div>
-                </div>
-
-                <div className="mt-6 flex flex-row gap-5">
                   <div className="w-1/2">
-                    <div className="py-2.5 text-sm font-semibold">
-                      Type of event
+                    <div className="pb-2.5 text-sm font-semibold">Ends at</div>
+                    <div className="flex w-full items-center">
+                      <SelectInput
+                        placeholder="0"
+                        options={timePickerHours}
+                        setValue={setEndTimeHours}
+                      />
+                      <div className="mx-2.5 font-semibold">:</div>
+                      <SelectInput
+                        placeholder="00"
+                        options={timePickerMinutes}
+                        setValue={setEndTimeMinutes}
+                      />
+                      <div className="mx-2.5 font-semibold">:</div>
+                      <SelectInput
+                        placeholder="am"
+                        options={timePickerAMPM}
+                        setValue={setEndTimeAMPM}
+                      />
                     </div>
-                    <SelectInput
-                      placeholder="Online, in person etc"
-                      options={eventTypes}
-                      setValue={setSelectedEventType}
-                    />
-                  </div>
-                  <div className="w-1/2">
-                    <div className="py-2.5 text-sm font-semibold">
-                      Age restriction
-                    </div>
-                    <SelectInput
-                      placeholder="None"
-                      options={targetAudienceOptions}
-                      setValue={setTargetAudience}
-                    />
                   </div>
                 </div>
               </div>
@@ -495,6 +460,74 @@ const CreatePage = () => {
                 </div>
               </div> */}
 
+              <div className="flex flex-row gap-5">
+                <div className="w-1/2">
+                  <div className="pb-2.5 text-sm font-semibold">
+                    Type of event
+                  </div>
+                  <SelectInput
+                    placeholder="Online, in person, hybrid"
+                    options={eventTypes}
+                    setValue={setSelectedEventType}
+                  />
+                </div>
+                <div className="w-1/2">
+                  <div className="pb-2.5 text-sm font-semibold">
+                    Prices start at
+                  </div>
+                  <FormNumberInput
+                    placeholder="No cost"
+                    setValue={setLowestPrice}
+                  />
+                </div>
+              </div>
+
+              <div className="my-6 w-full border-b" />
+
+              <div className="flex flex-row gap-5">
+                <div className="w-1/2">
+                  <div className="pb-2.5 text-sm font-semibold">Country</div>
+                  <SelectInput
+                    placeholder="Select a country"
+                    options={countriesList}
+                    setValue={setCountry}
+                  />
+                </div>
+                <div className="w-1/2">
+                  <div className="pb-2.5 text-sm font-semibold">
+                    Age restriction
+                  </div>
+                  <FormNumberInput
+                    placeholder="None"
+                    setValue={setAgeRestriction}
+                  />
+                </div>
+              </div>
+
+              <div className="my-6 w-full border-b" />
+
+              <div className="text-sm font-semibold">
+                Venue<span className="text-red-500"> *</span>
+              </div>
+              <div className="pt-2.5">
+                <TextareaAutosize
+                  placeholder="Enter venue name"
+                  value={venueName}
+                  maxRows={8}
+                  className="input_radius editor_border_color w-full border px-2.5 py-2.5 text-sm font-semibold leading-normal"
+                  onChange={(e) => {
+                    setVenueName(e.target.value)
+                  }}
+                />
+                {titleError && (
+                  <div className="mt-2 w-full text-sm text-red-500">
+                    This field is required
+                  </div>
+                )}
+              </div>
+
+              <div className="my-6 w-full border-b" />
+
               <div className="mt-6f pb-2.5 text-sm font-semibold">
                 Categories<span className="text-red-500"> *</span>
               </div>
@@ -519,7 +552,7 @@ const CreatePage = () => {
                   setSelectedCategories(values)
                 }}
                 isOptionDisabled={() =>
-                  selectedCategories && selectedCategories.length >= 10
+                  selectedCategories && selectedCategories.length >= 5
                 }
               />
             </div>
@@ -530,7 +563,7 @@ const CreatePage = () => {
 
             <div className="w-full">
               <div className="box_radius editor_box_styles p-6 pb-3">
-                <div className="box_radius duration-100f hover:border-blue-600f editor_border_color flex aspect-[2/1] w-full flex-col overflow-hidden border border-dashed bg-white">
+                <div className="input_radius duration-100f hover:border-blue-600f editor_border_color flex aspect-[2/1] w-full flex-col overflow-hidden border border-dashed bg-white">
                   <div className="pointer-events-none relative h-0 w-full">
                     <div className="aspect-[2/1] w-full opacity-30 blur-xl">
                       <img
@@ -628,7 +661,7 @@ const CreatePage = () => {
                       setShowYoutubeLinkModal={setShowYoutubeLinkModal}
                     />
                     <div className="w-full px-3 pb-3">
-                      <div className="box_radius editor_border_color w-full border bg-white">
+                      <div className="input_radius editor_border_color w-full border bg-white">
                         <EditorContent className="w-full" editor={editor} />
                       </div>
                     </div>

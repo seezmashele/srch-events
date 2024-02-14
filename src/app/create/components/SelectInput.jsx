@@ -8,7 +8,7 @@ const SelectInput = ({ options, setValue, placeholder }) => (
     components={{ DropdownIndicator: null }}
     classNames={{
       control: () =>
-        'force_rounded_lg border-neutral-500 w-full hover:border-neutral-500',
+        'force_rounded_md border-neutral-500 w-full hover:border-neutral-500',
       input: () => 'px-2',
       option: () => 'px-5 py-1.5',
       singleValue: () => 'px-2 py-2 font-semibold',

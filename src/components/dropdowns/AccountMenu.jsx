@@ -7,8 +7,8 @@ import {
   QuestionCircle,
   BoxArrowInRight
 } from 'react-bootstrap-icons'
-import { useAuth } from '../../../context/AuthContext'
-import { signOut } from '../../../utils/supabase/auth/session'
+import { useAuth } from '../../context/AuthContext'
+import { signOut } from '../../utils/supabase/auth/session'
 
 const AccountMenu = () => {
   const {

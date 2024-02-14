@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { Search, List, Plus } from 'react-bootstrap-icons'
 import { useAuth } from '../../context/AuthContext'
 import { useApp } from '../../context/AppContext'
-import AccountMenu from './Nav/AccountMenu'
+import AccountMenu from '../dropdowns/AccountMenu'
 import LoginModal from '../modals/LoginModal'
 import MainDrawerContent from '../drawers/MainDrawer/MainDrawerContent'
 

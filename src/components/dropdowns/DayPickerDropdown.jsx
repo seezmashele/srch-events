@@ -20,7 +20,7 @@ const DayPickerDropdown = ({ setEventDate, selectedDate }) => {
     <Menu as="div" className="relative w-full">
       {() => (
         <>
-          <Menu.Button className="box_radius editor_border_color flex w-full items-center border bg-white p-2.5 text-sm ">
+          <Menu.Button className="input_radius editor_border_color flex w-full items-center border bg-white p-2.5 text-sm ">
             <Calendar4 className="ml-1.5 mr-3.5" />
             <span
               className={`${selectedDate ? 'font-semibold' : 'text-neutral-400'}`}
@@ -29,7 +29,7 @@ const DayPickerDropdown = ({ setEventDate, selectedDate }) => {
                 'Pick a day'}
             </span>
           </Menu.Button>
-          <Menu.Items className="dropdown_bg  dropdown_shadow box_radius editor_border_color absolute right-0 z-20 mt-3 origin-top-right divide-y divide-neutral-100 border bg-white px-0 text-black focus:outline-none dark:text-white">
+          <Menu.Items className="dropdown_bg  dropdown_shadow input_radius editor_border_color absolute right-0 z-20 mt-3 origin-top-right divide-y divide-neutral-100 border bg-white px-0 text-black focus:outline-none dark:text-white">
             <Menu.Item>
               {({ close }) => (
                 <DayPicker

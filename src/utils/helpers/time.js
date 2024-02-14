@@ -11,3 +11,19 @@ export const getPostAge = (item) => {
   }
   return null
 }
+
+export const addTimeToDate = (date, hours, minutes, ampm) => {
+  if (!date || !hours || !ampm) return null
+
+  const newDate = new Date(date)
+  let hoursToSet
+
+  if (ampm === 'AM') {
+    hoursToSet = hours === 12 ? 0 : hours
+  } else {
+    hoursToSet = hours === 12 ? 12 : hours + 12
+  }
+  newDate.setHours(hoursToSet, minutes)
+
+  return newDate
+}

@@ -1,7 +1,7 @@
 const CoverText = ({ text = '' }) => {
-  const repeatedText = text ? text.repeat(30) : ''
+  const repeatedText = text ? text.repeat(40) : ''
   return (
-    <div className="-mt-28 -rotate-12">
+    <div className="-mt-28 -rotate-6">
       <div className="cover_text opacity-[.03]">{repeatedText}</div>
       <div className="cover_text opacity-[.06]">{repeatedText}</div>
       <div className="cover_text opacity-[.09]">{repeatedText}</div>

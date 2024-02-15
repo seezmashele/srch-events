@@ -26,7 +26,7 @@ const DayPickerDropdown = ({ setEventDate, selectedDate }) => {
               className={`${selectedDate ? 'font-semibold' : 'text-neutral-400'}`}
             >
               {(selectedDate && `${formatEventDate(selectedDate)}`) ||
-                'Pick a day'}
+                'Pick a date'}
             </span>
           </Menu.Button>
           <Menu.Items className="dropdown_bg  dropdown_shadow input_radius editor_border_color absolute right-0 z-20 mt-3 origin-top-right divide-y divide-neutral-100 border bg-white px-0 text-black focus:outline-none dark:text-white">

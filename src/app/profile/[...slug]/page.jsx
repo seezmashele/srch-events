@@ -118,10 +118,9 @@ const HomePage = ({ params }) => {
         <div className="main_content_container content_padding_x">
           <div
             style={{
-              color: accountColor.text,
-              backgroundColor: profileImage ? '#f2f2f2' : '#f2f2f2'
+              backgroundColor: profileImage ? '#f8f8f8' : '#f8f8f8'
             }}
-            className="box_radius text -z-10 mt-2.5 h-36 w-full overflow-hidden"
+            className="box_radius text -z-10 mt-2.5 h-36 w-full overflow-hidden text-white"
           >
             <CoverText text={`${profileUsername} `} />
           </div>
@@ -131,10 +130,9 @@ const HomePage = ({ params }) => {
                 <div className="flex  items-start text-sm">
                   <div
                     style={{
-                      color: accountColor.text,
-                      backgroundColor: profileImage ? '#eee' : accountColor.bg
+                      backgroundColor: profileImage ? '#eee' : accountColor
                     }}
-                    className="container_bg_color--secondaryf z-10 ml-4 mr-7 flex h-36 w-36 flex-shrink-0  items-center justify-center overflow-hidden rounded-full border-4 border-white text-7xl text-black"
+                    className="z-10 ml-4 mr-7 flex h-36 w-36 flex-shrink-0 items-center  justify-center overflow-hidden rounded-full border-4 border-white text-7xl text-white"
                   >
                     {!profileImage &&
                       profileDisplayName &&
@@ -149,7 +147,7 @@ const HomePage = ({ params }) => {
                     )}
                   </div>
                   <div className="mt-10 flex-grow text-sm">
-                    <h3 className="font-semiboldf text-3xl font-semibold">
+                    <h3 className="text-3xl font-semibold">
                       {profileDisplayName}
                     </h3>
                     <div className="mt-2 flex items-center text-neutral-500">

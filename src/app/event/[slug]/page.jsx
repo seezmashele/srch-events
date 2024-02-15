@@ -113,10 +113,9 @@ const EventPage = ({ params }) => {
                       href={authorProfileLink}
                       passHref
                       style={{
-                        color: accountColor.text,
-                        backgroundColor: authorImage ? '#eee' : accountColor.bg
+                        backgroundColor: authorImage ? '#eee' : accountColor
                       }}
-                      className="card_author_image mr-2 flex h-9 w-9 select-none items-center justify-center overflow-hidden text-lg"
+                      className="card_author_image mr-2 flex h-9 w-9 select-none items-center justify-center overflow-hidden text-lg text-white"
                     >
                       {!authorImage &&
                         authorDisplayName &&

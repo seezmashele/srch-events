@@ -59,10 +59,9 @@ const AccountMenu = () => {
         <>
           <Menu.Button
             style={{
-              color: accountColor.text,
-              backgroundColor: accountImage ? 'transparent' : accountColor.bg
+              backgroundColor: accountImage ? 'transparent' : accountColor
             }}
-            className="font-semiboldf mt-0.5 flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full text-base text-white hover:bg-accent-main-hover hover:shadow"
+            className="mt-0.5 flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full text-base text-white hover:bg-accent-main-hover hover:shadow"
           >
             {!accountImage &&
               currentUser &&
@@ -81,10 +80,9 @@ const AccountMenu = () => {
               <div className="mt-1 flex items-center px-3 py-0.5">
                 <div
                   style={{
-                    color: accountColor.text,
-                    backgroundColor: accountColor.bg
+                    backgroundColor: accountColor
                   }}
-                  className="font-semiboldf mr-2.5 flex h-11 w-11 items-center justify-center rounded-full text-xl"
+                  className="mr-2.5 flex h-10 w-10 items-center justify-center rounded-full text-xl text-white"
                 >
                   {!accountImage &&
                     currentUser &&
@@ -100,9 +98,7 @@ const AccountMenu = () => {
                   )}
                 </div>
                 <div className="">
-                  <div className="font-semiboldf text-base">
-                    {accountDisplayName}
-                  </div>
+                  <div className=" text-base">{accountDisplayName}</div>
                   <div className="text-neutral-500">@{accountUsername}</div>
                 </div>
               </div>

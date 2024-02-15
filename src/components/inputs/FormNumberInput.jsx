@@ -14,7 +14,7 @@ const FormNumberInput = ({
       min="0"
       value={value}
       type="number"
-      className="input_radius login_input_styling w-full py-2"
+      className="input_radius placeholder:font-normal login_input_styling w-full py-2"
       onChange={(e) => {
         setValue(e.target.value)
       }}

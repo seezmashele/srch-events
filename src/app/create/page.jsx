@@ -138,7 +138,7 @@ const CreatePage = () => {
   //   setResizedThumbnailURL(null)
   // }
 
-  console.log('countriesList', typeof countriesList, countriesList)
+  // console.log('countriesList', typeof countriesList, countriesList)
 
   async function createResizedImages(croppedImageURL) {
     if (croppedImageURL) {
@@ -249,7 +249,7 @@ const CreatePage = () => {
       tagsArray: createTagsArray(selectedCategories)
     }
 
-    console.log('handle event upload', editorData)
+    // console.log('handle event upload', editorData)
 
     const dataIsValid = checkEventSubmitData(editorData)
     if (dataIsValid) {
@@ -466,7 +466,7 @@ const CreatePage = () => {
                     Type of event
                   </div>
                   <SelectInput
-                    placeholder="Online, in person, hybrid"
+                    placeholder="Select a type"
                     options={eventTypes}
                     setValue={setSelectedEventType}
                   />
@@ -514,7 +514,7 @@ const CreatePage = () => {
                   placeholder="Enter venue name"
                   value={venueName}
                   maxRows={8}
-                  className="input_radius editor_border_color w-full border px-2.5 py-2.5 text-sm font-semibold leading-normal"
+                  className="input_radius editor_border_color w-full border px-2.5 py-2.5 text-sm font-semibold leading-normal placeholder:font-normal"
                   onChange={(e) => {
                     setVenueName(e.target.value)
                   }}

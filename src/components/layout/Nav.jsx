@@ -8,8 +8,8 @@ import { useApp } from '../../context/AppContext'
 import AccountMenu from '../dropdowns/AccountMenu'
 import LoginModal from '../modals/LoginModal'
 import MainDrawerContent from '../drawers/MainDrawer/MainDrawerContent'
-import ToggleDesktopDrawer from '../buttons/Nav/ToggleDesktopDrawer'
-import ToggleMobileDrawer from '../buttons/Nav/ToggleMobileDrawer'
+import ToggleDesktopDrawer from '../buttons/nav/ToggleDesktopDrawer'
+import ToggleMobileDrawer from '../buttons/nav/ToggleMobileDrawer'
 import NavSearchBar from './Nav/NavSearchBar'
 import FilledTextButton from '../buttons/FilledTextButton'
 import MobileIconButton from '../buttons/MobileIconButton'
@@ -17,15 +17,15 @@ import MobileIconLinkButton from '../buttons/MobileIconLinkButton'
 import DesktopLinkButton from '../buttons/DesktopLinkButton'
 
 const Nav = ({
-  hideSearch = false,
+  hideSearch = true,
   showLoginButton = false,
   showEventSubmitButton = false,
   hideCreateEventButton = false,
   handleEventUpload
 }) => {
-  // const { theme } = useTheme()
   const theme = 'light'
   const { currentUser } = useAuth()
+  // const { theme } = useTheme()
   const { showDesktopDrawer, changeShowDesktopDrawer } = useApp()
   const [openLoginModal, setOpenLoginModal] = useState(false)
   const [signupMode, setSignupMode] = useState(false)
@@ -107,7 +107,7 @@ const Nav = ({
               )}
 
               {currentUser && (
-                <div className="flex">
+                <div className="flex pl-2.5">
                   <AccountMenu />
                 </div>
               )}

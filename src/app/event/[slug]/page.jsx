@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { Calendar3, GeoAltFill } from 'react-bootstrap-icons'
-import Nav from '../../../components/nav/Nav'
+import Nav from '../../../components/layout/Nav'
 import PageHead from '../../../components/misc/PageHead'
 import MainDrawer from '../../../components/drawers/MainDrawer'
 import BodyWrapper from '../../../components/wrappers/BodyWrapper'
@@ -18,7 +18,7 @@ import TiptapViewer from '../../../components/tiptap/TiptapViewer'
 import { accountColorsList } from '../../../utils/constants/colors'
 
 const EventPage = ({ params }) => {
-  const { showDrawer } = useApp()
+  const { showDesktopDrawer } = useApp()
   const [coverImage, setCoverImage] = useState(null)
   const [postTitle, setPostTitle] = useState(null)
   const [coverIsLoading, setCoverIsLoading] = useState(true)
@@ -200,7 +200,7 @@ const EventPage = ({ params }) => {
                 </div>
               </div>
 
-              {/* if the main drawer is open i.e showDrawer make the hide the sidebar sooner */}
+              {/* if the main drawer is open i.e showDesktopDrawer make the hide the sidebar sooner */}
               <EventSidebar />
             </div>
           </div>

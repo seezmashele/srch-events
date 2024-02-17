@@ -1,6 +1,13 @@
-import Link from 'next/link'
+import { useState } from 'react'
+import TagButton from '../buttons/TagButton'
 
-const FeaturedTagsBar = ({ selectedTagIndex = 0 }) => {
+const FeaturedTagsBar = () => {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+
+  const changeHomePageCategory = (slug, index) => {
+    setSelectedIndex(index)
+  }
+
   const tempTags = [
     'All',
     'gaming',
@@ -30,19 +37,14 @@ const FeaturedTagsBar = ({ selectedTagIndex = 0 }) => {
       <div className="flex h-9 w-full flex-grow flex-wrap space-x-3 overflow-hidden">
         {tempTags &&
           tempTags.map((item, index) => (
-            <Link href="/" key={`featuredTag${index}`}>
-              <div
-                className={`h-8f mb-10 flex cursor-pointer items-center justify-center overflow-hidden rounded-lg transition-colors ${
-                  index === selectedTagIndex
-                    ? 'bg-black text-white'
-                    : 'bg-neutral-150 text-black hover:bg-neutral-300'
-                }`}
-              >
-                <p className="h-full w-full truncate px-3 pb-2 pt-1.5 text-sm font-semibold leading-snug">
-                  {item}
-                </p>
-              </div>
-            </Link>
+            <TagButton
+              label={item}
+              slug={item}
+              index={index}
+              onClick={changeHomePageCategory}
+              key={`featured-tag${index}`}
+              isSelected={index === selectedIndex}
+            />
           ))}
       </div>
     </div>

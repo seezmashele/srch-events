@@ -1,7 +1,7 @@
 'use client'
 
 import { ArrowDown } from 'react-bootstrap-icons'
-import Nav from '../../../components/nav/Nav'
+import Nav from '../../../components/layout/Nav'
 import PageHead from '../../../components/misc/PageHead'
 import { useDatabase } from '../../../context/DatabaseContext'
 import EventsListBlock from '../../../components/blocks/EventsListBlock'

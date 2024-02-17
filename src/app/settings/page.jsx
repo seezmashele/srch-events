@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Person } from 'react-bootstrap-icons'
-import Nav from '../../components/nav/Nav'
+import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 import MainDrawer from '../../components/drawers/MainDrawer'
 import BodyWrapper from '../../components/wrappers/BodyWrapper'

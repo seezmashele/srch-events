@@ -7,40 +7,40 @@ import {
   Person,
   PersonFill,
   Collection,
-  CollectionFill,
+  CollectionFill
 } from 'react-bootstrap-icons'
 import { useApp } from '../../context/AppContext'
 
 const MainDrawer = ({ selectedPageIndex = -1 }) => {
-  const { showDrawer } = useApp()
+  const { showDesktopDrawer } = useApp()
 
   const drawerItems = [
     {
       icon: <HouseDoor className="icon_size--base" />,
       iconFilled: <HouseDoorFill className="icon_size--base" />,
       title: 'Home',
-      link: '/',
+      link: '/'
     },
     {
       icon: <Collection className="icon_size--base" />,
       iconFilled: <CollectionFill className="icon_size--base" />,
       title: 'Saved',
-      link: '/profile/thisguy?saved',
+      link: '/profile/thisguy?saved'
     },
     { divider: true },
     {
       icon: <Person className="icon_size--base" />,
       iconFilled: <PersonFill className="icon_size--base" />,
       title: 'Profile',
-      link: '/profile/randomjeans',
+      link: '/profile/randomjeans'
     },
     {
       icon: <Gear className="icon_size--base" />,
       iconFilled: <GearFill className="icon_size--base" />,
       title: 'Settings',
-      link: '/settings',
+      link: '/settings'
     },
-    { divider: true },
+    { divider: true }
   ]
 
   const profiles = [
@@ -61,14 +61,14 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
     { title: 'Squeezie', image: '/img/profiles/Squeezie.png' },
     { title: 'Stripp', image: '/img/profiles/Stripp.png' },
     { title: 'TazerCraft', image: '/img/profiles/TazerCraft.png' },
-    { title: 'VernNotice', image: '/img/profiles/VernNotice.png' },
+    { title: 'VernNotice', image: '/img/profiles/VernNotice.png' }
   ]
 
   // ! use consistent top spacing throughout the app
   return (
     <nav
       className={`border_color--main drawer_transition top-[3.875rem]f fixed left-0 top-14 flex min-h-screen flex-shrink-0 select-none flex-col overflow-hidden bg-white pt-[1.1rem] ${
-        showDrawer ? ' w-[14.5rem]' : 'w-14'
+        showDesktopDrawer ? ' w-[14.5rem]' : 'w-14'
       }`}
     >
       <div className="w-fullf flex w-[14.5rem] flex-shrink-0 flex-col px-3 text-base">

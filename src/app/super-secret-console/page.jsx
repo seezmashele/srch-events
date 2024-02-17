@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import Nav from '../../components/nav/Nav'
+import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 import { uploadSortedEvents } from '../../utils/supabase/database/create'
 import { fetchAllEvents } from '../../utils/supabase/database/fetch'

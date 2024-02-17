@@ -7,7 +7,7 @@ export const useApp = () => useContext(AppContext)
 
 export const AppProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState()
-  const [showDrawer, setShowDrawer] = useState(true)
+  const [showDesktopDrawer, setShowDrawer] = useState(true)
   const [showEventModal, setShowEventModal] = useState(false)
   const [showLoginModal, setShowLoginModal] = useState(false)
 
@@ -15,7 +15,7 @@ export const AppProvider = ({ children }) => {
     setDarkMode(value)
   }
 
-  const changeShowDrawer = (value) => {
+  const changeShowDesktopDrawer = (value) => {
     setShowDrawer(value)
   }
 
@@ -30,11 +30,11 @@ export const AppProvider = ({ children }) => {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
     changeDarkMode,
-    changeShowDrawer,
+    changeShowDesktopDrawer,
     changeShowEventModal,
     changeShowLoginModal,
     darkMode,
-    showDrawer,
+    showDesktopDrawer,
     showEventModal,
     showLoginModal
   }

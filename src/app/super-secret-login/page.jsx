@@ -1,6 +1,6 @@
 'use client'
 
-import Nav from '../../components/nav/Nav'
+import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 
 const LoginPage = () => (

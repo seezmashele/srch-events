@@ -9,7 +9,7 @@ import { TextareaAutosize } from '@mui/base/TextareaAutosize'
 import { ToastContainer, toast, Flip } from 'react-toastify'
 import { useEditor, EditorContent } from '@tiptap/react'
 import 'react-day-picker/dist/style.css'
-import Nav from '../../components/nav/Nav'
+import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 import MainDrawer from '../../components/drawers/MainDrawer'
 import BodyWrapper from '../../components/wrappers/BodyWrapper'
@@ -49,7 +49,7 @@ import FormNumberInput from '../../components/inputs/FormNumberInput'
 // ! pop up a success modal asking if they want to check out intro stuff or browser so we can do some kind or page refresh or redirect
 
 const CreatePage = () => {
-  const { showDrawer } = useApp()
+  const { showDesktopDrawer } = useApp()
   const {
     accountUsername,
     accountDisplayName,
@@ -318,7 +318,7 @@ const CreatePage = () => {
         {/* <LocalizationProvider dateAdapter={AdapterDateFns}> */}
         <main
           className={`content_padding_x mb-24 w-full ${
-            showDrawer ? 'max-w-[56rem]' : 'max-w-[76rem]'
+            showDesktopDrawer ? 'max-w-[56rem]' : 'max-w-[76rem]'
           }`}
         >
           <div className="mx-auto w-full max-w-[43rem] select-none pt-4">

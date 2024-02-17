@@ -1,12 +1,11 @@
 'use client'
 
-// import Image from 'next/image'
-import Nav from '../components/nav/Nav'
+import Nav from '../components/layout/Nav'
 import PageHead from '../components/misc/PageHead'
 import { useDatabase } from '../context/DatabaseContext'
 import EventsBlock from '../components/blocks/EventsBlock'
 import MainDrawer from '../components/drawers/MainDrawer'
-import FeaturedTagsBar from '../components/tabs/FeaturedTagsBar'
+import FeaturedTagsBar from '../components/layout/FeaturedTagsBar'
 import BodyWrapper from '../components/wrappers/BodyWrapper'
 
 const Home = () => {

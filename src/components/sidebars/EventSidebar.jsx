@@ -2,11 +2,11 @@
 import { useApp } from '../../context/AppContext'
 
 const EventSidebar = () => {
-  const { showDrawer } = useApp()
+  const { showDesktopDrawer } = useApp()
 
   return (
     <aside
-      className={`${showDrawer && 'md:hidden lg:block'} box_radius sticky top-[4.75rem] mb-10 mt-5 h-full w-80 flex-shrink-0 bg-neutral-100 p-5 text-sm xs:hidden md:block`}
+      className={`${showDesktopDrawer && 'md:hidden lg:block'} box_radius sticky top-[4.75rem] mb-10 mt-5 h-full w-80 flex-shrink-0 bg-neutral-100 p-5 text-sm xs:hidden md:block`}
     >
       <div className="mt-2f flex select-none space-x-1.5 text-sm">
         <div className="sidebar_tag box_radius">Gaming</div>

@@ -19,7 +19,7 @@ import LocationButtons from './MainDrawer/LocationButtons'
 import RecommendedButtons from './MainDrawer/RecommendedButtons'
 
 const MainDrawer = ({ selectedPageIndex = -1 }) => {
-  const { showDrawer } = useApp()
+  const { showDesktopDrawer } = useApp()
   const { accountUsername } = useAuth()
   const userProfileLink = `/profile/${accountUsername}`
   const savedEventsLink = `/profile/${accountUsername}/saved`
@@ -107,7 +107,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
   return (
     <nav
       className={`drawer_transition prevent_overscroll hide_scrollbar_thumb fixedf mt-16f -bottom-4f mr-2f sticky bottom-0 left-0 top-16 max-h-screen flex-shrink-0 select-none flex-col bg-white pt-[.6rem] ${
-        showDrawer
+        showDesktopDrawer
           ? 'main_drawer_open xs:overflow-hidden lg:overflow-scroll'
           : 'main_drawer_minimized overflow-hidden'
       }`}
@@ -123,7 +123,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
         {/* locations ---------------------------------------- */}
 
         <LocationButtons
-          hidden={!showDrawer}
+          hidden={!showDesktopDrawer}
           locationsArray={topLocations}
           selectedItemIndex={-1}
         />
@@ -132,7 +132,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
 
         <div className="main_border_color my-2 w-full border-b" />
         <RecommendedButtons
-          hideTitle={!showDrawer}
+          hideTitle={!showDesktopDrawer}
           recommendedProfiles={recommendedProfiles}
         />
 

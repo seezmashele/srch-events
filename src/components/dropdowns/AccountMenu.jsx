@@ -57,23 +57,25 @@ const AccountMenu = () => {
     <Menu>
       {() => (
         <>
-          <Menu.Button
-            style={{
-              backgroundColor: accountImage ? 'transparent' : accountColor
-            }}
-            className="mt-0.5 flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full text-base text-white hover:bg-accent-main-hover hover:shadow"
-          >
-            {!accountImage &&
-              currentUser &&
-              accountDisplayName &&
-              accountDisplayName[0]}
-            {accountImage && (
-              <img
-                src={accountImage}
-                className="h-full w-full overflow-hidden rounded-full object-cover"
-                alt="profile"
-              />
-            )}
+          <Menu.Button className="flex h-10 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full hover:bg-neutral-100">
+            <div
+              style={{
+                backgroundColor: accountImage ? 'transparent' : accountColor
+              }}
+              className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full text-base text-white"
+            >
+              {!accountImage &&
+                currentUser &&
+                accountDisplayName &&
+                accountDisplayName[0]}
+              {accountImage && (
+                <img
+                  src={accountImage}
+                  className="h-full w-full overflow-hidden rounded-full object-cover"
+                  alt="profile"
+                />
+              )}
+            </div>
           </Menu.Button>
           <Menu.Items className="dropdown_bg dropdown_shadow box_radius absolute right-0 mt-14 w-72 origin-top-right divide-y divide-neutral-100 bg-white px-0 text-black focus:outline-none dark:text-white">
             <div className="py-1.5">

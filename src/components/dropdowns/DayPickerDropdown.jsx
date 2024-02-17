@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 
 const DayPickerDropdown = ({ setEventDate, selectedDate }) => {
   const formatEventDate = (date) => {
-    // check if date is valid
+    // TODO check if date is valid
     if (date) {
       const day = format(date, 'eee')
       const mainDate = format(date, 'PP')

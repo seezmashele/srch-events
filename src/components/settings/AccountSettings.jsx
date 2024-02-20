@@ -1,5 +1,3 @@
-// import { useSettings } from '../../../context/SettingsContext'
-
 const AccountSettings = () => {
   const displayName = 'Yello Kittyz'
 
@@ -23,7 +21,7 @@ const AccountSettings = () => {
     '/avatars/image-17.png',
     '/avatars/image-18.png',
     '/avatars/image-19.png',
-    '/avatars/image-20.png',
+    '/avatars/image-20.png'
   ]
 
   const authorImage = images[Math.floor(Math.random() * 20)]

@@ -8,29 +8,25 @@
 
 ::-webkit-scrollbar-thumb {
   background: #999;
-  border-radius: 50px;
-  border: 5px solid transparent;
+  border: 4px solid transparent;
   background-clip: content-box;
 }
 
 .hide_scrollbar_thumb::-webkit-scrollbar-thumb {
   background: #77777700;
-  border-radius: 50px;
-  border: 5px solid transparent;
+  border: 4px solid transparent;
   background-clip: content-box;
 }
 
 .hide_scrollbar_thumb:hover::-webkit-scrollbar-thumb {
   background: #aaa;
-  border-radius: 50px;
-  border: 5px solid transparent;
+  border: 4px solid transparent;
   background-clip: content-box;
 }
 
 .hide_scrollbar_thumb:hover::-webkit-scrollbar-thumb:hover {
   background: #aaa;
-  border-radius: 50px;
-  border: 5px solid transparent;
+  border: 4px solid transparent;
   background-clip: content-box;
 }
 

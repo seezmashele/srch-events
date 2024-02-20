@@ -15,7 +15,7 @@ import {
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import DrawerButtons from './MainDrawer/DrawerButtons'
-import LocationButtons from './MainDrawer/LocationButtons'
+// import LocationButtons from './MainDrawer/LocationButtons'
 import RecommendedButtons from './MainDrawer/RecommendedButtons'
 
 const MainDrawer = ({ selectedPageIndex = -1 }) => {
@@ -67,10 +67,10 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
     }
   ]
 
-  const topLocations = [
-    { title: 'Online', path: '/place/online', count: 204 },
-    { title: 'In Person', path: '/place/inperson', count: 89 }
-  ]
+  // const topLocations = [
+  //   { title: 'Online', path: '/place/online', count: 204 },
+  //   { title: 'In Person', path: '/place/inperson', count: 89 }
+  // ]
 
   const recommendedProfiles = [
     {
@@ -106,7 +106,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
 
   return (
     <nav
-      className={`drawer_transition prevent_overscroll hide_scrollbar_thumb fixedf mt-16f -bottom-4f mr-2f sticky bottom-0 left-0 top-16 max-h-screen flex-shrink-0 select-none flex-col bg-white pt-[.6rem] ${
+      className={`drawer_transition prevent_overscroll hide_scrollbar_thumb fixedf mt-16f -bottom-4f mr-2f bg-whitef bg-neutral-100f sticky bottom-0 left-0 top-14 max-h-screen flex-shrink-0 select-none flex-col overflow-y-hidden pt-[1.1rem] ${
         showDesktopDrawer
           ? 'main_drawer_open xs:overflow-hidden lg:overflow-scroll'
           : 'main_drawer_minimized overflow-hidden'
@@ -122,11 +122,11 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
 
         {/* locations ---------------------------------------- */}
 
-        <LocationButtons
+        {/* <LocationButtons
           hidden={!showDesktopDrawer}
           locationsArray={topLocations}
           selectedItemIndex={-1}
-        />
+        /> */}
 
         {/* recommended ---------------------------------------- */}
 

@@ -19,6 +19,7 @@
 
 .prevent_overscroll {
   overscroll-behavior-y: contain;
+  overscroll-behavior-x: none;
 }
 
 img:not([src]) {

@@ -1,6 +1,6 @@
 import { List } from 'react-bootstrap-icons'
 
-const ToggleDesktopDrawer = ({ changeValue, value }) => (
+const ToggleDesktopDrawerButton = ({ changeValue, value }) => (
   <button
     type="button"
     aria-label="Toggle drawer"
@@ -13,4 +13,4 @@ const ToggleDesktopDrawer = ({ changeValue, value }) => (
   </button>
 )
 
-export default ToggleDesktopDrawer
+export default ToggleDesktopDrawerButton

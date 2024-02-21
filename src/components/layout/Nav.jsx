@@ -8,8 +8,8 @@ import { useApp } from '../../context/AppContext'
 import AccountMenu from '../dropdowns/AccountMenu'
 import LoginModal from '../modals/LoginModal'
 import MainDrawerContent from '../drawers/MainDrawer/MainDrawerContent'
-import ToggleDesktopDrawer from '../buttons/nav/ToggleDesktopDrawer'
-import ToggleMobileDrawer from '../buttons/nav/ToggleMobileDrawer'
+import ToggleDesktopDrawerButton from '../buttons/nav/ToggleDesktopDrawerButton'
+import ToggleMobileDrawerButton from '../buttons/nav/ToggleMobileDrawerButton'
 import NavSearchBar from './Nav/NavSearchBar'
 import FilledTextButton from '../buttons/FilledTextButton'
 import MobileIconButton from '../buttons/MobileIconButton'
@@ -43,11 +43,11 @@ const Nav = ({
             {/* -------------------------------------------------- */}
 
             <div className="flex h-10 w-48 items-center">
-              <ToggleDesktopDrawer
+              <ToggleDesktopDrawerButton
                 changeValue={changeShowDesktopDrawer}
                 value={showDesktopDrawer}
               />
-              <ToggleMobileDrawer
+              <ToggleMobileDrawerButton
                 changeValue={setOpenMobileDrawer}
                 value={openMobileDrawer}
               />

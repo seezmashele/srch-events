@@ -19,7 +19,7 @@ import BodyWrapper from '../../../components/wrappers/BodyWrapper'
 import { fetchProfileBySlug } from '../../../utils/supabase/database/fetch'
 import EventsListBlock from '../../../components/blocks/EventsListBlock'
 import { accountColorsList } from '../../../utils/constants/colors'
-import CoverText from './components/CoverText'
+// import CoverText from './components/CoverText'
 
 // export const generateMetadata = async ({ params }, parent) => {
 //   const {id} = params
@@ -116,23 +116,26 @@ const HomePage = ({ params }) => {
       <BodyWrapper>
         <MainDrawer selectedPageIndex={isUsersProfile ? 3 : -1} />
         <div className="main_content_container content_padding_x">
-          <div
+          {/* cover */}
+          {/* <div
             style={{
               backgroundColor: profileImage ? '#f8f8f8' : '#f8f8f8'
             }}
             className="box_radius text -z-10 mt-2.5 h-36 w-full overflow-hidden text-white"
           >
             <CoverText text={`${profileUsername} `} />
-          </div>
-          <div className="z-0 mx-auto -mt-5 flex h-full w-full justify-end space-x-7">
+          </div> */}
+
+          {/* profile info */}
+          <div className="z-0 mx-auto mt-6 flex h-full w-full justify-end space-x-7">
             <div className="space-between items-centerF max-w-4xlF flex w-full">
-              <div className="mx-auto flex w-full max-w-4xl flex-grow flex-col">
+              <div className="bg-indigo-200f mx-auto flex w-full max-w-3xl flex-grow flex-col">
                 <div className="flex  items-start text-sm">
                   <div
                     style={{
                       backgroundColor: profileImage ? '#eee' : accountColor
                     }}
-                    className="z-10 ml-4 mr-7 flex h-36 w-36 flex-shrink-0 items-center  justify-center overflow-hidden rounded-full border-4 border-white text-7xl text-white"
+                    className="border-4f border-whitef z-10 mr-10 flex h-36 w-36  flex-shrink-0 items-center justify-center overflow-hidden rounded-full text-7xl text-white"
                   >
                     {!profileImage &&
                       profileDisplayName &&
@@ -146,8 +149,8 @@ const HomePage = ({ params }) => {
                       />
                     )}
                   </div>
-                  <div className="mt-10 flex-grow text-sm">
-                    <h3 className="text-3xl font-semibold">
+                  <div className="mt-6 flex-grow text-sm">
+                    <h3 className="text-2xl font-semibold">
                       {profileDisplayName}
                     </h3>
                     <div className="mt-2 flex items-center text-neutral-500">

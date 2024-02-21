@@ -159,7 +159,7 @@ const EventPage = ({ params }) => {
                         <div className="text-sm font-semibold">
                           12 - 15 Mar, 2024
                         </div>
-                        <p className="mt-0.5 text-sm font-semibold text-orange-600">
+                        <p className="text-orange-600f mt-0.5 text-sm font-semibold text-accent-main">
                           8:00 - 17:00 (UTC+2)
                         </p>
                       </div>
@@ -175,7 +175,7 @@ const EventPage = ({ params }) => {
                         <div className="text-sm font-semibold">
                           The Glen Country Club Field
                         </div>
-                        <p className="mt-0.5 text-sm font-semibold text-orange-600">
+                        <p className="text-orange-600f mt-0.5 text-sm font-semibold text-accent-main">
                           Clifton, Cape Town
                         </p>
                       </div>

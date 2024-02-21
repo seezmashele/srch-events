@@ -22,8 +22,10 @@ module.exports = {
       colors: {
         'accent-blue': '#0066FF',
         'accent-light': '#EBF3FF',
-        'accent-main': '#2563eb',
-        'accent-main-hover': '#1d4ed8',
+        // 'accent-main': '#2563eb',
+        'accent-main': '#f21b3f',
+        'accent-main-hover': '#E70D32',
+        // 'accent-main-hover': '#1d4ed8',
         'accent-medium': '#FFD6D8',
         'neutral-150': '#eaeaea',
         'neutral-950': '#0a0a0a'

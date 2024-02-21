@@ -61,7 +61,7 @@ const Nav = ({
                 <img
                   draggable="false"
                   className="h-full w-full object-contain object-left"
-                  src={theme === 'dark' ? '/logo.svg' : '/logo.png'}
+                  src={theme === 'dark' ? '/logo.png' : '/logo.png'}
                   alt="website logo"
                 />
               </Link>

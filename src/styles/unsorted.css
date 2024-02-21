@@ -1,0 +1,316 @@
+@tailwind components;
+
+@layer components {
+  .app_max_width {
+    @apply xs:max-w-[76rem] 2xl:max-w-[88rem];
+  }
+
+  .nav_padding_x {
+    @apply px-3;
+  }
+
+  .content_padding_x {
+    @apply px-3;
+  }
+
+  .event_page_padding_x {
+    @apply px-3;
+  }
+
+  .input_radius {
+    @apply rounded-md;
+  }
+
+  /* .event_page_padding_x {
+      @apply xs:px-0 md:px-4 lg:px-6;
+    } */
+
+  /* body {
+      @apply font-medium;
+    } */
+
+  .cover_text {
+    @apply ml-1 w-full select-none whitespace-nowrap text-xl font-semibold tracking-wider text-neutral-300 opacity-10;
+  }
+
+  blockquote {
+    @apply border-l-4 border-neutral-300 pl-4;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  ul {
+    @apply list-outside list-disc pl-10;
+  }
+
+  ol {
+    @apply list-outside list-decimal pl-10;
+  }
+
+  img {
+    @apply text-[0] text-transparent;
+  }
+
+  .profile_tab,
+  .profile_tab--selected {
+    @apply cursor-pointer border-b-[2.5px] px-8 py-3 text-black hover:bg-neutral-50;
+  }
+
+  .profile_tab {
+    @apply border-transparent;
+  }
+
+  .profile_tab--selected {
+    @apply border-black;
+  }
+
+  .temp_drawer_width {
+    @apply w-[14.5rem];
+  }
+
+  .event_type--selected {
+    @apply bg-accent-main bg-opacity-[0.03];
+  }
+
+  .event_type {
+    @apply hover:bg-neutral-50;
+  }
+
+  .event_type--selected .event_type_circle {
+    @apply bg-accent-main;
+  }
+
+  .event_type .event_type_circle * {
+    @apply hidden;
+  }
+
+  ::selection {
+    @apply bg-accent-main text-white;
+  }
+
+  ::-moz-selection {
+    @apply bg-accent-main text-white;
+  }
+
+  .image_opacity_transition {
+    @apply transition-opacity duration-500;
+  }
+
+  .icon_size--base {
+    @apply h-[1.25rem] w-[1.25rem];
+  }
+
+  .icon_size--lg {
+    @apply h-6 w-6;
+  }
+
+  .max_page_width--wide {
+    @apply mx-auto max-w-[80rem];
+  }
+
+  .max_page_width--narrow {
+    @apply mx-auto max-w-[70rem];
+  }
+
+  .button_styles {
+    @apply flex cursor-pointer select-none items-center gap-3 rounded-lg bg-accent-main px-3 py-2.5 text-sm font-semibold text-white hover:bg-opacity-80;
+  }
+
+  .text_button {
+    @apply cursor-pointer select-none rounded-lg bg-accent-main px-3 py-2.5 text-center text-sm font-semibold text-white hover:bg-opacity-80;
+  }
+
+  .editor_box_styles {
+    @apply main_border_color border-0 border-black bg-neutral-100 shadow;
+  }
+
+  .content_divider_styles {
+    @apply main_border_color my-6 border-t;
+  }
+
+  .drawer_transition {
+    @apply transition-none;
+  }
+
+  .input_border_color {
+    @apply border-neutral-200 !important;
+  }
+
+  .login_input_styling {
+    @apply border border-neutral-500 px-4 pb-1.5 pt-1.5;
+  }
+
+  .darker_border_color {
+    @apply border-neutral-200;
+  }
+
+  .post_width {
+    @apply px-8 xs:max-w-[58rem] 2xl:max-w-[80rem];
+  }
+
+  .loader_bg_color {
+    @apply bg-neutral-200 transition-colors duration-500 dark:bg-neutral-700;
+  }
+
+  .black_border {
+    @apply border-neutral-400 transition-colors duration-500 dark:border-neutral-500;
+  }
+
+  .hover_color--neutral {
+    @apply hover:bg-neutral-100 dark:hover:bg-neutral-600;
+  }
+
+  .box_radius {
+    @apply rounded-xl;
+  }
+
+  .box_radius--bottom {
+    @apply rounded-b-lg;
+  }
+
+  .card_radius {
+    @apply rounded-xl;
+  }
+
+  .button_radius {
+    @apply rounded-lg;
+  }
+
+  .textfield_radius {
+    @apply rounded-md;
+  }
+
+  .dialog_radius {
+    @apply rounded-md;
+  }
+
+  .dialog_box_radius {
+    @apply rounded-xl;
+  }
+
+  .container_bg_color--primary {
+    @apply bg-white transition-colors duration-500 dark:bg-neutral-950;
+  }
+
+  .container_bg_color--secondary {
+    @apply bg-neutral-50 transition-colors duration-500 dark:bg-neutral-800;
+  }
+
+  .border_color--main {
+    @apply border-neutral-200 dark:border-neutral-700;
+  }
+
+  .main_transition_color {
+    @apply transition-colors duration-500;
+  }
+
+  .main_border_color {
+    @apply border-neutral-200 dark:border-neutral-500;
+  }
+
+  .border_color--pagination {
+    @apply border-neutral-300 transition-colors duration-500 dark:border-neutral-600;
+  }
+
+  .card_author_image {
+    @apply h-7 w-7 items-center justify-center rounded-full bg-neutral-100;
+  }
+
+  .image_bg {
+    @apply bg-neutral-50 transition-colors duration-500 dark:bg-neutral-800;
+  }
+
+  .dropdown_bg {
+    @apply bg-white transition-colors duration-500 dark:bg-neutral-700;
+  }
+
+  .darkmode_transition {
+    @apply transition-colors duration-500;
+  }
+
+  .main_content_container {
+    @apply flex h-full w-full flex-col overflow-hidden;
+  }
+
+  .zoom_card_image {
+    @apply transition-all duration-500 will-change-transform;
+  }
+
+  .image_zoom_container:hover .zoom_card_image {
+    @apply scale-105;
+  }
+
+  /* cards ==================== */
+
+  .gradient_card_image {
+    @apply transition-all duration-500  will-change-transform;
+  }
+
+  .gradient_card_container:hover .gradient_card_image {
+    @apply scale-105;
+  }
+
+  .card_title {
+    @apply cursor-pointer text-xl font-semibold leading-snug hover:underline;
+  }
+
+  .card_text {
+    @apply block h-16 w-full overflow-hidden pb-0 text-sm leading-snug;
+  }
+
+  .card_hashtag {
+    @apply mr-1 inline-block text-xs leading-snug;
+  }
+
+  .blog_title_medium {
+    @apply relative w-full pb-2 pt-1 text-2xl font-bold;
+  }
+
+  .blog_text_medium {
+    @apply block h-16 w-full overflow-hidden pb-0 text-base font-normal leading-snug;
+  }
+
+  .group_title_medium {
+    @apply relative w-full pb-1 pt-1.5 text-base font-bold;
+  }
+
+  .group_text_medium {
+    @apply block h-16 w-full pb-0 text-sm font-normal leading-snug;
+  }
+
+  .card_tags_container {
+    @apply mt-2 flex truncate text-sm;
+  }
+
+  .card_tag {
+    @apply mr-1 flex-shrink-0 cursor-pointer truncate text-xs text-neutral-500 hover:underline;
+  }
+
+  .overview_text {
+    @apply truncate text-sm;
+  }
+
+  .inline_author {
+    @apply cursor-pointer hover:underline;
+  }
+
+  .inline_publish_time {
+    @apply select-none truncate;
+  }
+
+  /* nav ======================= */
+  .nav_page_button {
+    @apply mx-2.5 mt-0.5 inline-block h-10 cursor-pointer select-none px-2;
+  }
+
+  /* spacing ======================= */
+  .content_divider {
+    @apply mb-7 w-full border-b border-neutral-100;
+  }
+}

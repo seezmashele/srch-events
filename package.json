@@ -1,6 +1,6 @@
 {
   "name": "srch-events",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": true,
   "scripts": {
     "dev": "npm run open-browser && next dev -p 3100",
@@ -46,6 +46,7 @@
     "browser-image-compression": "^2.0.2",
     "countries-list": "^3.0.6",
     "date-fns": "^3.0.0",
+    "lucide-react": "^0.335.0",
     "mathjs": "^12.3.0",
     "nanoid": "^5.0.4",
     "next": "14.0.4",

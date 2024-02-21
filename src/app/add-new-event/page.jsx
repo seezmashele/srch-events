@@ -589,7 +589,7 @@ const CreatePage = () => {
                           croppedImage && 'opacity-0f'
                         }`}
                       >
-                        drop image here
+                        Drop image here or click to select
                       </p>
                     </div>
                   </div>
@@ -597,7 +597,7 @@ const CreatePage = () => {
                     <div className="aspect-[2/1] w-full">
                       <img
                         draggable="false"
-                        className="box_radius pointer-events-none h-full w-full overflow-hidden object-contain"
+                        className="input_radiusf pointer-events-none h-full w-full overflow-hidden object-contain"
                         src={croppedImage || null}
                         alt=""
                       />

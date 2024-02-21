@@ -77,9 +77,9 @@ const AccountMenu = () => {
               )}
             </div>
           </Menu.Button>
-          <Menu.Items className="dropdown_bg dropdown_shadow box_radius absolute right-0 mt-14 w-72 origin-top-right divide-y divide-neutral-100 bg-white px-0 text-black focus:outline-none dark:text-white">
-            <div className="py-1.5">
-              <div className="mt-1 flex items-center px-3 py-0.5">
+          <Menu.Items className="dropdown_bg dropdown_shadow box_radius absolute right-0 mt-14 w-72 origin-top-right divide-y divide-neutral-100 bg-white p-2 text-black focus:outline-none dark:text-white">
+            <div className="">
+              <div className="mt-1 flex items-center px-1.5 py-0.5">
                 <div
                   style={{
                     backgroundColor: accountColor
@@ -112,56 +112,53 @@ const AccountMenu = () => {
                   const itemKey = `menuDropdown${item.title}${index}`
                   if (item.divider) {
                     return (
-                      <div className="my-1.5" key={itemKey}>
-                        <div className="border_color--main w-full border-b dark:border-neutral-500" />
-                      </div>
+                      <div
+                        key={itemKey}
+                        className="border_color--main my-1.5 w-full border-b dark:border-neutral-500"
+                      />
                     )
                   }
                   if (item.link) {
                     return (
-                      <div key={itemKey} className="px-1.5f">
-                        <Link href={item.link} passHref>
-                          <Menu.Item>
-                            {() => (
-                              <div className="hover_color--neutral rounded-mdf flex w-full select-none items-center py-2.5 pr-2.5 text-sm">
-                                <div className="mx-4">{item.icon}</div>
-                                <div className="overflow-hidden">
-                                  <div
-                                    className={`${
-                                      item.semibold && 'font-semibold'
-                                    } w-full`}
-                                  >
-                                    {item.title}
-                                  </div>
+                      <Link href={item.link} key={itemKey} passHref>
+                        <Menu.Item>
+                          {() => (
+                            <div className="hover_color--neutral box_radius flex w-full select-none items-center py-2.5 pr-2.5 text-sm">
+                              <div className="mx-4">{item.icon}</div>
+                              <div className="overflow-hidden">
+                                <div
+                                  className={`${
+                                    item.semibold && 'font-semibold'
+                                  } w-full`}
+                                >
+                                  {item.title}
                                 </div>
                               </div>
-                            )}
-                          </Menu.Item>
-                        </Link>
-                      </div>
+                            </div>
+                          )}
+                        </Menu.Item>
+                      </Link>
                     )
                   }
                   if (item.action) {
                     return (
                       <Menu.Item key={itemKey}>
                         {() => (
-                          <div className="px-1.5f">
-                            <button
-                              onClick={item.action}
-                              type="button"
-                              className="hover_color--neutral flex w-full select-none items-center py-2.5 pr-2.5  text-sm"
-                            >
-                              <div className="icon_size--base mx-4">
-                                {item.icon}
+                          <button
+                            onClick={item.action}
+                            type="button"
+                            className="hover_color--neutral box_radius flex w-full select-none items-center py-2.5 pr-2.5 text-sm"
+                          >
+                            <div className="icon_size--base mx-4">
+                              {item.icon}
+                            </div>
+                            <div className="flex flex-col justify-start">
+                              <div className="text-left">{item.title}</div>
+                              <div className="mt-0.5 text-left text-xs opacity-70">
+                                {item.description}
                               </div>
-                              <div className="flex flex-col justify-start">
-                                <div className="text-left">{item.title}</div>
-                                <div className="mt-0.5 text-left text-xs opacity-70">
-                                  {item.description}
-                                </div>
-                              </div>
-                            </button>
-                          </div>
+                            </div>
+                          </button>
                         )}
                       </Menu.Item>
                     )

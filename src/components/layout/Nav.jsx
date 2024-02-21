@@ -8,8 +8,8 @@ import { useApp } from '../../context/AppContext'
 import AccountMenu from '../dropdowns/AccountMenu'
 import LoginModal from '../modals/LoginModal'
 import MainDrawerContent from '../drawers/MainDrawer/MainDrawerContent'
-import ToggleDesktopDrawerButton from '../buttons/nav/ToggleDesktopDrawerButton'
-import ToggleMobileDrawerButton from '../buttons/nav/ToggleMobileDrawerButton'
+import DesktopDrawerButton from '../buttons/nav/DesktopDrawerButton'
+import MobileDrawerButton from '../buttons/nav/MobileDrawerButton'
 import NavSearchBar from './Nav/NavSearchBar'
 import FilledTextButton from '../buttons/FilledTextButton'
 import MobileIconButton from '../buttons/MobileIconButton'
@@ -43,11 +43,11 @@ const Nav = ({
             {/* -------------------------------------------------- */}
 
             <div className="flex h-10 w-48 items-center">
-              <ToggleDesktopDrawerButton
+              <DesktopDrawerButton
                 changeValue={changeShowDesktopDrawer}
                 value={showDesktopDrawer}
               />
-              <ToggleMobileDrawerButton
+              <MobileDrawerButton
                 changeValue={setOpenMobileDrawer}
                 value={openMobileDrawer}
               />
@@ -94,12 +94,12 @@ const Nav = ({
               {currentUser && !hideCreateEventButton && (
                 <>
                   <DesktopLinkButton
-                    path="/create"
+                    path="/add-new-event"
                     label="Add event"
                     ariaLabel="Create event"
                   />
                   <MobileIconLinkButton
-                    path="/create"
+                    path="/add-new-event"
                     ariaLabel="Create event"
                     icon={<Plus className="h-4 w-4 flex-shrink-0" />}
                   />

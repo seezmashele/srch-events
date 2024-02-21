@@ -15,23 +15,23 @@ const DrawerButtons = ({ drawerItems, selectedItemIndex, hidden = false }) => (
         }
         if (item.link) {
           return (
-            <Link href={item.link} passHref key={itemKey}>
-              <div
-                className={`box_radius mt-0 flex cursor-pointer select-none flex-nowrap overflow-hidden px-2.5 py-1.5 hover:bg-neutral-100 ${
-                  selectedItemIndex === index && 'bg-neutral-100'
-                }`}
-              >
-                <div className="mr-4 flex h-7 w-7 flex-shrink-0 items-center justify-center text-base">
-                  {selectedItemIndex === index ? item.iconFilled : item.icon}
-                </div>
-                <div className="flex items-center px-1">
-                  <div
-                    className={`text-sm ${
-                      selectedItemIndex === index && 'font-semibold'
-                    }`}
-                  >
-                    {item.title}
-                  </div>
+            <Link
+              href={item.link}
+              key={itemKey}
+              className={`box_radius mt-0 flex cursor-pointer select-none flex-nowrap overflow-hidden px-2.5 py-1.5 hover:bg-neutral-100 ${
+                selectedItemIndex === index && 'bg-neutral-100'
+              }`}
+            >
+              <div className="mr-4 flex h-7 w-7 flex-shrink-0 items-center justify-center text-base">
+                {selectedItemIndex === index ? item.iconFilled : item.icon}
+              </div>
+              <div className="flex flex-nowrap items-center px-1">
+                <div
+                  className={`text-nowrap text-sm ${
+                    selectedItemIndex === index && 'font-semibold'
+                  }`}
+                >
+                  {item.title}
                 </div>
               </div>
             </Link>
@@ -43,16 +43,16 @@ const DrawerButtons = ({ drawerItems, selectedItemIndex, hidden = false }) => (
               key={itemKey}
               type="button"
               onClick={item.action}
-              className={`box_radius mt-0 flex cursor-pointer select-none items-center px-2.5 py-1.5 hover:bg-neutral-100  ${
+              className={`box_radius mt-0 flex cursor-pointer select-none flex-nowrap items-center px-2.5 py-1.5 hover:bg-neutral-100  ${
                 selectedItemIndex === index && 'bg-neutral-100'
               }`}
             >
               <div className="mr-4 flex h-7 w-7 flex-shrink-0 items-center justify-center text-base">
                 {selectedItemIndex === index ? item.iconFilled : item.icon}
               </div>
-              <div className="flex items-center px-1">
+              <div className="flex flex-nowrap items-center px-1">
                 <div
-                  className={`text-sm ${
+                  className={`text-nowrap text-sm ${
                     selectedItemIndex === index && 'font-semibold'
                   }`}
                 >

@@ -33,10 +33,12 @@ const HomePage = () => {
 
       <BodyWrapper>
         <MainDrawer selectedPageIndex={4} />
-        <main className="content_padding_x flex h-full min-h-[30rem] w-full flex-row items-stretch py-5">
-          <div className="main_border_color relative h-full min-h-screen w-60 flex-shrink-0 border-x px-4 py-5">
+        <main className="content_padding_x flex min-h-[10rem] w-full flex-row items-stretch py-5">
+          <div className="box_radius relative h-full min-h-screen w-56 flex-shrink-0 bg-neutral-100 px-2 py-3">
+            <div className="px-3 font-semibold">Settings</div>
+            <div className="my-3 w-full border-t" />
             {settingsOptions.map((item, index) => {
-              const itemKey = `settingsItem${item.title}${index}`
+              const itemKey = `settings-item${item.title}${index}`
               if (item.sectionTitle) {
                 return (
                   <div
@@ -61,7 +63,7 @@ const HomePage = () => {
                   onClick={() => {
                     setCurrentPage(index)
                   }}
-                  className={`box_radius mb-1f flex w-full cursor-pointer items-center p-2.5 text-left text-sm hover:bg-neutral-100 ${
+                  className={`box_radius mb-1f flex w-full cursor-pointer items-center p-2.5 text-left text-sm hover:bg-neutral-200 ${
                     index === currentPage && 'bg-neutral-100 font-semibold'
                   }`}
                 >

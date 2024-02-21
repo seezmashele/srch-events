@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+  .base_button_styles {
+    @apply cursor-pointer select-none rounded-lg px-3 py-2.5 text-sm font-semibold;
+  }
+
+  .button_min_width {
+    @apply min-w-28;
+  }
+
+  .button_colors--filled {
+    @apply bg-green-600 bg-opacity-100 text-purple-500 hover:bg-opacity-80;
+  }
+
+  .button_colors--outline {
+    @apply border border-neutral-500 text-black hover:bg-neutral-100;
+  }
+}

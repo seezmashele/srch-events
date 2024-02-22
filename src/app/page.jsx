@@ -21,6 +21,7 @@ const Home = () => {
         <MainDrawer selectedPageIndex={0} />
         <main className="content_padding_x flex w-full flex-col pb-24 pt-1.5">
           <FeaturedTagsBar />
+
           <div className="mt-8 w-full">
             {homePageEvents1 && (
               <EventsBlock events={homePageEvents1} title="" />

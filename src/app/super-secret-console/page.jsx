@@ -7,16 +7,30 @@ import { uploadSortedEvents } from '../../utils/supabase/database/create'
 import { fetchAllEvents } from '../../utils/supabase/database/fetch'
 
 const ConsolePage = () => {
-  const [docSlug, setDocSlug] = useState('all')
+  // const [docSlug, setDocSlug] = useState('all')
   const [dataError, setDataError] = useState(false)
   const [fetchError, setFetchError] = useState('')
   const [smoothies, setSmoothies] = useState(null)
   const [isEventsMode, setIsEventsMode] = useState(true)
+  const [tagsFound, setTagsFound] = useState([])
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState('all')
+
+  const getAllTags = (events) => {
+    // Use a Set to collect unique tags efficiently
+    const allTags = new Set()
+    events
+      .flatMap((event) => event.tags_array)
+      .forEach((tag) => allTags.add(tag))
+
+    return Array.from(allTags)
+  }
 
   const fetchSmoothies = async () => {
     const events = await fetchAllEvents()
     if (events) {
       setSmoothies(events.reverse())
+      const allTags = getAllTags(events)
+      setTagsFound(allTags)
       setFetchError(null)
     } else {
       setSmoothies(null)
@@ -68,20 +82,18 @@ const ConsolePage = () => {
     return null
   }
 
-  const randomTags = ['hello', 'this', 'is', 'my', 'random', 'list']
-
   return (
     <>
       <PageHead title="Console" />
       <Nav hideSearch showLoginButton />
 
-      <div className="page_padding_x max_page_width--narrow z-10 mx-auto flex w-full flex-col">
-        <div
+      <div className="page_padding_x max_page_width--narrow z-10 mx-auto flex w-full flex-col pt-16">
+        {/* <div
           className="text-lgf mt-20 text-center
         "
         >
           Fetch items, filter and save somewhere else
-        </div>
+        </div> */}
         {fetchError && (
           <div
             className="mt-5 bg-red-50 text-center
@@ -157,15 +169,29 @@ const ConsolePage = () => {
             <div className="mt-5 w-full border-b" />
             <div className="mt-5 flex flex-col items-center py-1">
               <div className="w-full whitespace-nowrap">Tags found</div>
-              <div className="mt-2.5 flex w-full">
-                {randomTags.map((item, index) => (
-                  <div
-                    key={`consoletag${item}${index}`}
-                    className="box_radius mr-1.5 cursor-pointer bg-neutral-100 px-4 py-2 hover:bg-neutral-200"
+              <div className="mt-2.5 flex w-full flex-wrap">
+                {tagsFound && tagsFound.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCategorySlug('all')}
+                    className={`${selectedCategorySlug === 'all' ? 'bg-black text-white' : 'bg-neutral-100 hover:bg-neutral-200'} box_radius mb-1.5 mr-1.5 cursor-pointer px-3 py-2 `}
                   >
-                    {item}
-                  </div>
-                ))}
+                    all
+                  </button>
+                )}
+                {tagsFound &&
+                  tagsFound.map((item, index) => (
+                    <button
+                      type="button"
+                      key={`console-tag${item}${index}`}
+                      onClick={() => {
+                        setSelectedCategorySlug(item)
+                      }}
+                      className={`${selectedCategorySlug === item ? 'bg-black text-white' : 'bg-neutral-100 hover:bg-neutral-200'} box_radius mb-1.5 mr-1.5 cursor-pointer px-3 py-2 `}
+                    >
+                      {item}
+                    </button>
+                  ))}
               </div>
             </div>
             <div className="mt-5 w-full border-b" />
@@ -173,14 +199,17 @@ const ConsolePage = () => {
               <div className="mr-3 whitespace-nowrap">
                 <b>Save to:</b> events_sorted_by_tag
               </div>
-              <input
+              <p className="box_radius w-full select-none bg-neutral-100 p-3">
+                {selectedCategorySlug}
+              </p>
+              {/* <input
                 value={docSlug}
                 onChange={(e) => {
                   setDocSlug(e.target.value)
                 }}
                 placeholder="document name"
                 className="box_radius w-full bg-neutral-100 p-3"
-              />
+              /> */}
             </div>
             <div
               className={`box_radius mt-5 min-h-[20rem] w-full border-2 bg-neutral-100 p-4 ${

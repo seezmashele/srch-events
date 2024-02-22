@@ -11,7 +11,7 @@ const ToggleSignupModeButton = ({
       setSignupMode(!signupMode)
       setShowStep2(false)
     }}
-    className="mt-5 w-full cursor-pointer rounded-lg px-3 py-2.5 text-center text-sm font-semibold text-accent-main hover:bg-neutral-100"
+    className="base_button_styles text-accent-bluef mt-5 w-full text-center hover:bg-neutral-100"
   >
     <p>
       {signupMode

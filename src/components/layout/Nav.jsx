@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Drawer from '@mui/material/Drawer'
 import { useState } from 'react'
-import { Search, List, Plus } from 'react-bootstrap-icons'
+import { Search, List, PlusCircle } from 'react-bootstrap-icons'
 import { useAuth } from '../../context/AuthContext'
 import { useApp } from '../../context/AppContext'
 import AccountMenu from '../dropdowns/AccountMenu'
@@ -14,7 +14,7 @@ import NavSearchBar from './Nav/NavSearchBar'
 import FilledTextButton from '../buttons/FilledTextButton'
 import MobileIconButton from '../buttons/MobileIconButton'
 import MobileIconLinkButton from '../buttons/MobileIconLinkButton'
-import DesktopLinkButton from '../buttons/DesktopLinkButton'
+import DesktopIconLinkButton from '../buttons/DesktopIconLinkButton'
 
 const Nav = ({
   hideSearch = true,
@@ -93,15 +93,20 @@ const Nav = ({
 
               {currentUser && !hideCreateEventButton && (
                 <>
-                  <DesktopLinkButton
+                  <DesktopIconLinkButton
                     path="/add-new-event"
-                    label="Add event"
+                    label="Create event"
                     ariaLabel="Create event"
+                    icon={
+                      <PlusCircle className="icon_size--base flex-shrink-0" />
+                    }
                   />
                   <MobileIconLinkButton
                     path="/add-new-event"
                     ariaLabel="Create event"
-                    icon={<Plus className="h-4 w-4 flex-shrink-0" />}
+                    icon={
+                      <PlusCircle className="icon_size--base flex-shrink-0" />
+                    }
                   />
                 </>
               )}
@@ -128,7 +133,7 @@ const Nav = ({
                       setSignupMode(false)
                       setOpenLoginModal(true)
                     }}
-                    className="box_radius mr-2f cursor-pointer bg-accent-main px-4 py-1.5 text-white hover:bg-accent-main-hover"
+                    className="base_button_styles button_colors--filled button_min_width"
                   >
                     Log in
                   </button>

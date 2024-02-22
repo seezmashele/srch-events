@@ -5,7 +5,8 @@ import {
   Search,
   Person,
   QuestionCircle,
-  BoxArrowInRight
+  BoxArrowInRight,
+  PlusCircle
 } from 'react-bootstrap-icons'
 import { useAuth } from '../../context/AuthContext'
 import { signOut } from '../../utils/supabase/auth/session'
@@ -31,14 +32,19 @@ const AccountMenu = () => {
       link: `/profile/${accountUsername}`
     },
     {
-      icon: <Search className="icon_size--base" />,
-      title: 'Search',
-      link: '/search'
+      icon: <PlusCircle className="icon_size--base" />,
+      title: 'Create event',
+      link: '/add-new-event'
     },
     {
       icon: <Gear className="icon_size--base" />,
       title: 'Settings',
       link: '/settings'
+    },
+    {
+      icon: <Search className="icon_size--base" />,
+      title: 'Search',
+      link: '/search'
     },
     {
       icon: <QuestionCircle className="icon_size--base" />,

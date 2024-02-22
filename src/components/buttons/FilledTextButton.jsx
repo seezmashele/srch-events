@@ -3,7 +3,7 @@ const FilledTextButton = ({ label = '', ariaLabel = '', onClick }) => (
     type="button"
     onClick={onClick}
     aria-label={ariaLabel}
-    className="button_styles box_radius ml-auto mr-0 flex gap-1 space-x-0 whitespace-nowrap px-5 py-2"
+    className="base_button_styles button_colors--filled button_min_width ml-auto mr-0 text-center"
   >
     {label}
   </button>

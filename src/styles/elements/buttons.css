@@ -6,11 +6,11 @@
   }
 
   .button_min_width {
-    @apply min-w-28;
+    @apply min-w-24;
   }
 
   .button_colors--filled {
-    @apply bg-green-600 bg-opacity-100 text-purple-500 hover:bg-opacity-80;
+    @apply bg-accent-main text-white hover:bg-opacity-80;
   }
 
   .button_colors--outline {

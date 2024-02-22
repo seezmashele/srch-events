@@ -495,7 +495,7 @@ const CreatePage = () => {
                 </div>
                 <div className="w-1/2">
                   <div className="pb-2.5 text-sm font-semibold">
-                    Age restriction
+                    Age requirements
                   </div>
                   <FormNumberInput
                     placeholder="None"

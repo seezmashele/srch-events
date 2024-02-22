@@ -26,7 +26,7 @@ const FormSubmitButtons = ({
             showStep2
               ? 'bg-neutral-200 text-neutral-900'
               : 'pointer-events-none bg-neutral-100 text-neutral-300'
-          } text_button mr-2 flex items-center hover:bg-neutral-300 `}
+          } input_button_styles mr-2 flex items-center hover:bg-neutral-300 `}
         >
           <ArrowLeft className="mr-2.5" />
           Back
@@ -44,7 +44,7 @@ const FormSubmitButtons = ({
               if (step1IsValid()) setShowStep2(true)
             }
           }}
-          className="text_button flex w-full items-center justify-center text-center"
+          className="button_colors--filled input_button_styles flex w-full items-center justify-center text-center"
         >
           {showStep2 ? 'Sign up' : 'Next step'}
           <ArrowRight className={`${showStep2 && 'hidden'} ml-2.5`} />
@@ -55,7 +55,7 @@ const FormSubmitButtons = ({
         type="button"
         aria-label="Login or sign up"
         disabled={isSubmitting}
-        className="text_button w-full"
+        className="button_colors--filled input_button_styles w-full"
         onClick={() => {
           showMissingStep1Values()
           if (step1IsValid()) submitLogin()

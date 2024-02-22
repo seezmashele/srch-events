@@ -113,7 +113,7 @@ const CropperModal = ({
             onClick={() => {
               setCropAspectRatio(ratio.value)
             }}
-            className={`${ratio.value === cropAspectRatio ? 'border-accent-main bg-accent-main text-accent-main' : 'hover:bg-neutral-100'} base_button_styles bg-neutral-100f border bg-opacity-10 px-4 text-black`}
+            className={`${ratio.value === cropAspectRatio ? 'border-accent-main bg-accent-main text-accent-main' : 'hover:bg-neutral-100'} base_button_styles bg-neutral-100f border bg-opacity-5 px-4`}
           >
             {ratio.label}
           </button>
@@ -135,7 +135,7 @@ const CropperModal = ({
           type="button"
           aria-label="Crop image"
           onClick={saveCroppedImage}
-          className="base_button_styles button_min_width bg-accent-main px-4 text-center text-white hover:bg-opacity-80"
+          className="base_button_styles button_min_width button_colors--filled text-center"
         >
           Done
         </button>

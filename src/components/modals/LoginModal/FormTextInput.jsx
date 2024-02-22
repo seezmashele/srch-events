@@ -21,7 +21,7 @@ const FormTextInput = ({
       }}
       type={type}
       placeholder={placeholder}
-      className="box_radius login_input_styling mt-1.5 w-full"
+      className="input_radius login_input_styling mt-1.5 w-full"
     />
     {error && (
       <div className="mt-2 w-full text-sm text-red-500">

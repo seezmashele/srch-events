@@ -26,7 +26,7 @@ const LoginModal = ({
   const [errorMessage, setErrorMessage] = useState('')
   const [email, setEmail] = useState('')
   const [passwd, setPasswd] = useState('')
-  const [username, setUsername] = useState('@')
+  const [username, setUsername] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [birthDay, setBirthDay] = useState('')
   const [birthMonth, setBirthMonth] = useState('')
@@ -180,7 +180,7 @@ const LoginModal = ({
                 <FormTextInput
                   required
                   type="text"
-                  title="Name"
+                  title="Full name"
                   value={displayName}
                   setValue={setDisplayName}
                   error={displayNameError}
@@ -188,7 +188,7 @@ const LoginModal = ({
                 <FormTextInput
                   required
                   type="text"
-                  title="Handle"
+                  title="Username"
                   value={username}
                   setValue={setUsername}
                   error={usernameError}
@@ -214,7 +214,7 @@ const LoginModal = ({
                 ) : (
                   <button
                     type="button"
-                    className="cursor-pointer py-1 text-accent-main hover:underline"
+                    className="text-accent-bluef cursor-pointer py-1 hover:underline"
                   >
                     Forgot your password?
                   </button>
@@ -232,16 +232,16 @@ const LoginModal = ({
               {/* open terms and policy links in a new tab */}
 
               <div
-                className={`mt-8 pb-2 text-xs text-neutral-500 ${
+                className={`mt-8 pb-2 text-xs text-black ${
                   (!signupMode && 'hidden') || (!showStep2 && 'hidden')
                 }`}
               >
                 By creating an account, I agree to the{' '}
-                <span className="cursor-pointer font-semibold text-accent-blue hover:underline">
+                <span className="text-accent-bluef cursor-pointer font-semibold hover:underline">
                   Terms
                 </span>{' '}
                 and{' '}
-                <span className="cursor-pointer font-semibold text-accent-blue hover:underline">
+                <span className="text-accent-bluef cursor-pointer font-semibold hover:underline">
                   Privacy Policy
                 </span>
                 .

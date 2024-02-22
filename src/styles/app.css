@@ -11,10 +11,11 @@
 @import 'components/sidebar';
 @import 'components/tiptap';
 @import 'components/toasts';
-@import 'elements/buttons';
-@import 'elements/typography';
-@import 'unsorted';
+@import 'layout';
 @import 'mui';
+@import 'unsorted';
+/* @import 'elements/buttons.css'; */
+@import 'elements/typography';
 
 .force_hidden {
   display: none !important;
@@ -97,4 +98,31 @@ iframe {
 .Toastify__toast {
   border-radius: 0.5rem;
   /* background-color: #555; */
+}
+
+@layer components {
+  .base_button_styles,
+  .input_button_styles {
+    @apply cursor-pointer select-none whitespace-nowrap px-3.5 py-2.5 text-sm font-semibold;
+  }
+
+  .base_button_styles {
+    @apply rounded-xl;
+  }
+
+  .input_button_styles {
+    @apply rounded-lg;
+  }
+
+  .button_min_width {
+    @apply min-w-24;
+  }
+
+  .button_colors--filled {
+    @apply bg-accent-main text-white hover:bg-opacity-80;
+  }
+
+  .button_colors--outline {
+    @apply border border-neutral-500 text-black hover:bg-neutral-100;
+  }
 }

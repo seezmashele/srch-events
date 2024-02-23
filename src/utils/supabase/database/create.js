@@ -84,9 +84,9 @@ export const createUserProfile = async (
   return { success: true }
 }
 
-const findSlugId = async (slug) => {
+const findSlugId = async (tableName, slug) => {
   const { data, error } = await supabase
-    .from('events_sorted_by_tag')
+    .from(tableName)
     .select()
     .eq('slug', slug)
     .limit(1)
@@ -96,12 +96,45 @@ const findSlugId = async (slug) => {
   return null
 }
 
-export const uploadSortedEvents = async (events) => {
+export const uploadRecommendedTags = async (jsonTags) => {
+  if (jsonTags) {
+    try {
+      const tableName = 'recommended_tags'
+      const slug = 'home_page_recommended_tags'
+      const slugId = await findSlugId(tableName, slug)
+
+      if (slugId) {
+        const { error } = await supabase
+          .from(tableName)
+          .update({ tags: jsonTags })
+          .eq('id', slugId)
+        if (!error) {
+          return { success: true }
+        }
+      } else {
+        const { error } = await supabase.from(tableName).upsert({
+          slug,
+          tags: jsonTags
+        })
+
+        if (error) return { error }
+
+        return { success: true }
+      }
+      return { success: true }
+    } catch (error) {
+      return { error }
+    }
+  }
+  return { error: { message: 'no data' } }
+}
+
+export const uploadSortedEvents = async (events, selectedTag) => {
   if (events) {
     try {
-      const slug = 'all'
-      const title = 'All'
-      const slugId = await findSlugId(slug)
+      const slug = selectedTag
+      const title = selectedTag
+      const slugId = await findSlugId('events_sorted_by_tag', slug)
 
       if (slugId) {
         const { error } = await supabase

@@ -3,20 +3,23 @@
 import { useState } from 'react'
 import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
-import { uploadSortedEvents } from '../../utils/supabase/database/create'
+import {
+  uploadSortedEvents,
+  uploadRecommendedTags
+} from '../../utils/supabase/database/create'
 import { fetchAllEvents } from '../../utils/supabase/database/fetch'
 
 const ConsolePage = () => {
   // const [docSlug, setDocSlug] = useState('all')
   const [dataError, setDataError] = useState(false)
   const [fetchError, setFetchError] = useState('')
-  const [smoothies, setSmoothies] = useState(null)
+  const [fetchedEvents, setFetchedEvents] = useState(null)
   const [isEventsMode, setIsEventsMode] = useState(true)
   const [tagsFound, setTagsFound] = useState([])
-  const [selectedCategorySlug, setSelectedCategorySlug] = useState('all')
+  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [filteredEvents, setFilteredEvents] = useState(null)
 
   const getAllTags = (events) => {
-    // Use a Set to collect unique tags efficiently
     const allTags = new Set()
     events
       .flatMap((event) => event.tags_array)
@@ -25,36 +28,61 @@ const ConsolePage = () => {
     return Array.from(allTags)
   }
 
-  const fetchSmoothies = async () => {
+  const getFilteredEvents = (events, tag) => {
+    if (!events) return null
+    if (tag === 'all') return events
+
+    return events.filter((event) => event.tags_array.includes(tag))
+  }
+
+  const sortTagsList = (tags) => {
+    if (!tags) return null
+    const newTags = Array.from(tags)
+
+    newTags.push('all')
+    newTags.sort()
+
+    return newTags
+  }
+
+  const fetchEventsFromSupabase = async () => {
     const events = await fetchAllEvents()
     if (events) {
-      setSmoothies(events.reverse())
       const allTags = getAllTags(events)
-      setTagsFound(allTags)
+      const sortedTags = sortTagsList(allTags)
+      const reversedEvents = events.reverse()
+
+      setTagsFound(sortedTags)
+      setSelectedCategory('all')
+      setFetchedEvents(reversedEvents)
+      setFilteredEvents(reversedEvents)
       setFetchError(null)
     } else {
-      setSmoothies(null)
+      setTagsFound(null)
+      setFetchedEvents(null)
+      setFilteredEvents(null)
+      setSelectedCategory(null)
       setFetchError('no events')
     }
   }
 
-  const randomizeSmoothies = () => {
-    if (smoothies) {
-      const newArr = Array.from(smoothies)
+  const randomizeFilteredEvents = () => {
+    if (filteredEvents) {
+      const newArr = Array.from(filteredEvents)
       newArr.sort(() => Math.random() - 0.5)
-      setSmoothies(newArr)
+      setFilteredEvents(newArr)
     }
   }
 
-  const reverseSmoothies = () => {
-    if (smoothies) {
-      const newArr = Array.from(smoothies)
+  const reverseFilteredEvents = () => {
+    if (filteredEvents) {
+      const newArr = Array.from(filteredEvents)
       newArr.reverse()
-      setSmoothies(newArr)
+      setFilteredEvents(newArr)
     }
   }
 
-  const formatSmoothies = (events) => {
+  const formatEventsToUpload = (events) => {
     const newEvents = events.map((event) => ({
       slug: event.slug,
       title: event.title,
@@ -68,18 +96,40 @@ const ConsolePage = () => {
     return newEvents
   }
 
-  const uploadSortedSupabaseEvents = async () => {
-    if (smoothies) {
-      const newSmoothies = formatSmoothies(smoothies)
-      const result = await uploadSortedEvents(newSmoothies, 'All', 'all')
+  const formatAndUploadSortedEvents = async () => {
+    if (filteredEvents) {
+      const formattedEvents = formatEventsToUpload(filteredEvents)
+      const result = await uploadSortedEvents(formattedEvents, selectedCategory)
       if (result) return result
     } else {
       setDataError(true)
       setTimeout(() => {
         setDataError(false)
-      }, 500)
+      }, 1000)
     }
     return null
+  }
+
+  const tagsToJson = (tags) => {
+    if (!tags) return null
+    const tagsArray = tags.map((tag) => ({ title: tag, slug: tag }))
+    return JSON.stringify(tagsArray)
+  }
+
+  const uploadTagsFound = async () => {
+    if (tagsFound && tagsFound.length > 1) {
+      const jsonTags = tagsToJson(tagsFound)
+      const result = await uploadRecommendedTags(jsonTags)
+      if (result) return result
+    }
+    return { error: 'tags not uploaded' }
+  }
+
+  const changeSelectedTag = (events, tag) => {
+    const newEvents = getFilteredEvents(events, tag)
+
+    setFilteredEvents(newEvents)
+    setSelectedCategory(tag)
   }
 
   return (
@@ -88,21 +138,15 @@ const ConsolePage = () => {
       <Nav hideSearch showLoginButton />
 
       <div className="page_padding_x max_page_width--narrow z-10 mx-auto flex w-full flex-col pt-16">
-        {/* <div
-          className="text-lgf mt-20 text-center
-        "
-        >
-          Fetch items, filter and save somewhere else
-        </div> */}
         {fetchError && (
           <div
-            className="mt-5 bg-red-50 text-center
+            className="mt-4 bg-red-50 text-center
                 "
           >
             {fetchError}
           </div>
         )}
-        <div className="box_radius mx-auto mt-5 w-full max-w-xl border">
+        <div className="box_radius mx-auto mt-4 w-full max-w-xl border">
           <div className="flex flex-col p-5 text-sm">
             <div className="flex w-full justify-end pb-5">
               <div className="box_radius overflow-hidden border">
@@ -111,7 +155,7 @@ const ConsolePage = () => {
                   aria-label="fetch events"
                   className={`${
                     !isEventsMode && 'underline'
-                  } border-r p-3 font-semibold underline-offset-2 hover:bg-neutral-50`}
+                  } border-r px-3 py-2 font-semibold underline-offset-2 hover:bg-neutral-50`}
                   onClick={() => {
                     setIsEventsMode(false)
                   }}
@@ -123,7 +167,7 @@ const ConsolePage = () => {
                   aria-label="randomize"
                   className={`${
                     isEventsMode && 'underline'
-                  } p-3 font-semibold underline-offset-2 hover:bg-neutral-50`}
+                  } px-3 py-2 font-semibold underline-offset-2 hover:bg-neutral-50`}
                   onClick={() => {
                     setIsEventsMode(true)
                   }}
@@ -136,88 +180,82 @@ const ConsolePage = () => {
               <button
                 type="button"
                 aria-label="fetch events"
-                className="box_radius mr-3 bg-neutral-100 p-3 font-semibold hover:bg-neutral-200"
-                onClick={fetchSmoothies}
+                className="box_radius mr-3 bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
+                onClick={fetchEventsFromSupabase}
               >
                 Fetch all events
               </button>
               <button
                 type="button"
                 aria-label="randomize"
-                className="box_radius mr-3 bg-neutral-100 p-3 font-semibold hover:bg-neutral-200"
-                onClick={randomizeSmoothies}
+                className="box_radius mr-3 bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
+                onClick={randomizeFilteredEvents}
               >
                 Randomize
               </button>
               <button
                 type="button"
                 aria-label="randomize"
-                className="box_radius mr-3 bg-neutral-100 p-3 font-semibold hover:bg-neutral-200"
-                onClick={reverseSmoothies}
+                className="box_radius mr-3 bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
+                onClick={reverseFilteredEvents}
               >
                 Reverse
               </button>
               <button
                 type="button"
                 aria-label="upload"
-                className="box_radius bg-accent-main p-3 font-semibold text-white hover:bg-accent-main-hover"
-                onClick={uploadSortedSupabaseEvents}
+                className="box_radius bg-accent-main px-3 py-2 font-semibold text-white hover:bg-accent-main-hover"
+                onClick={formatAndUploadSortedEvents}
               >
                 Upload new events
               </button>
             </div>
-            <div className="mt-5 w-full border-b" />
-            <div className="mt-5 flex flex-col items-center py-1">
-              <div className="w-full whitespace-nowrap">Tags found</div>
+            <div className="mt-4 w-full border-b" />
+            <div className="mt-4 flex items-center py-1">
+              <div className="mr-3 whitespace-nowrap">
+                <b>Save to:</b> events_sorted_by_tag
+              </div>
+              <p className="box_radius w-full select-none bg-neutral-100 px-3 py-2">
+                {selectedCategory}
+              </p>
+            </div>
+            <div className="mt-4 w-full border-b" />
+            <div className="mt-4 flex flex-col items-center py-1">
+              <div className="flex w-full items-center">
+                <div className="w-full whitespace-nowrap">Tags found</div>
+                <button
+                  type="button"
+                  aria-label="upload"
+                  className="box_radius text-nowrap bg-accent-main px-3 py-2 font-semibold text-white hover:bg-accent-main-hover"
+                  onClick={uploadTagsFound}
+                >
+                  Upload tags
+                </button>
+              </div>
               <div className="mt-2.5 flex w-full flex-wrap">
-                {tagsFound && tagsFound.length > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCategorySlug('all')}
-                    className={`${selectedCategorySlug === 'all' ? 'bg-black text-white' : 'bg-neutral-100 hover:bg-neutral-200'} box_radius mb-1.5 mr-1.5 cursor-pointer px-3 py-2 `}
-                  >
-                    all
-                  </button>
-                )}
                 {tagsFound &&
                   tagsFound.map((item, index) => (
                     <button
                       type="button"
                       key={`console-tag${item}${index}`}
                       onClick={() => {
-                        setSelectedCategorySlug(item)
+                        changeSelectedTag(fetchedEvents, item)
                       }}
-                      className={`${selectedCategorySlug === item ? 'bg-black text-white' : 'bg-neutral-100 hover:bg-neutral-200'} box_radius mb-1.5 mr-1.5 cursor-pointer px-3 py-2 `}
+                      className={`${selectedCategory === item ? 'bg-black text-white' : 'bg-neutral-100 hover:bg-neutral-200'} box_radius mb-1.5 mr-1.5 cursor-pointer px-3 py-2 `}
                     >
                       {item}
                     </button>
                   ))}
               </div>
             </div>
-            <div className="mt-5 w-full border-b" />
-            <div className="mt-5 flex items-center py-1">
-              <div className="mr-3 whitespace-nowrap">
-                <b>Save to:</b> events_sorted_by_tag
-              </div>
-              <p className="box_radius w-full select-none bg-neutral-100 p-3">
-                {selectedCategorySlug}
-              </p>
-              {/* <input
-                value={docSlug}
-                onChange={(e) => {
-                  setDocSlug(e.target.value)
-                }}
-                placeholder="document name"
-                className="box_radius w-full bg-neutral-100 p-3"
-              /> */}
-            </div>
+
             <div
-              className={`box_radius mt-5 min-h-[20rem] w-full border-2 bg-neutral-100 p-4 ${
+              className={`box_radius mt-4 min-h-[20rem] w-full border-2 bg-neutral-100 p-4 ${
                 dataError ? 'border-red-400' : 'border-transparent'
               }`}
             >
               <pre className=" overflow-hidden">
-                {smoothies && JSON.stringify(smoothies, null, 2)}
+                {filteredEvents && JSON.stringify(filteredEvents, null, 2)}
               </pre>
             </div>
           </div>

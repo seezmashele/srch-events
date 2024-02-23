@@ -1,6 +1,7 @@
 'use client'
 
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
+import { fetchRecommendedTags } from '../utils/supabase/database/fetch'
 
 const AppContext = createContext()
 export const useApp = () => useContext(AppContext)
@@ -10,9 +11,29 @@ export const AppProvider = ({ children }) => {
   const [showDesktopDrawer, setShowDrawer] = useState(true)
   const [showEventModal, setShowEventModal] = useState(false)
   const [showLoginModal, setShowLoginModal] = useState(false)
+  const [homePageCategory, setHomePageCategory] = useState('all')
+  const [recommendedHomePageTags, setRecommendedHomePageTags] = useState(null)
+
+  const useRecommendedHomePageTags = () => {
+    useEffect(() => {
+      const getTags = async () => {
+        const tags = await fetchRecommendedTags()
+        setRecommendedHomePageTags(tags || null)
+      }
+      getTags()
+    }, [])
+
+    return {
+      recommendedHomePageTags
+    }
+  }
 
   const changeDarkMode = (value) => {
     setDarkMode(value)
+  }
+
+  const changeHomePageCategory = (value) => {
+    setHomePageCategory(value)
   }
 
   const changeShowDesktopDrawer = (value) => {
@@ -30,10 +51,14 @@ export const AppProvider = ({ children }) => {
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value = {
     changeDarkMode,
+    changeHomePageCategory,
     changeShowDesktopDrawer,
     changeShowEventModal,
     changeShowLoginModal,
+    useRecommendedHomePageTags,
     darkMode,
+    homePageCategory,
+    recommendedHomePageTags,
     showDesktopDrawer,
     showEventModal,
     showLoginModal

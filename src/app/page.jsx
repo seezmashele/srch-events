@@ -1,16 +1,28 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Nav from '../components/layout/Nav'
 import PageHead from '../components/misc/PageHead'
-import { useDatabase } from '../context/DatabaseContext'
+// import { useDatabase } from '../context/DatabaseContext'
 import EventsBlock from '../components/blocks/EventsBlock'
 import MainDrawer from '../components/drawers/MainDrawer'
 import FeaturedTagsBar from '../components/layout/FeaturedTagsBar'
 import BodyWrapper from '../components/wrappers/BodyWrapper'
+import { useApp } from '../context/AppContext'
+import { fetchEventsByTag } from '../utils/supabase/database/fetch'
 
 const Home = () => {
-  const { useHomePageEvents } = useDatabase()
-  const { homePageEvents1 } = useHomePageEvents()
+  const { homePageCategory } = useApp()
+  const [homePageEvents, setHomePageEvents] = useState(null)
+
+  useEffect(() => {
+    // cache the result of fetchEventsByTag with react query
+    const getEvents = async () => {
+      const events = await fetchEventsByTag(homePageCategory)
+      setHomePageEvents(events || null)
+    }
+    getEvents()
+  }, [homePageCategory])
 
   return (
     <>
@@ -23,9 +35,7 @@ const Home = () => {
           <FeaturedTagsBar />
 
           <div className="mt-8 w-full">
-            {homePageEvents1 && (
-              <EventsBlock events={homePageEvents1} title="" />
-            )}
+            {homePageEvents && <EventsBlock events={homePageEvents} title="" />}
           </div>
         </main>
       </BodyWrapper>

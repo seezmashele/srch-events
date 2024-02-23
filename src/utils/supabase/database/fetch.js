@@ -148,3 +148,31 @@ export const fetchSortedEvents = async () => {
   }
   return null
 }
+
+export const fetchEventsByTag = async (tag) => {
+  const { data, error } = await supabase
+    .from('events_sorted_by_tag')
+    .select()
+    .eq('slug', tag)
+    .limit(1)
+    .maybeSingle()
+
+  if (data) return formatEvents(data.events)
+  if (error) {
+    return { error }
+  }
+  return null
+}
+
+export const fetchRecommendedTags = async () => {
+  const { data, error } = await supabase
+    .from('recommended_tags')
+    .select()
+    .eq('slug', 'home_page_recommended_tags')
+    .limit(1)
+    .maybeSingle()
+
+  if (data) return JSON.parse(data.tags)
+  if (error) return { error }
+  return null
+}

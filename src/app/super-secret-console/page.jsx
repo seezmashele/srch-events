@@ -96,10 +96,10 @@ const ConsolePage = () => {
     return newEvents
   }
 
-  const formatAndUploadSortedEvents = async () => {
-    if (filteredEvents) {
-      const formattedEvents = formatEventsToUpload(filteredEvents)
-      const result = await uploadSortedEvents(formattedEvents, selectedCategory)
+  const formatAndUploadSortedEvents = async (events, category) => {
+    if (events) {
+      const formattedEvents = formatEventsToUpload(events)
+      const result = await uploadSortedEvents(formattedEvents, category)
       if (result) return result
     } else {
       setDataError(true)
@@ -125,6 +125,16 @@ const ConsolePage = () => {
     return { error: 'tags not uploaded' }
   }
 
+  const uploadEventsByTags = async () => {
+    if (fetchedEvents && tagsFound) {
+      tagsFound.forEach((tag) => {
+        const newEvents = getFilteredEvents(fetchedEvents, tag)
+        // console.log('new events', tag, newEvents)
+        formatAndUploadSortedEvents(newEvents, tag)
+      })
+    }
+  }
+
   const changeSelectedTag = (events, tag) => {
     const newEvents = getFilteredEvents(events, tag)
 
@@ -137,7 +147,7 @@ const ConsolePage = () => {
       <PageHead title="Console" />
       <Nav hideSearch showLoginButton />
 
-      <div className="page_padding_x max_page_width--narrow z-10 mx-auto flex w-full flex-col pt-16">
+      <div className="page_padding_x max_page_width--narrow z-10 mx-auto flex w-full select-none flex-col pt-16">
         {fetchError && (
           <div
             className="mt-4 bg-red-50 text-center
@@ -149,13 +159,13 @@ const ConsolePage = () => {
         <div className="box_radius mx-auto mt-4 w-full max-w-xl border">
           <div className="flex flex-col p-5 text-sm">
             <div className="flex w-full justify-end pb-5">
-              <div className="box_radius overflow-hidden border">
+              <div className="flex gap-1 overflow-hidden">
                 <button
                   type="button"
                   aria-label="fetch events"
                   className={`${
-                    !isEventsMode && 'underline'
-                  } border-r px-3 py-2 font-semibold underline-offset-2 hover:bg-neutral-50`}
+                    !isEventsMode && 'text-accent-main'
+                  } box_radius px-2 py-1.5 font-semibold hover:bg-neutral-50`}
                   onClick={() => {
                     setIsEventsMode(false)
                   }}
@@ -166,8 +176,8 @@ const ConsolePage = () => {
                   type="button"
                   aria-label="randomize"
                   className={`${
-                    isEventsMode && 'underline'
-                  } px-3 py-2 font-semibold underline-offset-2 hover:bg-neutral-50`}
+                    isEventsMode && 'text-accent-main'
+                  } box_radius px-2 py-1.5 font-semibold hover:bg-neutral-50`}
                   onClick={() => {
                     setIsEventsMode(true)
                   }}
@@ -176,19 +186,19 @@ const ConsolePage = () => {
                 </button>
               </div>
             </div>
-            <div className="flex w-full justify-end">
+            <div className="flex w-full justify-end gap-2">
               <button
                 type="button"
                 aria-label="fetch events"
-                className="box_radius mr-3 bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
+                className="box_radius bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
                 onClick={fetchEventsFromSupabase}
               >
-                Fetch all events
+                Fetch events
               </button>
               <button
                 type="button"
                 aria-label="randomize"
-                className="box_radius mr-3 bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
+                className="box_radius bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
                 onClick={randomizeFilteredEvents}
               >
                 Randomize
@@ -196,7 +206,7 @@ const ConsolePage = () => {
               <button
                 type="button"
                 aria-label="randomize"
-                className="box_radius mr-3 bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
+                className="box_radius bg-neutral-100 px-3 py-2 font-semibold hover:bg-neutral-200"
                 onClick={reverseFilteredEvents}
               >
                 Reverse
@@ -205,13 +215,15 @@ const ConsolePage = () => {
                 type="button"
                 aria-label="upload"
                 className="box_radius bg-accent-main px-3 py-2 font-semibold text-white hover:bg-accent-main-hover"
-                onClick={formatAndUploadSortedEvents}
+                onClick={() => {
+                  formatAndUploadSortedEvents(filteredEvents, selectedCategory)
+                }}
               >
-                Upload new events
+                Upload selected category
               </button>
             </div>
             <div className="mt-4 w-full border-b" />
-            <div className="mt-4 flex items-center py-1">
+            <div className="mt-4 flex items-center">
               <div className="mr-3 whitespace-nowrap">
                 <b>Save to:</b> events_sorted_by_tag
               </div>
@@ -220,9 +232,9 @@ const ConsolePage = () => {
               </p>
             </div>
             <div className="mt-4 w-full border-b" />
-            <div className="mt-4 flex flex-col items-center py-1">
-              <div className="flex w-full items-center">
-                <div className="w-full whitespace-nowrap">Tags found</div>
+            <div className="mt-4 flex flex-col items-center">
+              <div className="flex w-full items-center justify-end gap-2">
+                {/* <div className="w-full whitespace-nowrap">Tags found</div> */}
                 <button
                   type="button"
                   aria-label="upload"
@@ -230,6 +242,14 @@ const ConsolePage = () => {
                   onClick={uploadTagsFound}
                 >
                   Upload tags
+                </button>
+                <button
+                  type="button"
+                  aria-label="upload"
+                  className="box_radius text-nowrap bg-accent-main px-3 py-2 font-semibold text-white hover:bg-accent-main-hover"
+                  onClick={uploadEventsByTags}
+                >
+                  Upload all events by category
                 </button>
               </div>
               <div className="mt-2.5 flex w-full flex-wrap">
@@ -241,7 +261,7 @@ const ConsolePage = () => {
                       onClick={() => {
                         changeSelectedTag(fetchedEvents, item)
                       }}
-                      className={`${selectedCategory === item ? 'bg-black text-white' : 'bg-neutral-100 hover:bg-neutral-200'} box_radius mb-1.5 mr-1.5 cursor-pointer px-3 py-2 `}
+                      className={`${selectedCategory === item ? 'bg-black text-white' : 'bg-neutral-100 hover:bg-neutral-200'} box_radius mb-1.5 mr-1.5 cursor-pointer px-2 py-1.5 `}
                     >
                       {item}
                     </button>

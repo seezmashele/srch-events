@@ -357,7 +357,7 @@ const CreatePage = () => {
                 )}
               </div>
 
-              <div className="my-6 w-full border-b" />
+              <div className="my-5 w-full border-b" />
 
               {/* ------------------------- */}
 
@@ -387,7 +387,7 @@ const CreatePage = () => {
                 </div>
 
                 {/* times ------------------------- */}
-                <div className="my-6 w-full border-b" />
+                <div className="my-5 w-full border-b" />
 
                 <div className="flex w-full flex-row gap-5">
                   <div className="w-1/2">
@@ -482,7 +482,7 @@ const CreatePage = () => {
                 </div>
               </div>
 
-              <div className="my-6 w-full border-b" />
+              <div className="my-5 w-full border-b" />
 
               <div className="flex flex-row gap-5">
                 <div className="w-1/2">
@@ -504,7 +504,7 @@ const CreatePage = () => {
                 </div>
               </div>
 
-              <div className="my-6 w-full border-b" />
+              <div className="my-5 w-full border-b" />
 
               <div className="text-sm font-semibold">
                 Venue<span className="text-red-500"> *</span>
@@ -526,7 +526,7 @@ const CreatePage = () => {
                 )}
               </div>
 
-              <div className="my-6 w-full border-b" />
+              <div className="my-5 w-full border-b" />
 
               <div className="mt-6f pb-2.5 text-sm font-semibold">
                 Categories<span className="text-red-500"> *</span>

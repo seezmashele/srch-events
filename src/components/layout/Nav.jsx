@@ -84,7 +84,7 @@ const Nav = ({
               {currentUser && showEventSubmitButton && (
                 <div className="pr-3">
                   <FilledTextButton
-                    label="Upload"
+                    label="Upload event"
                     ariaLabel="upload event"
                     onClick={handleEventUpload}
                   />

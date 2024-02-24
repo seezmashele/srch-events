@@ -60,7 +60,7 @@ export const fetchEventBySlug = async (slug) => {
       title: data.title
     }
   }
-  if (error) return null
+  if (error) return { error }
   return null
 }
 
@@ -172,7 +172,7 @@ export const fetchRecommendedTags = async () => {
     .limit(1)
     .maybeSingle()
 
-  if (data) return JSON.parse(data.tags)
+  if (data) return { tags: JSON.parse(data.tags) }
   if (error) return { error }
   return null
 }

@@ -1,7 +1,6 @@
 'use client'
 
 // import { Inter } from 'next/font/google'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from '@mui/material/styles'
 import { AuthProvider } from '../context/AuthContext'
 import { DatabaseProvider } from '../context/DatabaseContext'
@@ -9,8 +8,7 @@ import { AppProvider } from '../context/AppContext'
 import 'react-toastify/dist/ReactToastify.css'
 import '../styles/app.css'
 import theme from '../utils/config/mui'
-
-const queryClient = new QueryClient()
+import ReactQueryClientProvider from '../components/reactQuery/ReactQueryClientProvider'
 
 // export const metadata = {
 //   title: 'EventsPlease',
@@ -22,19 +20,19 @@ const queryClient = new QueryClient()
 // }
 
 const RootLayout = ({ children }) => (
-  <QueryClientProvider client={queryClient}>
+  <html lang="en">
     <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <AppProvider>
-          <DatabaseProvider>
-            <html lang="en">
+      <ReactQueryClientProvider>
+        <AuthProvider>
+          <AppProvider>
+            <DatabaseProvider>
               <body>{children}</body>
-            </html>
-          </DatabaseProvider>
-        </AppProvider>
-      </AuthProvider>
+            </DatabaseProvider>
+          </AppProvider>
+        </AuthProvider>
+      </ReactQueryClientProvider>
     </ThemeProvider>
-  </QueryClientProvider>
+  </html>
 )
 
 export default RootLayout

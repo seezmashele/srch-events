@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import Nav from '../components/layout/Nav'
 import PageHead from '../components/misc/PageHead'
 // import { useDatabase } from '../context/DatabaseContext'
@@ -11,18 +12,33 @@ import BodyWrapper from '../components/wrappers/BodyWrapper'
 import { useApp } from '../context/AppContext'
 import { fetchEventsByTag } from '../utils/supabase/database/fetch'
 
+const useHomePageEvents = (category) => {
+  const queryKey = ['home-page-events', category]
+  const queryFn = async () => fetchEventsByTag(category)
+
+  return useQuery({
+    queryKey,
+    queryFn
+  })
+}
+
 const Home = () => {
   const { homePageCategory } = useApp()
   const [homePageEvents, setHomePageEvents] = useState(null)
 
+  const { data } = useHomePageEvents(homePageCategory)
+
   useEffect(() => {
-    // cache the result of fetchEventsByTag with react query
-    const getEvents = async () => {
-      const events = await fetchEventsByTag(homePageCategory)
-      setHomePageEvents(events || null)
-    }
-    getEvents()
-  }, [homePageCategory])
+    setHomePageEvents(data || null)
+  }, [data])
+
+  // useEffect(() => {
+  //   const getEvents = async () => {
+  //     const events = await fetchEventsByTag(homePageCategory)
+  //     setHomePageEvents(events || null)
+  //   }
+  //   getEvents()
+  // }, [homePageCategory])
 
   return (
     <>

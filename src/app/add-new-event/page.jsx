@@ -26,11 +26,7 @@ import { uploadSupabaseEvent } from '../../utils/supabase/database/create'
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import { addTimeToDate } from '../../utils/helpers/time'
-import {
-  timePickerAMPM,
-  timePickerHours,
-  timePickerMinutes
-} from '../../utils/constants/time'
+import { timePickerHours, timePickerMinutes } from '../../utils/constants/time'
 import { countriesList } from '../../utils/constants/countries'
 import FormNumberInput from '../../components/inputs/FormNumberInput'
 // import PreviewImages from './page/PreviewImages'
@@ -376,12 +372,29 @@ const CreatePage = () => {
                     </div>
                   </div>
                   <div className="w-1/2">
-                    <div className="pb-2.5 text-sm font-semibold">End date</div>
-                    <div className="w-full">
-                      <DayPickerDropdown
-                        selectedDate={eventEndDate}
-                        setEventDate={setEventEndDate}
-                      />
+                    <div className="w-full max-w-60">
+                      <div className="pb-2.5 text-sm font-semibold">
+                        Starts at <span className="text-red-500">*</span>
+                      </div>
+                      <div className="flex w-full items-center">
+                        <SelectInput
+                          placeholder="00"
+                          options={timePickerHours}
+                          setValue={setStartingTimeHours}
+                        />
+                        <div className="mx-2.5 font-semibold">:</div>
+                        <SelectInput
+                          placeholder="00"
+                          options={timePickerMinutes}
+                          setValue={setStartingTimeMinutes}
+                        />
+                        {/* <div className="mx-2.5 font-semibold">:</div>
+                      <SelectInput
+                        placeholder="am"
+                        options={timePickerAMPM}
+                        setValue={setStartingTimeAMPM}
+                      /> */}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -391,49 +404,38 @@ const CreatePage = () => {
 
                 <div className="flex w-full flex-row gap-5">
                   <div className="w-1/2">
-                    <div className="pb-2.5 text-sm font-semibold">
-                      Starts at <span className="text-red-500">*</span>
-                    </div>
-                    <div className="flex w-full items-center">
-                      <SelectInput
-                        placeholder="0"
-                        options={timePickerHours}
-                        setValue={setStartingTimeHours}
-                      />
-                      <div className="mx-2.5 font-semibold">:</div>
-                      <SelectInput
-                        placeholder="00"
-                        options={timePickerMinutes}
-                        setValue={setStartingTimeMinutes}
-                      />
-                      <div className="mx-2.5 font-semibold">:</div>
-                      <SelectInput
-                        placeholder="am"
-                        options={timePickerAMPM}
-                        setValue={setStartingTimeAMPM}
+                    <div className="pb-2.5 text-sm font-semibold">End date</div>
+                    <div className="w-full">
+                      <DayPickerDropdown
+                        selectedDate={eventEndDate}
+                        setEventDate={setEventEndDate}
                       />
                     </div>
                   </div>
                   <div className="w-1/2">
-                    <div className="pb-2.5 text-sm font-semibold">Ends at</div>
-                    <div className="flex w-full items-center">
-                      <SelectInput
-                        placeholder="0"
-                        options={timePickerHours}
-                        setValue={setEndTimeHours}
-                      />
-                      <div className="mx-2.5 font-semibold">:</div>
-                      <SelectInput
-                        placeholder="00"
-                        options={timePickerMinutes}
-                        setValue={setEndTimeMinutes}
-                      />
-                      <div className="mx-2.5 font-semibold">:</div>
+                    <div className="w-full max-w-60">
+                      <div className="pb-2.5 text-sm font-semibold">
+                        Ends at
+                      </div>
+                      <div className="flex w-full items-center">
+                        <SelectInput
+                          placeholder="00"
+                          options={timePickerHours}
+                          setValue={setEndTimeHours}
+                        />
+                        <div className="mx-2.5 font-semibold">:</div>
+                        <SelectInput
+                          placeholder="00"
+                          options={timePickerMinutes}
+                          setValue={setEndTimeMinutes}
+                        />
+                        {/* <div className="mx-2.5 font-semibold">:</div>
                       <SelectInput
                         placeholder="am"
                         options={timePickerAMPM}
                         setValue={setEndTimeAMPM}
-                      />
+                      /> */}
+                      </div>
                     </div>
                   </div>
                 </div>

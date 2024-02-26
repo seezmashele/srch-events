@@ -1,28 +1,32 @@
 'use client'
 
 import { useState } from 'react'
-import { Person } from 'react-bootstrap-icons'
+import { CircleUser, Globe, User } from 'lucide-react'
 import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 import MainDrawer from '../../components/drawers/MainDrawer'
 import BodyWrapper from '../../components/wrappers/BodyWrapper'
 import AccountSettings from '../../components/settings/AccountSettings'
+import ProfileSettings from './components/ProfileSettings'
 
-const Example2 = () => <div>hello2</div>
 const Example3 = () => <div>hello3</div>
 const Example4 = () => <div>hello4</div>
 
 const HomePage = () => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(0)
 
   const settingsOptions = [
     {
-      title: 'My Account',
-      icon: <Person />
+      title: 'Profile',
+      icon: <User />
     },
     {
-      title: 'Profile',
-      icon: <Person />
+      title: 'Socials',
+      icon: <Globe />
+    },
+    {
+      title: 'Account',
+      icon: <CircleUser />
     }
   ]
 
@@ -33,8 +37,8 @@ const HomePage = () => {
 
       <BodyWrapper>
         <MainDrawer selectedPageIndex={4} />
-        <main className="content_padding_x flex min-h-[10rem] w-full flex-row items-stretch py-5">
-          <div className="box_radius relative h-full min-h-screen w-56 flex-shrink-0 bg-neutral-100 px-2 py-3">
+        <main className="content_padding_x flex min-h-[10rem] w-full flex-row items-stretch py-0">
+          <div className="box_radiusf relative h-full min-h-screen w-56 flex-shrink-0 bg-neutral-100 px-2 py-6">
             <div className="px-3 font-semibold">Settings</div>
             <div className="my-3 w-full border-t" />
             {settingsOptions.map((item, index) => {
@@ -75,11 +79,11 @@ const HomePage = () => {
               )
             })}
           </div>
-          <div className="w-full max-w-2xl py-8 pl-9">
-            {currentPage === 1 && <AccountSettings />}
-            {currentPage === 2 && <Example2 />}
-            {currentPage === 3 && <Example3 />}
-            {currentPage === 4 && <Example4 />}
+          <div className="w-full max-w-2xl py-6 pl-9">
+            {currentPage === 0 && <ProfileSettings />}
+            {currentPage === 1 && <Example3 />}
+            {currentPage === 2 && <AccountSettings />}
+            {currentPage === 3 && <Example4 />}
           </div>
         </main>
       </BodyWrapper>

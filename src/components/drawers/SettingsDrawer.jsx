@@ -54,7 +54,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
   // ! use consistent top spacing throughout the app
   return (
     <nav
-      className={`border_color--main drawer_transition top-[3.875rem]f fixed left-0 top-14 flex min-h-screen flex-shrink-0 select-none flex-col overflow-hidden bg-white pt-[1.1rem] ${
+      className={`border_color--main drawer_transition top-[3.875rem]f pt-[1.1rem]f fixed left-0 top-0 flex min-h-screen flex-shrink-0 select-none flex-col overflow-hidden bg-white ${
         showDesktopDrawer ? ' w-[14.5rem]' : 'w-14'
       }`}
     >

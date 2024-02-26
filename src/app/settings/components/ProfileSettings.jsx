@@ -1,4 +1,4 @@
-const AccountSettings = () => {
+const ProfileSettings = () => {
   const displayName = 'Yello Kittyz'
 
   const images = [
@@ -28,7 +28,7 @@ const AccountSettings = () => {
 
   return (
     <div>
-      <h1 className="text-base font-semibold">Account</h1>
+      <h1 className="text-base font-semibold">Profile</h1>
       <div className="my-3 w-full border-t" />
 
       <div className="bg-neutral-100f h-80f pb-4f box_radius px-4f w-full ">
@@ -113,4 +113,4 @@ const AccountSettings = () => {
     </div>
   )
 }
-export default AccountSettings
+export default ProfileSettings

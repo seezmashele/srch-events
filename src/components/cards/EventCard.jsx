@@ -45,7 +45,9 @@ const EventCard = ({ data }) => {
                 </div>
               </Link>
               <div className="mt-2.5 w-full text-neutral-600">
-                <div>{cardStartingDate}</div>
+                <div className="font-semibold text-black">
+                  {cardStartingDate}
+                </div>
                 <div className="flex items-center">
                   <Link
                     href={authorProfileLink}

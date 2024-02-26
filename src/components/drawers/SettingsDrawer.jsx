@@ -1,14 +1,5 @@
 import Link from 'next/link'
-import {
-  HouseDoor,
-  HouseDoorFill,
-  Gear,
-  GearFill,
-  Person,
-  PersonFill,
-  Collection,
-  CollectionFill
-} from 'react-bootstrap-icons'
+import { HouseDoor, Gear, Person, Collection } from 'react-bootstrap-icons'
 import { useApp } from '../../context/AppContext'
 
 const MainDrawer = ({ selectedPageIndex = -1 }) => {
@@ -17,26 +8,22 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
   const drawerItems = [
     {
       icon: <HouseDoor className="icon_size--base" />,
-      iconFilled: <HouseDoorFill className="icon_size--base" />,
       title: 'Home',
       link: '/'
     },
     {
       icon: <Collection className="icon_size--base" />,
-      iconFilled: <CollectionFill className="icon_size--base" />,
       title: 'Saved',
       link: '/profile/thisguy?saved'
     },
     { divider: true },
     {
       icon: <Person className="icon_size--base" />,
-      iconFilled: <PersonFill className="icon_size--base" />,
       title: 'Profile',
       link: '/profile/randomjeans'
     },
     {
       icon: <Gear className="icon_size--base" />,
-      iconFilled: <GearFill className="icon_size--base" />,
       title: 'Settings',
       link: '/settings'
     },
@@ -92,9 +79,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
                     }`}
                   >
                     <div className="mr-4 flex h-7 w-7 items-center justify-center text-base">
-                      {selectedPageIndex === index
-                        ? item.iconFilled
-                        : item.icon}
+                      {item.icon}
                     </div>
                     <div className="flex items-center px-1">
                       <div
@@ -120,7 +105,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
                   }`}
                 >
                   <div className="mr-4 flex h-7 w-7 items-center justify-center text-base">
-                    {selectedPageIndex === index ? item.iconFilled : item.icon}
+                    {item.icon}
                   </div>
                   <div className="flex items-center px-1">
                     <div

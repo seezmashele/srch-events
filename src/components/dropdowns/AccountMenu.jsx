@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { Menu } from '@headlessui/react'
 import {
-  Gear,
+  HelpCircle,
+  LogOut,
   Search,
-  Person,
-  QuestionCircle,
-  BoxArrowInRight,
-  PlusCircle
-} from 'react-bootstrap-icons'
+  PlusCircle,
+  Settings,
+  User
+} from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { signOut } from '../../utils/supabase/auth/session'
 
@@ -27,7 +27,7 @@ const AccountMenu = () => {
 
   const menuItems = [
     {
-      icon: <Person className="icon_size--base" />,
+      icon: <User className="icon_size--base" />,
       title: 'Your profile',
       link: `/profile/${accountUsername}`
     },
@@ -37,7 +37,7 @@ const AccountMenu = () => {
       link: '/add-new-event'
     },
     {
-      icon: <Gear className="icon_size--base" />,
+      icon: <Settings className="icon_size--base" />,
       title: 'Settings',
       link: '/settings'
     },
@@ -47,13 +47,13 @@ const AccountMenu = () => {
       link: '/search'
     },
     {
-      icon: <QuestionCircle className="icon_size--base" />,
+      icon: <HelpCircle className="icon_size--base" />,
       title: 'Help',
       link: '/settings/help'
     },
     { divider: true },
     {
-      icon: <BoxArrowInRight className="icon_size--base" />,
+      icon: <LogOut className="icon_size--base" />,
       title: 'Logout',
       action: signUserOut
     }

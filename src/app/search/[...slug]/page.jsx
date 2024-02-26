@@ -3,14 +3,12 @@
 import { ArrowDown } from 'react-bootstrap-icons'
 import Nav from '../../../components/layout/Nav'
 import PageHead from '../../../components/misc/PageHead'
-import { useDatabase } from '../../../context/DatabaseContext'
 import EventsListBlock from '../../../components/blocks/EventsListBlock'
 import MainDrawer from '../../../components/drawers/MainDrawer'
 import BodyWrapper from '../../../components/wrappers/BodyWrapper'
 
 const HomePage = () => {
-  const { useHomePageEvents } = useDatabase()
-  const { homePageEvents2 } = useHomePageEvents()
+  const eventsFound = null
 
   return (
     <>
@@ -49,8 +47,8 @@ const HomePage = () => {
             </div>
             <main className="page_padding_x flex w-full flex-row">
               <div className="main_content_container border-tf mt-4 pt-0.5">
-                {homePageEvents2 && (
-                  <EventsListBlock events={homePageEvents2} title="" />
+                {eventsFound && (
+                  <EventsListBlock events={eventsFound} title="" />
                 )}
               </div>
             </main>

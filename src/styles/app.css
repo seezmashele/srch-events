@@ -17,6 +17,10 @@
 /* @import 'elements/buttons.css'; */
 @import 'elements/typography';
 
+.lucide {
+  stroke-width: 1.5px;
+}
+
 .force_hidden {
   display: none !important;
 }

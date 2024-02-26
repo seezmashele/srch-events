@@ -91,13 +91,22 @@ export const fetchProfileBySlug = async (slug) => {
 const formatEventDate = (date, currentYear) => {
   // check if date is valid
   if (date) {
-    if (date.getFullYear() !== currentYear)
-      return format(date, 'eee, MMM d, yyyy')
+    if (date.getFullYear() !== currentYear) return format(date, 'MMM d, yyyy')
 
-    return format(date, 'eee, MMM d')
+    return format(date, 'MMM d')
   }
   return null
 }
+
+// const formatEventDate = (date, currentYear) => {
+//   if (date) {
+//     if (date.getFullYear() !== currentYear)
+//       return format(date, 'eee, MMM d, yyyy')
+
+//     return format(date, 'eee, MMM d')
+//   }
+//   return null
+// }
 
 // const formatEventDate2 = (date, currentYear) => {
 //   if (date) {
@@ -134,21 +143,6 @@ const formatEvents = (events) =>
     }
   })
 
-export const fetchSortedEvents = async () => {
-  const { data, error } = await supabase
-    .from('events_sorted_by_tag')
-    .select()
-    .eq('slug', 'all')
-    .limit(1)
-    .maybeSingle()
-
-  if (data) return formatEvents(data.events)
-  if (error) {
-    return { error }
-  }
-  return null
-}
-
 export const fetchEventsByTag = async (tag) => {
   const { data, error } = await supabase
     .from('events_sorted_by_tag')
@@ -157,10 +151,8 @@ export const fetchEventsByTag = async (tag) => {
     .limit(1)
     .maybeSingle()
 
-  if (data) return formatEvents(data.events)
-  if (error) {
-    return { error }
-  }
+  if (data) return { events: formatEvents(data.events) }
+  if (error) return { error }
   return null
 }
 

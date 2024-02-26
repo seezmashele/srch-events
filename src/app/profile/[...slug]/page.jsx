@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import {
-  // BoxArrowUpRight,
   Globe,
   Instagram,
   Twitch,
@@ -12,7 +11,6 @@ import {
 } from 'react-bootstrap-icons'
 import PageHead from '../../../components/misc/PageHead'
 import EventsBlock from '../../../components/blocks/EventsBlock'
-import { useDatabase } from '../../../context/DatabaseContext'
 import MainDrawer from '../../../components/drawers/MainDrawer'
 import Nav from '../../../components/layout/Nav'
 import BodyWrapper from '../../../components/wrappers/BodyWrapper'
@@ -33,8 +31,6 @@ import { accountColorsList } from '../../../utils/constants/colors'
 // }
 
 const HomePage = ({ params }) => {
-  const { useHomePageEvents } = useDatabase()
-  const { homePageEvents3 } = useHomePageEvents()
   const [profileDisplayName, setProfileDisplayName] = useState('')
   const [profileImage, setProfileImage] = useState('')
   const [profileBio, setProfileBio] = useState('')
@@ -107,6 +103,8 @@ const HomePage = ({ params }) => {
       link: '/'
     }
   ]
+
+  const usersEvents = null
 
   return (
     <>
@@ -219,15 +217,11 @@ const HomePage = ({ params }) => {
           </div>
 
           <div className="main_content_container main_border_color">
-            {selectedView === 'events' && (
-              <EventsBlock events={homePageEvents3} />
-            )}
+            {selectedView === 'events' && <EventsBlock events={usersEvents} />}
             {selectedView === 'saved' && (
-              <EventsListBlock events={homePageEvents3} />
+              <EventsListBlock events={usersEvents} />
             )}
-            {selectedView === 'promos' && (
-              <EventsBlock events={homePageEvents3} />
-            )}
+            {selectedView === 'promos' && <EventsBlock events={usersEvents} />}
           </div>
         </div>
       </BodyWrapper>

@@ -1,4 +1,4 @@
-import { List } from 'react-bootstrap-icons'
+import { Menu } from 'lucide-react'
 
 const DesktopDrawerButton = ({ changeValue, value }) => (
   <button
@@ -9,7 +9,7 @@ const DesktopDrawerButton = ({ changeValue, value }) => (
     }}
     className="ml-1 mr-4 h-10 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full hover:bg-neutral-100 xs:hidden lg:flex"
   >
-    <List className="icon_size--lg" />
+    <Menu className="icon_size--lg" />
   </button>
 )
 

@@ -1,4 +1,4 @@
-import { Search } from 'react-bootstrap-icons'
+import { Search } from 'lucide-react'
 
 const NavSearchBar = () => (
   <div className="box_radius main_border_color border-neutral-200f mx-5 w-full max-w-sm items-center rounded-full bg-neutral-100 text-neutral-600 dark:bg-neutral-900 xs:hidden md:flex">

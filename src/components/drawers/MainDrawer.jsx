@@ -1,17 +1,5 @@
-import {
-  HouseDoor,
-  Person,
-  PersonFill,
-  Gear,
-  GearFill,
-  HouseDoorFill,
-  BookmarksFill,
-  QuestionCircle,
-  QuestionCircleFill,
-  Bookmarks
-  // ClockHistory,
-  // ClockFill
-} from 'react-bootstrap-icons'
+import { Gear, QuestionCircle } from 'react-bootstrap-icons'
+import { BookMarked, Home, User } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import DrawerButtons from './MainDrawer/DrawerButtons'
@@ -26,26 +14,17 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
 
   const drawerItemsTop = [
     {
-      icon: <HouseDoor className="icon_size--base" />,
-      iconFilled: <HouseDoorFill className="icon_size--base" />,
+      icon: <Home className="icon_size--base" />,
       title: 'Home',
       link: '/'
     },
-    // {
-    //   icon: <ClockHistory className="icon_size--base" />,
-    //   iconFilled: <ClockFill className="icon_size--base" />,
-    //   title: 'Recent events',
-    //   link: '/recent'
-    // },
     {
-      icon: <Bookmarks className="icon_size--base" />,
-      iconFilled: <BookmarksFill className="icon_size--base" />,
+      icon: <BookMarked className="icon_size--base" />,
       title: 'Saved events',
       link: accountUsername ? savedEventsLink : ''
     },
     {
-      icon: <Person className="icon_size--base" />,
-      iconFilled: <PersonFill className="icon_size--base" />,
+      icon: <User className="icon_size--base" />,
       title: 'Your profile',
       link: accountUsername ? userProfileLink : ''
     }
@@ -55,13 +34,11 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
     { divider: true },
     {
       icon: <Gear className="icon_size--base" />,
-      iconFilled: <GearFill className="icon_size--base" />,
       title: 'Settings',
       link: '/settings'
     },
     {
       icon: <QuestionCircle className="icon_size--base" />,
-      iconFilled: <QuestionCircleFill className="icon_size--base" />,
       title: 'Help',
       link: '/settings/help'
     }

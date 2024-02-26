@@ -214,7 +214,7 @@ const ConsolePage = () => {
               <button
                 type="button"
                 aria-label="upload"
-                className="box_radius bg-accent-main px-3 py-2 font-semibold text-white hover:bg-accent-main-hover"
+                className="box_radius button_colors--outline px-3 py-2 font-semibold"
                 onClick={() => {
                   formatAndUploadSortedEvents(filteredEvents, selectedCategory)
                 }}
@@ -238,7 +238,7 @@ const ConsolePage = () => {
                 <button
                   type="button"
                   aria-label="upload"
-                  className="box_radius text-nowrap bg-accent-main px-3 py-2 font-semibold text-white hover:bg-accent-main-hover"
+                  className="box_radius button_colors--outline text-nowrap px-3 py-2 font-semibold"
                   onClick={uploadTagsFound}
                 >
                   Upload tags
@@ -246,7 +246,7 @@ const ConsolePage = () => {
                 <button
                   type="button"
                   aria-label="upload"
-                  className="box_radius text-nowrap bg-accent-main px-3 py-2 font-semibold text-white hover:bg-accent-main-hover"
+                  className="box_radius button_colors--outline text-nowrap px-3 py-2 font-semibold"
                   onClick={uploadEventsByTags}
                 >
                   Upload all events by category

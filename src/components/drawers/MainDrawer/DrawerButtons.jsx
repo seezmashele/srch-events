@@ -23,7 +23,7 @@ const DrawerButtons = ({ drawerItems, selectedItemIndex, hidden = false }) => (
               }`}
             >
               <div className="mr-4 flex h-7 w-7 flex-shrink-0 items-center justify-center text-base">
-                {selectedItemIndex === index ? item.iconFilled : item.icon}
+                {item.icon}
               </div>
               <div className="flex flex-nowrap items-center px-1">
                 <div
@@ -48,7 +48,7 @@ const DrawerButtons = ({ drawerItems, selectedItemIndex, hidden = false }) => (
               }`}
             >
               <div className="mr-4 flex h-7 w-7 flex-shrink-0 items-center justify-center text-base">
-                {selectedItemIndex === index ? item.iconFilled : item.icon}
+                {item.icon}
               </div>
               <div className="flex flex-nowrap items-center px-1">
                 <div

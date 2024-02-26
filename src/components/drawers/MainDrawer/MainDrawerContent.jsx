@@ -1,43 +1,30 @@
 import Link from 'next/link'
-import {
-  HouseDoor,
-  HouseDoorFill,
-  Gear,
-  GearFill,
-  Person,
-  PersonFill,
-  Collection,
-  CollectionFill,
-} from 'react-bootstrap-icons'
+import { HouseDoor, Gear, Person, Collection } from 'react-bootstrap-icons'
 
 const MainDrawerContent = ({ selectedPageIndex = -1 }) => {
   const drawerItems = [
     {
       icon: <HouseDoor className="icon_size--base" />,
-      iconFilled: <HouseDoorFill className="icon_size--base" />,
       title: 'Home',
-      link: '/',
+      link: '/'
     },
     {
       icon: <Collection className="icon_size--base" />,
-      iconFilled: <CollectionFill className="icon_size--base" />,
       title: 'Saved',
-      link: '/profile/thisguy/saved',
+      link: '/profile/thisguy/saved'
     },
     { divider: true },
     {
       icon: <Person className="icon_size--base" />,
-      iconFilled: <PersonFill className="icon_size--base" />,
       title: 'Profile',
-      link: '/profile/randomjeans',
+      link: '/profile/randomjeans'
     },
     {
       icon: <Gear className="icon_size--base" />,
-      iconFilled: <GearFill className="icon_size--base" />,
       title: 'Settings',
-      link: '/settings',
+      link: '/settings'
     },
-    { divider: true },
+    { divider: true }
   ]
 
   const profiles = [
@@ -47,7 +34,7 @@ const MainDrawerContent = ({ selectedPageIndex = -1 }) => {
     { title: 'Bumfluffski', image: '/img/profiles/Bumfluffski.png' },
     { title: 'Call of Duty', image: '/img/profiles/Call of Duty.png' },
     { title: 'CookSux', image: '/img/profiles/CookSux.png' },
-    { title: 'CYR', image: '/img/profiles/CYR.png' },
+    { title: 'CYR', image: '/img/profiles/CYR.png' }
     // { title: 'ESLCSb', image: '/img/profiles/ESLCSb.jpeg' },
     // { title: 'jadedphoenix_', image: '/img/profiles/jadedphoenix_.png' },
     // { title: 'KillerQueenr', image: '/img/profiles/KillerQueenr.png' },
@@ -83,7 +70,7 @@ const MainDrawerContent = ({ selectedPageIndex = -1 }) => {
                   }`}
                 >
                   <div className="mr-4 flex h-7 w-7 flex-shrink-0 items-center justify-center text-base">
-                    {selectedPageIndex === index ? item.iconFilled : item.icon}
+                    {item.icon}
                   </div>
                   <div className="flex items-center px-1">
                     <div
@@ -109,7 +96,7 @@ const MainDrawerContent = ({ selectedPageIndex = -1 }) => {
                 }`}
               >
                 <div className="mr-4 flex h-7 w-7 flex-shrink-0 items-center justify-center text-base">
-                  {selectedPageIndex === index ? item.iconFilled : item.icon}
+                  {item.icon}
                 </div>
                 <div className="flex items-center px-1">
                   <div

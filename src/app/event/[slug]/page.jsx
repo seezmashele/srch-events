@@ -5,7 +5,7 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import { Calendar3, GeoAltFill } from 'react-bootstrap-icons'
+import { CalendarDays, MapPin } from 'lucide-react'
 import Nav from '../../../components/layout/Nav'
 import PageHead from '../../../components/misc/PageHead'
 import MainDrawer from '../../../components/drawers/MainDrawer'
@@ -150,16 +150,14 @@ const EventPage = ({ params }) => {
 
                   <div className="darker_border_color mt-5 w-full border-b" />
 
-                  <div className="my-5 flex w-full gap-3.5">
-                    <div className="flex w-1/2 items-center">
+                  <div className="flex-colf my-5 flex w-full gap-3.5">
+                    <div className="w-1/2f flex items-center text-sm">
                       <div>
-                        <Calendar3 className="mr-5 h-5 w-5" />
+                        <CalendarDays className="icon_size--lg mr-5" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold">
-                          12 - 15 Mar, 2024
-                        </div>
-                        <p className="text-orange-600f mt-0.5 text-sm font-semibold text-accent-main">
+                        <div className="font-semibold">12 - 15 Mar, 2024</div>
+                        <p className="text-orange-600f mt-0.5 font-semibold text-accent-main">
                           8:00 - 17:00 (UTC+2)
                         </p>
                       </div>
@@ -167,15 +165,15 @@ const EventPage = ({ params }) => {
 
                     <div className="mx-3 h-10 w-1 border-r" />
 
-                    <div className="flex w-1/2 items-center">
+                    <div className="w-1/2f flex items-center text-sm">
                       <div>
-                        <GeoAltFill className="mr-5 h-5 w-5" />
+                        <MapPin className="icon_size--lg mr-5" />
                       </div>
                       <div>
-                        <div className="text-sm font-semibold">
+                        <div className="font-semibold">
                           The Glen Country Club Field
                         </div>
-                        <p className="text-orange-600f mt-0.5 text-sm font-semibold text-accent-main">
+                        <p className="text-orange-600f mt-0.5 font-semibold text-accent-main">
                           Clifton, Cape Town
                         </p>
                       </div>

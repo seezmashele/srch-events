@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import Nav from '../components/layout/Nav'
 import PageHead from '../components/misc/PageHead'
-// import { useDatabase } from '../context/DatabaseContext'
 import EventsBlock from '../components/blocks/EventsBlock'
 import MainDrawer from '../components/drawers/MainDrawer'
 import FeaturedTagsBar from '../components/layout/FeaturedTagsBar'
@@ -29,16 +28,8 @@ const Home = () => {
   const { data } = useHomePageEvents(homePageCategory)
 
   useEffect(() => {
-    setHomePageEvents(data || null)
+    if (data && data.events) setHomePageEvents(data.events)
   }, [data])
-
-  // useEffect(() => {
-  //   const getEvents = async () => {
-  //     const events = await fetchEventsByTag(homePageCategory)
-  //     setHomePageEvents(events || null)
-  //   }
-  //   getEvents()
-  // }, [homePageCategory])
 
   return (
     <>

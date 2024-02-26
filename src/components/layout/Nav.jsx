@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Drawer from '@mui/material/Drawer'
 import { useState } from 'react'
-import { Search, List, PlusCircle } from 'react-bootstrap-icons'
+import { Menu, PlusCircle, Search } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { useApp } from '../../context/AppContext'
 import AccountMenu from '../dropdowns/AccountMenu'
@@ -167,7 +167,7 @@ const Nav = ({
               }}
               className="text-accent-mainF ml-0 mr-4 flex h-10 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full hover:bg-neutral-100"
             >
-              <List className="icon_size--lg" />
+              <Menu className="icon_size--lg" />
             </button>
             <Link href="/" passHref>
               <div className="h-8 w-36 flex-shrink-0 cursor-pointer select-none">

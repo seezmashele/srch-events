@@ -6,7 +6,7 @@ import PageHead from '../../components/misc/PageHead'
 import MainDrawer from '../../components/drawers/MainDrawer'
 import BodyWrapper from '../../components/wrappers/BodyWrapper'
 import AccountSettings from '../../components/settings/AccountSettings'
-import ProfileSettings from './components/ProfileSettings'
+import ProfileSettings from './views/ProfileSettings'
 import SettingsDrawer from '../../components/drawers/SettingsDrawer'
 
 const Example3 = () => <div>hello3</div>

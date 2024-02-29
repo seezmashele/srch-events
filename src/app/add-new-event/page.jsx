@@ -29,6 +29,7 @@ import { addTimeToDate } from '../../utils/helpers/time'
 import { timePickerHours, timePickerMinutes } from '../../utils/constants/time'
 import { countriesList } from '../../utils/constants/countries'
 import FormNumberInput from '../../components/inputs/FormNumberInput'
+import FormTextInput from '../../components/inputs/FormTextInput'
 // import PreviewImages from './page/PreviewImages'
 
 // import { DatePicker } from '@mui/x-date-pickers'
@@ -74,8 +75,8 @@ const CreatePage = () => {
   const [endTimeHours, setEndTimeHours] = useState(null)
   const [endTimeMinutes, setEndTimeMinutes] = useState(0)
   const [targetAudience, setTargetAudience] = useState(null)
-  const [ageRestriction, setAgeRestriction] = useState(0)
-  const [country, setCountry] = useState('')
+  const [ageRequirements, setAgeRequirements] = useState('')
+  const [city, setCity] = useState('')
   const [lowestPrice, setLowestPrice] = useState(0)
 
   const eventTypes = [
@@ -444,70 +445,6 @@ const CreatePage = () => {
 
             {/* section: Details ------------------------- */}
             <div className="box_radius box_radius editor_box_styles mt-6 w-full p-6">
-              {/* <div className="w-full">
-                <div className="pb-2.5 text-sm font-semibold">Location</div>
-
-                <div className="">
-                  <TextareaAutosize
-                    type="text"
-                    maxRows={8}
-                    placeholder="Select a city"
-                    className="box_radius w-full border border-black px-2 py-2 font-semibold"
-                  />
-                  {titleError && (
-                    <div className="mt-2 w-full text-sm text-red-500">
-                      This field is required
-                    </div>
-                  )}
-                </div>
-              </div> */}
-
-              <div className="flex flex-row gap-5">
-                <div className="w-1/2">
-                  <div className="pb-2.5 text-sm font-semibold">
-                    Type of event
-                  </div>
-                  <SelectInput
-                    placeholder="Select a type"
-                    options={eventTypes}
-                    setValue={setSelectedEventType}
-                  />
-                </div>
-                <div className="w-1/2">
-                  <div className="pb-2.5 text-sm font-semibold">
-                    Prices start at
-                  </div>
-                  <FormNumberInput
-                    placeholder="No cost"
-                    setValue={setLowestPrice}
-                  />
-                </div>
-              </div>
-
-              <div className="my-5 w-full border-b" />
-
-              <div className="flex flex-row gap-5">
-                <div className="w-1/2">
-                  <div className="pb-2.5 text-sm font-semibold">Country</div>
-                  <SelectInput
-                    placeholder="Select a country"
-                    options={countriesList}
-                    setValue={setCountry}
-                  />
-                </div>
-                <div className="w-1/2">
-                  <div className="pb-2.5 text-sm font-semibold">
-                    Age requirements
-                  </div>
-                  <FormNumberInput
-                    placeholder="None"
-                    setValue={setAgeRestriction}
-                  />
-                </div>
-              </div>
-
-              <div className="my-5 w-full border-b" />
-
               <div className="text-sm font-semibold">
                 Venue<span className="text-red-500"> *</span>
               </div>
@@ -526,6 +463,57 @@ const CreatePage = () => {
                     This field is required
                   </div>
                 )}
+              </div>
+
+              <div className="my-5 w-full border-b" />
+
+              <div className="flex flex-row gap-5">
+                <div className="w-1/2">
+                  <div className="pb-2.5 text-sm font-semibold">City</div>
+                  <SelectInput
+                    placeholder="Select a city"
+                    options={countriesList}
+                    setValue={setCity}
+                  />
+                </div>
+                <div className="w-1/2">
+                  <div className="pb-2.5 text-end text-sm font-semibold">
+                    Can we attend / watch online?
+                  </div>
+                  <div className="mt-1 flex w-full items-center justify-end">
+                    <div
+                      // type="toggle"
+                      className="flex h-6 w-12 cursor-pointer items-center rounded-full bg-neutral-500 p-1 text-sm font-semibold text-neutral-500"
+                    >
+                      <div className="h-4 w-4 rounded-full bg-white" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="my-5 w-full border-b" />
+
+              <div className="flex flex-row gap-5">
+                <div className="w-1/2">
+                  <div className="pb-2.5 text-sm font-semibold">
+                    Age requirements
+                  </div>
+                  <FormTextInput
+                    value={ageRequirements}
+                    placeholder="None"
+                    setValue={setAgeRequirements}
+                  />
+                </div>
+                <div className="w-1/2">
+                  <div className="pb-2.5 text-sm font-semibold">
+                    Prices start at (ZAR)
+                  </div>
+                  <FormNumberInput
+                    value={lowestPrice}
+                    placeholder="No cost"
+                    setValue={setLowestPrice}
+                  />
+                </div>
               </div>
 
               <div className="my-5 w-full border-b" />

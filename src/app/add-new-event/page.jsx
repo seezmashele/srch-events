@@ -292,19 +292,17 @@ const CreatePage = () => {
   return (
     <>
       <PageHead title="" />
-
-      {/* place account menu above toast */}
-      <ToastContainer
-        limit={3}
-        transition={Flip}
-        className="mt-12 select-none"
-        position="top-right"
-      />
       <Nav
         hideSearch
         showEventSubmitButton
         hideCreateEventButton
         handleEventUpload={handleEventUpload}
+      />
+      <ToastContainer
+        limit={3}
+        transition={Flip}
+        className="mt-12 select-none"
+        position="top-right"
       />
       <CropperModal
         imageToCrop={imageToCrop}

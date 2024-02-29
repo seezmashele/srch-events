@@ -109,6 +109,10 @@ iframe {
 }
 
 @layer components {
+  .tag_radius {
+    @apply rounded-lg;
+  }
+
   .base_button_styles,
   .input_button_styles {
     @apply cursor-pointer select-none whitespace-nowrap px-3.5 py-2.5 text-sm font-semibold;

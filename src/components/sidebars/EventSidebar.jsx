@@ -9,8 +9,8 @@ const EventSidebar = () => {
       className={`${showDesktopDrawer && 'md:hidden lg:block'} box_radius sticky top-[4.75rem] mb-10 mt-5 h-full w-80 flex-shrink-0 bg-neutral-100 p-5 text-sm xs:hidden md:block`}
     >
       <div className="mt-2f flex select-none space-x-1.5 text-sm">
-        <div className="sidebar_tag box_radius">Gaming</div>
-        <div className="sidebar_tag box_radius">Anime</div>
+        <div className="sidebar_tag tag_radius">gaming</div>
+        <div className="sidebar_tag tag_radius">anime</div>
       </div>
 
       <div className="mt-5">

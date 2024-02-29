@@ -1,12 +1,12 @@
 import { Gear, QuestionCircle } from 'react-bootstrap-icons'
-import { CalendarRange, Home, User } from 'lucide-react'
+import { CalendarRange, Home, Library, User } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import DrawerButtons from './MainDrawer/DrawerButtons'
 // import LocationButtons from './MainDrawer/LocationButtons'
 import RecommendedButtons from './MainDrawer/RecommendedButtons'
 
-const MainDrawer = ({ selectedPageIndex = -1 }) => {
+const MainDrawer = ({ selectedPageIndex = -1, selectedPageTitle = '' }) => {
   const { showDesktopDrawer } = useApp()
   const { accountUsername } = useAuth()
   const userProfileLink = `/profile/${accountUsername}`
@@ -20,6 +20,16 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
     },
     {
       icon: <CalendarRange className="icon_size--base" />,
+      title: 'Upcoming',
+      link: '/upcoming'
+    },
+    // {
+    //   icon: <Sparkle className="icon_size--base" />,
+    //   title: 'Promotions',
+    //   link: '/promotions'
+    // },
+    {
+      icon: <Library className="icon_size--base" />,
       title: 'Saved events',
       link: accountUsername ? savedEventsLink : ''
     },
@@ -94,6 +104,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
 
         <DrawerButtons
           drawerItems={drawerItemsTop}
+          selectedPageTitle={selectedPageTitle}
           selectedItemIndex={selectedPageIndex}
         />
 

@@ -91,55 +91,31 @@ export const fetchProfileBySlug = async (slug) => {
 const formatEventDate = (date, currentYear) => {
   // check if date is valid
   if (date) {
-    if (date.getFullYear() !== currentYear) return format(date, 'MMM d, yyyy')
+    if (date.getFullYear() !== currentYear)
+      return format(date, 'eee, MMM d, yyyy')
 
-    return format(date, 'MMM d')
+    return format(date, 'eee, MMM d')
   }
   return null
 }
 
-// const formatEventDate = (date, currentYear) => {
-//   if (date) {
-//     if (date.getFullYear() !== currentYear)
-//       return format(date, 'eee, MMM d, yyyy')
-
-//     return format(date, 'eee, MMM d')
-//   }
-//   return null
-// }
-
-// const formatEventDate2 = (date, currentYear) => {
-//   if (date) {
-//     const day = format(date, 'eee')
-//     const dayNumber = format(date, 'd')
-//     const month = format(date, 'MMM')
-//     const year = date.getFullYear()
-
-//     if (year !== currentYear) return `${day}, ${month} ${dayNumber}, ${year}`
-
-//     return `${day}, ${month} ${dayNumber}`
-//   }
-//   return null
-// }
-
 const formatEvents = (events) =>
   events.map((event) => {
-    const startingDate = event.eventStartingDate
+    const startingDate = event.startDate
     const date1 = new Date(startingDate)
     const currentYear = new Date().getFullYear()
     const formattedStartingDate = formatEventDate(date1, currentYear)
 
-    // console.log('current year', currentYear)
-
     return {
       slug: event.slug,
       title: event.title,
+      city: event.city,
       thumbnailImage: event.thumbnailImage,
       authorUsername: event.authorUsername,
       authorDisplayName: event.authorDisplayName,
       authorImageSmall: event.authorImageSmall,
-      eventStartingDate: formattedStartingDate,
-      eventType: event.eventType
+      startDate: formattedStartingDate,
+      canAttendOnline: event.canAttendOnline
     }
   })
 

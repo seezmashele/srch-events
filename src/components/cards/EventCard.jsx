@@ -4,17 +4,17 @@ import { useState } from 'react'
 // import { getPostAge } from "../../utils/helpers/time"
 
 const EventCard = ({ data }) => {
-  const cardTitle = data.title
-  const cardImage = data.thumbnailImage
+  const [isLoading, setIsLoading] = useState(true)
+  const eventTitle = data.title
+  const eventImage = data.thumbnailImage
+  const city = data.city || ''
   const cardLink = data.slug ? `/event/${data.slug}` : '/'
-  const cardStartingDate = data.eventStartingDate || ''
+  const cardStartingDate = data.startDate || ''
+  const startingPrice = data.pricesStartAt || ''
+  const cardAuthor = data.authorDisplayName ? data.authorDisplayName : ''
   const authorProfileLink = data.authorUsername
     ? `/profile/${data.authorUsername}`
     : '/'
-  const cardAuthor = data.authorDisplayName ? data.authorDisplayName : ''
-  // const upvotes = data.upvotes || ''
-  const [isLoading, setIsLoading] = useState(true)
-  const startingPrice = null
 
   return (
     <Grid item xs={12} mobile={6} sm={6} md={4} lg={4}>
@@ -32,8 +32,8 @@ const EventCard = ({ data }) => {
             onLoad={() => {
               setIsLoading(false)
             }}
-            src={cardImage}
-            alt={cardTitle}
+            src={eventImage}
+            alt={eventTitle}
           />
         </Link>
         <div className="flex w-full select-none">
@@ -41,12 +41,25 @@ const EventCard = ({ data }) => {
             <div className="mt-2 text-sm">
               <Link href={cardLink} passHref>
                 <div className="card_title max-h-12 select-text overflow-hidden pt-0 text-lg leading-snug text-black">
-                  {cardTitle}
+                  {eventTitle}
                 </div>
               </Link>
               <div className="mt-2.5 w-full text-neutral-600">
-                <div className="font-semibold text-black">
-                  {cardStartingDate}
+                <div className="font-semiboldf text-blackf flex w-full items-center overflow-hidden">
+                  <p className="flex-shrink-0 text-nowrap">
+                    {cardStartingDate}
+                  </p>
+                  {city && (
+                    <>
+                      <div className="mx-2.5 mt-0.5 h-0.5 w-0.5 flex-shrink-0 rounded-full bg-neutral-500" />
+                      <p className="overflow-ellipsis whitespace-nowrap">
+                        {city}
+                        {/* {city}
+                        {city}
+                        {city} */}
+                      </p>
+                    </>
+                  )}
                 </div>
                 <div className="flex items-center">
                   <Link
@@ -56,8 +69,6 @@ const EventCard = ({ data }) => {
                   >
                     {cardAuthor}
                   </Link>
-                  {/* <div className="mx-1.5 mt-0.5 h-0.5 w-0.5 rounded-full bg-neutral-500" />
-                  <p>{upvotes} upvotes</p> */}
                 </div>
               </div>
               {startingPrice && <div className="mt-0.5f font-medium">Free</div>}

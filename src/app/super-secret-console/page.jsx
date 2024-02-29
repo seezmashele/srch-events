@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { ToastContainer, toast, Flip } from 'react-toastify'
 import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 import {
@@ -90,8 +91,10 @@ const ConsolePage = () => {
       authorUsername: event.author_username,
       authorDisplayName: event.author_displayname,
       authorImageSmall: event.author_image_small,
-      eventStartingDate: event.event_starting_date,
-      eventType: event.event_type
+      startDate: event.start_date,
+      canAttendOnline: event.can_attend_online,
+      city: event.city,
+      pricesStartAt: event.prices_start_at
     }))
     return newEvents
   }
@@ -99,7 +102,32 @@ const ConsolePage = () => {
   const formatAndUploadSortedEvents = async (events, category) => {
     if (events) {
       const formattedEvents = formatEventsToUpload(events)
+      const toastId = toast.loading('Uploading events...')
       const result = await uploadSortedEvents(formattedEvents, category)
+      if (result && result.success) {
+        toast.update(toastId, {
+          render: `Uploaded - ${category}`,
+          type: 'success',
+          autoClose: 2500,
+          hideProgressBar: false,
+          pauseOnHover: false,
+          isLoading: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'light'
+        })
+      } else {
+        toast.update(toastId, {
+          render: 'Something went wrong 🤯',
+          type: 'error',
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          isLoading: false
+        })
+      }
+
       if (result) return result
     } else {
       setDataError(true)
@@ -119,7 +147,31 @@ const ConsolePage = () => {
   const uploadTagsFound = async () => {
     if (tagsFound && tagsFound.length > 1) {
       const jsonTags = tagsToJson(tagsFound)
+      const toastId = toast.loading('Updating tags')
       const result = await uploadRecommendedTags(jsonTags)
+      if (result && result.success) {
+        toast.update(toastId, {
+          render: 'Tags updated',
+          type: 'success',
+          autoClose: 2500,
+          hideProgressBar: false,
+          pauseOnHover: false,
+          isLoading: false,
+          draggable: false,
+          progress: undefined,
+          theme: 'light'
+        })
+      } else {
+        toast.update(toastId, {
+          render: 'Tags not updated...',
+          type: 'error',
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          isLoading: false
+        })
+      }
       if (result) return result
     }
     return { error: 'tags not uploaded' }
@@ -127,6 +179,7 @@ const ConsolePage = () => {
 
   const uploadEventsByTags = async () => {
     if (fetchedEvents && tagsFound) {
+      uploadTagsFound()
       tagsFound.forEach((tag) => {
         const newEvents = getFilteredEvents(fetchedEvents, tag)
         // console.log('new events', tag, newEvents)
@@ -146,6 +199,12 @@ const ConsolePage = () => {
     <>
       <PageHead title="Console" />
       <Nav hideSearch showLoginButton />
+      <ToastContainer
+        // limit={20}
+        transition={Flip}
+        className="mt-12 select-none"
+        position="top-right"
+      />
 
       <div className="page_padding_x max_page_width--narrow z-10 mx-auto flex w-full select-none flex-col pt-16">
         {fetchError && (

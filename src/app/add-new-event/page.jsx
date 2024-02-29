@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { Image } from 'react-bootstrap-icons'
 import Select from 'react-select'
 import { useDropzone } from 'react-dropzone'
 import imageCompression from 'browser-image-compression'
@@ -9,6 +8,7 @@ import { TextareaAutosize } from '@mui/base/TextareaAutosize'
 import { ToastContainer, toast, Flip } from 'react-toastify'
 import { useEditor, EditorContent } from '@tiptap/react'
 import 'react-day-picker/dist/style.css'
+import { Image } from 'lucide-react'
 import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 import MainDrawer from '../../components/drawers/MainDrawer'
@@ -27,7 +27,7 @@ import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import { addTimeToDate } from '../../utils/helpers/time'
 import { timePickerHours, timePickerMinutes } from '../../utils/constants/time'
-import { countriesList } from '../../utils/constants/countries'
+// import { countriesList } from '../../utils/constants/countries'
 import FormNumberInput from '../../components/inputs/FormNumberInput'
 import FormTextInput from '../../components/inputs/FormTextInput'
 // import PreviewImages from './page/PreviewImages'
@@ -68,31 +68,21 @@ const CreatePage = () => {
   const [selectedEventType, setSelectedEventType] = useState(0)
   const [showCropperModal, setShowCropperModal] = useState(false)
   const [showYoutubeLinkModal, setShowYoutubeLinkModal] = useState(false)
-  const [startingTimeAMPM, setStartingTimeAMPM] = useState('AM')
   const [startingTimeHours, setStartingTimeHours] = useState(null)
-  const [startingTimeMinutes, setStartingTimeMinutes] = useState(0)
-  const [endTimeAMPM, setEndTimeAMPM] = useState('AM')
+  const [startingTimeMinutes, setStartingTimeMinutes] = useState('00')
   const [endTimeHours, setEndTimeHours] = useState(null)
-  const [endTimeMinutes, setEndTimeMinutes] = useState(0)
-  const [targetAudience, setTargetAudience] = useState(null)
+  const [endTimeMinutes, setEndTimeMinutes] = useState('00')
   const [ageRequirements, setAgeRequirements] = useState('')
   const [city, setCity] = useState('')
   const [lowestPrice, setLowestPrice] = useState(0)
+  const [canAttendOnline, setIsWatchableOnline] = useState(false)
 
-  const eventTypes = [
-    {
-      label: 'Online',
-      value: 1
-    },
-    {
-      label: 'In person',
-      value: 2
-    },
-    {
-      label: 'Hybrid',
-      value: 3
-    }
-  ]
+  const timezone = new Date()
+    .toLocaleDateString('en-US', {
+      day: '2-digit',
+      timeZoneName: 'short'
+    })
+    .slice(4)
 
   const content = ''
 
@@ -223,30 +213,48 @@ const CreatePage = () => {
     return tags
   }
 
+  const getTimeString = (hours, minutes) => {
+    console.log('hours', hours, 'minutes', minutes)
+    if (hours === null || minutes === null) return null
+    console.log('okay')
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
+  }
+
   // submit the event here
   const handleEventUpload = async () => {
+    const endDate = addTimeToDate(
+      eventEndDate || eventStartDate,
+      endTimeHours,
+      endTimeMinutes
+    )
+    const endTime = getTimeString(endTimeHours, endTimeMinutes)
+    const startDate = addTimeToDate(
+      eventStartDate,
+      startingTimeHours,
+      startingTimeMinutes
+    )
+    const startTime = getTimeString(startingTimeHours, startingTimeMinutes)
+
     const editorData = {
+      ageRequirements,
+      authorDisplayName: accountDisplayName, // link
+      authorImageSmall: accountImageSmall, // link
+      authorProfileColor: accountColorNumber,
+      authorUsername: accountUsername, // link
+      city,
+      venueName,
+      editorContent: editor.getHTML(),
       eventTitle,
+      canAttendOnline,
+      pricesStartAt: lowestPrice,
       resizedCover,
       resizedThumbnail,
-      eventEndDate,
-      targetAudience,
-      startDateWithTime: addTimeToDate(
-        eventStartDate,
-        startingTimeHours,
-        startingTimeMinutes,
-        startingTimeAMPM
-      ),
-      editorContent: editor.getHTML(),
-      eventType: selectedEventType,
-      authorUsername: accountUsername,
-      authorDisplayName: accountDisplayName,
-      authorImageSmall: accountImageSmall,
-      authorProfileColor: accountColorNumber,
+      startTime,
+      startDate,
+      endDate,
+      endTime,
       tagsArray: createTagsArray(selectedCategories)
     }
-
-    // console.log('handle event upload', editorData)
 
     const dataIsValid = checkEventSubmitData(editorData)
     if (dataIsValid) {
@@ -375,7 +383,10 @@ const CreatePage = () => {
                   <div className="w-1/2">
                     <div className="w-full max-w-60">
                       <div className="pb-2.5 text-sm font-semibold">
-                        Starts at <span className="text-red-500">*</span>
+                        Start time<span className="text-red-500">*</span>
+                        {/* <span className="ml-3 font-normal text-neutral-400">
+                          ({timezone})
+                        </span> */}
                       </div>
                       <div className="flex w-full items-center">
                         <SelectInput
@@ -389,12 +400,6 @@ const CreatePage = () => {
                           options={timePickerMinutes}
                           setValue={setStartingTimeMinutes}
                         />
-                        {/* <div className="mx-2.5 font-semibold">:</div>
-                      <SelectInput
-                        placeholder="am"
-                        options={timePickerAMPM}
-                        setValue={setStartingTimeAMPM}
-                      /> */}
                       </div>
                     </div>
                   </div>
@@ -416,7 +421,10 @@ const CreatePage = () => {
                   <div className="w-1/2">
                     <div className="w-full max-w-60">
                       <div className="pb-2.5 text-sm font-semibold">
-                        Ends at
+                        End time
+                        {/* <span className="ml-3 font-normal text-neutral-400">
+                          ({timezone})
+                        </span> */}
                       </div>
                       <div className="flex w-full items-center">
                         <SelectInput
@@ -470,9 +478,9 @@ const CreatePage = () => {
               <div className="flex flex-row gap-5">
                 <div className="w-1/2">
                   <div className="pb-2.5 text-sm font-semibold">City</div>
-                  <SelectInput
+                  <FormTextInput
                     placeholder="Select a city"
-                    options={countriesList}
+                    value={city}
                     setValue={setCity}
                   />
                 </div>
@@ -570,16 +578,16 @@ const CreatePage = () => {
                       className="flex aspect-[2/1] w-full cursor-pointer flex-col items-center justify-center transition-colors hover:border-accent-main"
                     >
                       <Image
-                        className={`h-12 w-12 text-neutral-200 ${
-                          croppedImage && 'opacity-0f'
+                        className={`lucide_icon_thin h-14 w-14 text-neutral-500 ${
+                          croppedImage && 'opacity-0'
                         }`}
                       />
                       <p
-                        className={`mt-2 text-sm font-semibold text-neutral-300 ${
-                          croppedImage && 'opacity-0f'
+                        className={`mt-5 text-sm text-neutral-500 ${
+                          croppedImage && 'opacity-0'
                         }`}
                       >
-                        Drop image here or click to select
+                        Drop image or click to select
                       </p>
                     </div>
                   </div>
@@ -587,7 +595,7 @@ const CreatePage = () => {
                     <div className="aspect-[2/1] w-full">
                       <img
                         draggable="false"
-                        className="input_radiusf pointer-events-none h-full w-full overflow-hidden object-contain"
+                        className="pointer-events-none h-full w-full overflow-hidden object-contain"
                         src={croppedImage || null}
                         alt=""
                       />

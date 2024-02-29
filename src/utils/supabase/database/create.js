@@ -14,17 +14,24 @@ const convertDateToISO = (date) => {
 const formatEventSubmitData = async (data) => {
   if (data) {
     const {
-      eventTitle,
-      startDateWithTime,
-      eventEndDate,
+      ageRequirements,
+      authorDisplayName,
+      authorImageSmall,
       authorProfileColor,
-      tagsArray,
+      authorUsername,
+      canAttendOnline,
+      city,
+      editorContent,
+      endDate,
+      endTime,
+      eventTitle,
+      pricesStartAt,
       resizedCover,
       resizedThumbnail,
-      editorContent,
-      authorUsername,
-      authorDisplayName,
-      authorImageSmall
+      startDate,
+      startTime,
+      tagsArray,
+      venueName
     } = data
     const slug = stringToSlug(eventTitle)
 
@@ -38,22 +45,29 @@ const formatEventSubmitData = async (data) => {
       `${slug}thumb`,
       'event-images'
     )
-    const startDateISO = convertDateToISO(startDateWithTime)
-    const endDateISO = convertDateToISO(eventEndDate)
+    const startDateISO = convertDateToISO(startDate)
+    const endDateISO = convertDateToISO(endDate)
 
     return {
-      event_ending_date: endDateISO,
-      event_starting_date: startDateISO,
+      age_requirements: ageRequirements,
       author_displayname: authorDisplayName,
       author_image_small: authorImageSmall,
       author_profile_color: authorProfileColor,
       author_username: authorUsername,
+      can_attend_online: canAttendOnline,
+      city,
       cover_image: coverPath,
       editor_content_html: editorContent || '',
+      end_date: endDateISO,
+      end_time: endTime,
+      prices_start_at: pricesStartAt,
       slug,
+      start_date: startDateISO,
+      start_time: startTime,
       tags_array: tagsArray,
       thumbnail_image: thumbnailPath,
-      title: eventTitle
+      title: eventTitle,
+      venue: venueName
     }
   }
   return null

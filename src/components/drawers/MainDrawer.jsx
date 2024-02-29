@@ -1,5 +1,5 @@
 import { Gear, QuestionCircle } from 'react-bootstrap-icons'
-import { BookMarked, Home, User } from 'lucide-react'
+import { CalendarRange, Home, User } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import DrawerButtons from './MainDrawer/DrawerButtons'
@@ -19,7 +19,7 @@ const MainDrawer = ({ selectedPageIndex = -1 }) => {
       link: '/'
     },
     {
-      icon: <BookMarked className="icon_size--base" />,
+      icon: <CalendarRange className="icon_size--base" />,
       title: 'Saved events',
       link: accountUsername ? savedEventsLink : ''
     },

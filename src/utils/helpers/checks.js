@@ -4,18 +4,22 @@ export const checkEventSubmitData = (data) => {
   if (data) {
     const {
       authorUsername,
-      startDateWithTime,
       eventTitle,
       resizedCover,
       resizedThumbnail,
+      startDate,
+      startTime,
+      venueName,
       tagsArray
     } = data
     if (
       authorUsername &&
-      startDateWithTime &&
       eventTitle &&
       resizedCover &&
       resizedThumbnail &&
+      startDate &&
+      startTime &&
+      venueName &&
       tagsArray &&
       tagsArray.length > 0
     ) {

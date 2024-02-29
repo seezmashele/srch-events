@@ -21,6 +21,10 @@
   stroke-width: 1.5px;
 }
 
+.lucide_icon_thin {
+  stroke-width: 1px;
+}
+
 .force_hidden {
   display: none !important;
 }

@@ -58,13 +58,13 @@ const ProfileSettings = () => {
         <h3 className="mb-2 mt-6 text-sm font-semibold">Name</h3>
         <FormTextInput placeholder={accountDisplayName} />
         <p className="mt-2 text-xs text-neutral-400">
-          Names can only be changed once a month.
+          Name can only be changed once a month.
         </p>
 
         <h3 className="mb-2 mt-5 text-sm font-semibold">Username</h3>
-        <FormTextInput placeholder={accountUsername} />
+        <FormTextInput placeholder={`@${accountUsername}`} />
         <p className="mt-2 text-xs text-neutral-400">
-          Usernames can only be changed once a month.
+          Username can only be changed once a month.
         </p>
 
         {/* section: User Details ------------------------- */}

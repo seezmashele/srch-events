@@ -127,7 +127,7 @@
   }
 
   .login_input_styling {
-    @apply border border-neutral-500 px-4 pb-1.5 pt-1.5;
+    @apply border border-neutral-500 px-3 pb-1.5 pt-1.5;
   }
 
   .darker_border_color {

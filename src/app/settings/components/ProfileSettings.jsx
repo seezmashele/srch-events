@@ -1,115 +1,90 @@
+import FormTextArea from '../../../components/inputs/FormTextArea'
+import FormTextInput from '../../../components/inputs/FormTextInput'
+import { useAuth } from '../../../context/AuthContext'
+
 const ProfileSettings = () => {
-  const displayName = 'Yello Kittyz'
-
-  const images = [
-    '/avatars/image-1.png',
-    '/avatars/image-2.png',
-    '/avatars/image-3.png',
-    '/avatars/image-4.png',
-    '/avatars/image-5.png',
-    '/avatars/image-6.png',
-    '/avatars/image-7.png',
-    '/avatars/image-8.png',
-    '/avatars/image-9.png',
-    '/avatars/image-10.png',
-    '/avatars/image-11.png',
-    '/avatars/image-12.png',
-    '/avatars/image-13.png',
-    '/avatars/image-14.png',
-    '/avatars/image-15.png',
-    '/avatars/image-16.png',
-    '/avatars/image-17.png',
-    '/avatars/image-18.png',
-    '/avatars/image-19.png',
-    '/avatars/image-20.png'
-  ]
-
-  const authorImage = images[Math.floor(Math.random() * 20)]
+  const {
+    currentUser,
+    accountColor,
+    accountImage,
+    accountUsername,
+    accountDisplayName
+  } = useAuth()
 
   return (
-    <div>
-      <h1 className="text-base font-semibold">Profile</h1>
-      <div className="my-3 w-full border-t" />
+    <div className="select-none">
+      <h1 className="text-base font-semibold">Edit Profile</h1>
+      <div className="border-tf my-3 w-full" />
 
-      <div className="bg-neutral-100f h-80f pb-4f box_radius px-4f w-full ">
+      <div className="bg-neutral-100f h-80f box_radius px-4f w-full pb-20 ">
         <div className="bg-green-100f pt-2f mt-6 flex items-center">
-          <div className="-mt-10f mr-4 h-24 w-24 flex-shrink-0 overflow-hidden rounded-full bg-neutral-100">
-            <img
-              src={authorImage}
-              className="h-full w-full object-cover"
-              alt=""
-            />
+          <div
+            style={{
+              backgroundColor: accountImage ? '#eee' : accountColor
+            }}
+            className="border-4f border-whitef z-10 mr-6 flex h-24 w-24  flex-shrink-0 items-center justify-center overflow-hidden rounded-full text-4xl text-white"
+          >
+            {!accountImage &&
+              currentUser &&
+              accountDisplayName &&
+              accountDisplayName[0]}
+            {accountImage && (
+              <img
+                src={accountImage}
+                className="h-full w-full overflow-hidden rounded-full object-cover"
+                alt="profile"
+              />
+            )}
           </div>
-          <div className="flex w-full items-center justify-between">
-            <div className="text-lg font-semibold">{displayName}</div>
+          <div className="">
+            <div className="text-nowrap text-lg font-semibold">
+              {accountDisplayName}
+            </div>
+            <div className="text-nowrap text-sm text-neutral-500">
+              @{accountUsername}
+            </div>
+          </div>
+          <div className="flex w-full items-center justify-end">
             <button
               type="button"
-              className="button_radius bg-accent-mainf bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-accent-main-hover"
+              className="base_button_styles button_colors--filled"
             >
-              Edit User Profile
+              Change photo
             </button>
           </div>
         </div>
 
         {/* section: User Details ------------------------- */}
-        <div className="main_border_color my-6 w-full border-t" />
-        <div className="mt-3">
-          <div className="flex">
-            <div className=" w-full">
-              <div className="text-xs font-semibold uppercase text-neutral-400">
-                Display Name
-              </div>
-              <div className="mt-1.5 font-semibold">{displayName}</div>
-            </div>
-            <div className="">
-              <button
-                type="button"
-                className="button_radius bg-neutral-400 px-4 py-2 text-sm font-semibold text-white"
-              >
-                Edit
-              </button>
-            </div>
-          </div>
-          <div className="mt-6 flex">
-            <div className=" w-full">
-              <div className="text-xs font-semibold uppercase text-neutral-400">
-                Username
-              </div>
-              <div className="mt-1.5 font-semibold">hello_kitty_crew</div>
-            </div>
-            <div className="">
-              <button
-                type="button"
-                className="button_radius bg-neutral-400 px-4 py-2 text-sm font-semibold text-white"
-              >
-                Edit
-              </button>
-            </div>
-          </div>
-          <div className="mt-6 flex">
-            <div className=" w-full">
-              <div className="text-xs font-semibold uppercase text-neutral-400">
-                Email
-              </div>
-              <div className="mt-1.5 font-semibold">h******@gmail.com</div>
-            </div>
-            <div className="">
-              <button
-                type="button"
-                className="button_radius bg-neutral-400 px-4 py-2 text-sm font-semibold text-white"
-              >
-                Edit
-              </button>
-            </div>
-          </div>
+        <h3 className="mb-2 mt-6 text-sm font-semibold">Name</h3>
+        <FormTextInput placeholder={accountDisplayName} />
+        <p className="mt-2 text-xs text-neutral-400">
+          Names can only be changed once a month.
+        </p>
+
+        <h3 className="mb-2 mt-5 text-sm font-semibold">Username</h3>
+        <FormTextInput placeholder={accountUsername} />
+        <p className="mt-2 text-xs text-neutral-400">
+          Usernames can only be changed once a month.
+        </p>
+
+        {/* section: User Details ------------------------- */}
+        {/* <div className="main_border_color my-6 w-full border-t" />
+        <h3 className="mb-2 text-sm font-semibold">Website</h3>
+        <FormTextInput /> */}
+
+        <h3 className="mb-2 mt-5 text-sm font-semibold">Bio</h3>
+        <FormTextArea />
+        <p className="mt-1 text-xs text-neutral-400">Tell us about yourself.</p>
+
+        <div className="mt-6 flex w-full items-center justify-end">
+          <button
+            type="button"
+            className="base_button_styles button_colors--filled"
+          >
+            Save changes
+          </button>
         </div>
       </div>
-
-      {/* section: Password and Auth ------------------------- */}
-      <div className="main_border_color my-6 w-full border-t" />
-      <h1 className="text-lg font-semibold">Password and Authentication</h1>
-
-      {/* <p className="mt-3">{displayName}</p> */}
     </div>
   )
 }

@@ -1,8 +1,11 @@
-const FormTextInput = ({
-  type = '',
+import { TextareaAutosize } from '@mui/base/TextareaAutosize'
+
+const FormTextArea = ({
   title,
   value,
   setValue,
+  maxRows = 5,
+  placeholder = '',
   required = false,
   error
 }) => (
@@ -11,13 +14,14 @@ const FormTextInput = ({
       {title}
       {required && <span className="text-red-500"> *</span>}
     </div>
-    <input
+    <TextareaAutosize
       value={value}
+      maxRows={maxRows}
+      placeholder={placeholder}
+      className="input_radius editor_border_color font-semiboldf w-full border px-3 py-2 text-base leading-normal"
       onChange={(e) => {
         setValue(e.target.value)
       }}
-      type={type}
-      className="input_radius login_input_styling mt-1.5f w-full py-2"
     />
     {error && (
       <div className="mt-2 w-full text-sm text-red-500">
@@ -27,4 +31,4 @@ const FormTextInput = ({
   </>
 )
 
-export default FormTextInput
+export default FormTextArea

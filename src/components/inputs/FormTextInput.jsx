@@ -1,4 +1,11 @@
-const FormTextInput = ({ title, value, setValue, required = false, error }) => (
+const FormTextInput = ({
+  title,
+  value,
+  setValue,
+  placeholder,
+  required = false,
+  error
+}) => (
   <>
     <div className="w-full text-sm font-semibold">
       {title}
@@ -7,9 +14,10 @@ const FormTextInput = ({ title, value, setValue, required = false, error }) => (
     <input
       type="text"
       value={value}
+      placeholder={placeholder}
       className="input_radius login_input_styling mt-1.5f w-full py-2 placeholder:font-normal"
       onChange={(e) => {
-        setValue(e.target.value)
+        if (setValue) setValue(e.target.value)
       }}
     />
     {error && (

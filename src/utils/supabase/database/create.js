@@ -14,7 +14,6 @@ const convertDateToISO = (date) => {
 const formatEventSubmitData = async (data) => {
   if (data) {
     const {
-      eventType,
       eventTitle,
       startDateWithTime,
       eventEndDate,
@@ -51,7 +50,6 @@ const formatEventSubmitData = async (data) => {
       author_username: authorUsername,
       cover_image: coverPath,
       editor_content_html: editorContent || '',
-      event_type: eventType,
       slug,
       tags_array: tagsArray,
       thumbnail_image: thumbnailPath,

@@ -2,10 +2,10 @@
 import { useApp } from '../../context/AppContext'
 
 const EventSidebar = ({
+  prices,
   eventTags,
   ageRequirements,
-  authorDisplayName,
-  pricesStartAt
+  authorDisplayName
 }) => {
   const { showDesktopDrawer } = useApp()
 
@@ -29,7 +29,7 @@ const EventSidebar = ({
         </div>
       </div>
 
-      {pricesStartAt && (
+      {prices && (
         <>
           <div className="my-5 w-full border-b" />
           <div className="mt-5">
@@ -38,7 +38,7 @@ const EventSidebar = ({
               <div className="h-1 w-5">
                 <div className="ml-1 h-1 w-1 rounded-full bg-black" />
               </div>
-              <div className="text-smf">Free</div>
+              <div className="text-smf">R10000000000</div>
             </div>
           </div>
         </>

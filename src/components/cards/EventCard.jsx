@@ -10,7 +10,6 @@ const EventCard = ({ data }) => {
   const city = data.city || ''
   const cardLink = data.slug ? `/event/${data.slug}` : '/'
   const cardStartingDate = data.startDate || ''
-  const startingPrice = data.pricesStartAt || ''
   const cardAuthor = data.authorDisplayName ? data.authorDisplayName : ''
   const authorProfileLink = data.authorUsername
     ? `/profile/${data.authorUsername}`
@@ -71,7 +70,6 @@ const EventCard = ({ data }) => {
                   </Link>
                 </div>
               </div>
-              {startingPrice && <div className="mt-0.5f font-medium">Free</div>}
             </div>
           </div>
         </div>

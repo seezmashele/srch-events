@@ -121,7 +121,7 @@ const formatEvents = (events) =>
       authorDisplayName: event.authorDisplayName,
       authorImageSmall: event.authorImageSmall,
       startDate: formattedStartingDate,
-      canAttendOnline: event.canAttendOnline
+      eventType: event.eventType
     }
   })
 

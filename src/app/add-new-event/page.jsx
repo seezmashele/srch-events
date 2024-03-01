@@ -8,7 +8,7 @@ import { TextareaAutosize } from '@mui/base/TextareaAutosize'
 import { ToastContainer, toast, Flip } from 'react-toastify'
 import { useEditor, EditorContent } from '@tiptap/react'
 import 'react-day-picker/dist/style.css'
-import { Image, X } from 'lucide-react'
+import { Image } from 'lucide-react'
 import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 import MainDrawer from '../../components/drawers/MainDrawer'
@@ -16,7 +16,6 @@ import BodyWrapper from '../../components/wrappers/BodyWrapper'
 import CropperModal from '../../components/modals/CropperModal'
 import DayPickerDropdown from '../../components/dropdowns/DayPickerDropdown'
 import EditorSectionTitle from '../../components/editor/EditorSectionTitle'
-import SelectInput from './components/SelectInput'
 import TiptapToolbar from '../../components/tiptap/Toolbar'
 import YoutubeLinkModal from '../../components/modals/YoutubeLinkModal'
 import categoriesList from '../../utils/constants/categories'
@@ -27,9 +26,10 @@ import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import { addTimeToDate } from '../../utils/helpers/time'
 import { timePickerHours, timePickerMinutes } from '../../utils/constants/time'
-// import { countriesList } from '../../utils/constants/countries'
-import FormNumberInput from '../../components/inputs/FormNumberInput'
+import SelectInput from '../../components/inputs/SelectInput'
 import FormTextInput from '../../components/inputs/FormTextInput'
+// import { countriesList } from '../../utils/constants/countries'
+// import FormNumberInput from '../../components/inputs/FormNumberInput'
 // import PreviewImages from './page/PreviewImages'
 
 // import { DatePicker } from '@mui/x-date-pickers'
@@ -74,8 +74,6 @@ const CreatePage = () => {
   const [endTimeMinutes, setEndTimeMinutes] = useState('00')
   const [ageRequirements, setAgeRequirements] = useState('')
   const [city, setCity] = useState('')
-  const [lowestPrice, setLowestPrice] = useState(0)
-  const [canAttendOnline, setIsWatchableOnline] = useState(false)
   const [eventType, setEventType] = useState(null)
 
   const timezone = new Date()
@@ -258,10 +256,9 @@ const CreatePage = () => {
       authorUsername: accountUsername, // link
       city,
       venueName,
+      eventType,
       editorContent: editor.getHTML(),
       eventTitle,
-      canAttendOnline,
-      pricesStartAt: lowestPrice,
       resizedCover,
       resizedThumbnail,
       startTime,
@@ -550,23 +547,14 @@ const CreatePage = () => {
                     setValue={setAgeRequirements}
                   />
                 </div>
-                <div className="w-1/2">
-                  {/* <div className="pb-2.5 text-sm font-semibold">
-                    Prices start at (ZAR)
-                  </div>
-                  <FormNumberInput
-                    value={lowestPrice}
-                    placeholder="No cost"
-                    setValue={setLowestPrice}
-                  /> */}
-                </div>
+                <div className="w-1/2" />
               </div>
             </div>
             {/* section: Prices ------------------------- */}
             {/* add a new option button to add a name and price item */}
             {/* create the max number of prices e.g then hide the ones we dont need */}
 
-            <div className="box_radius box_radius editor_box_styles mt-6 w-full p-6">
+            {/* <div className="box_radius box_radius editor_box_styles mt-6 w-full p-6">
               <div className="text-sm font-semibold">
                 Prices<span className="text-red-500"> *</span>
               </div>
@@ -594,7 +582,7 @@ const CreatePage = () => {
                   </div>
                 )}
               </div>
-            </div>
+            </div> */}
 
             {/* section: Image Select ------------------------- */}
             <div className="mt-10 w-full" />

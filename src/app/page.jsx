@@ -23,13 +23,17 @@ const useHomePageEvents = (category) => {
 
 const Home = () => {
   const { homePageCategory } = useApp()
-  const [homePageEvents, setHomePageEvents] = useState(null)
+  const [homePageEvents, setHomePageEvents] = useState([{ placeholder: true }])
 
-  const { data } = useHomePageEvents(homePageCategory)
+  const { data, isLoading } = useHomePageEvents(homePageCategory)
 
   useEffect(() => {
     if (data && data.events) setHomePageEvents(data.events)
   }, [data])
+
+  // useEffect(() => {
+  //   if (isLoading) setHomePageEvents([{ placeholder: true }])
+  // }, [isLoading])
 
   return (
     <>
@@ -41,7 +45,9 @@ const Home = () => {
         <main className="content_padding_x flex w-full flex-col pb-24 pt-1.5">
           <FeaturedTagsBar />
 
-          <div className="mt-8 w-full">
+          <div
+            className={`${isLoading && 'pointer-events-none opacity-60'} mt-8 w-full transition-opacity`}
+          >
             {homePageEvents && <EventsBlock events={homePageEvents} title="" />}
           </div>
         </main>

@@ -92,9 +92,8 @@ const ConsolePage = () => {
       authorDisplayName: event.author_displayname,
       authorImageSmall: event.author_image_small,
       startDate: event.start_date,
-      canAttendOnline: event.can_attend_online,
-      city: event.city,
-      pricesStartAt: event.prices_start_at
+      eventType: event.event_type,
+      city: event.city
     }))
     return newEvents
   }

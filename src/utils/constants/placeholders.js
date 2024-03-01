@@ -131,3 +131,30 @@ export const placeholderArray20 = [
   { placeholder: true },
   { placeholder: true }
 ]
+
+export const placeholderArray24 = [
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true },
+  { placeholder: true }
+]

@@ -34,7 +34,6 @@ const EventPage = ({ params }) => {
   const [accountColor, setAccountColor] = useState(accountColorsList[0])
   const [eventTags, setEventTags] = useState(null)
   const [ageRequirements, setAgeRequirements] = useState(null)
-  const [pricesStartAt, setPricesStartAt] = useState(null)
   const [venue, setVenue] = useState('')
   const [city, setCity] = useState('')
 

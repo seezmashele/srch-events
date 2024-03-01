@@ -11,7 +11,7 @@ const UserImageCropper = ({
   imageToCrop,
   showCropperModal,
   hideCropperModal,
-  updateCroppedImage,
+  updateCroppedImage
 }) => {
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
@@ -71,7 +71,7 @@ const UserImageCropper = ({
           classes={{
             containerClassName: 'bg-blue-200f min-w-[20rem] object-cover m-0',
             mediaClassName: 'm-0',
-            cropAreaClassName: 'm-0',
+            cropAreaClassName: 'm-0'
           }}
           className="w-96 rounded-full bg-red-600"
           onCropComplete={onCropComplete}
@@ -93,7 +93,7 @@ const UserImageCropper = ({
           type="button"
           aria-label="Crop image"
           onClick={showCroppedResult}
-          className="button_styles px-4"
+          className="base_button_styles button_min_width button_colors--filled text-center"
         >
           Crop Image
         </button>

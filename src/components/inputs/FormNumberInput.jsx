@@ -6,17 +6,19 @@ const FormNumberInput = ({
   error
 }) => (
   <>
-    <div className="w-full text-sm font-semibold">
-      {title}
-      {required && <span className="text-red-500"> *</span>}
-    </div>
+    {title && (
+      <div className="mb-2 w-full text-sm font-semibold">
+        {title}
+        {required && <span className="text-red-500"> *</span>}
+      </div>
+    )}
     <input
       min="0"
       value={value}
       type="number"
-      className="input_radius placeholder:font-normal login_input_styling w-full py-2"
+      className="input_radius login_input_styling w-full py-2 placeholder:font-normal"
       onChange={(e) => {
-        setValue(e.target.value)
+        if (setValue) setValue(e.target.value)
       }}
     />
     {error && (

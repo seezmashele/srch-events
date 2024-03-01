@@ -7,10 +7,12 @@ const FormTextInput = ({
   error
 }) => (
   <>
-    <div className="w-full text-sm font-semibold">
-      {title}
-      {required && <span className="text-red-500"> *</span>}
-    </div>
+    {title && (
+      <div className="mb-2 w-full text-sm font-semibold">
+        {title}
+        {required && <span className="text-red-500"> *</span>}
+      </div>
+    )}
     <input
       type="text"
       value={value}

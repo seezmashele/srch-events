@@ -8,7 +8,7 @@ import { TextareaAutosize } from '@mui/base/TextareaAutosize'
 import { ToastContainer, toast, Flip } from 'react-toastify'
 import { useEditor, EditorContent } from '@tiptap/react'
 import 'react-day-picker/dist/style.css'
-import { Image } from 'lucide-react'
+import { Image, X } from 'lucide-react'
 import Nav from '../../components/layout/Nav'
 import PageHead from '../../components/misc/PageHead'
 import MainDrawer from '../../components/drawers/MainDrawer'
@@ -76,6 +76,7 @@ const CreatePage = () => {
   const [city, setCity] = useState('')
   const [lowestPrice, setLowestPrice] = useState(0)
   const [canAttendOnline, setIsWatchableOnline] = useState(false)
+  const [eventType, setEventType] = useState(null)
 
   const timezone = new Date()
     .toLocaleDateString('en-US', {
@@ -83,6 +84,21 @@ const CreatePage = () => {
       timeZoneName: 'short'
     })
     .slice(4)
+
+  const eventTypes = [
+    {
+      value: null,
+      label: 'In person'
+    },
+    {
+      value: 'online',
+      label: 'Online'
+    },
+    {
+      value: 'hybrid',
+      label: 'Hybrid'
+    }
+  ]
 
   const content = ''
 
@@ -214,7 +230,6 @@ const CreatePage = () => {
   }
 
   const getTimeString = (hours, minutes) => {
-    console.log('hours', hours, 'minutes', minutes)
     if (hours === null || minutes === null) return null
     console.log('okay')
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
@@ -369,7 +384,7 @@ const CreatePage = () => {
                 <div className="flex w-full flex-row gap-5">
                   <div className="w-1/2">
                     <div className="pb-2.5 text-sm font-semibold">
-                      Starting date <span className="text-red-500">*</span>
+                      Start date <span className="text-red-500">*</span>
                     </div>
                     <div className="w-full">
                       <DayPickerDropdown
@@ -451,6 +466,36 @@ const CreatePage = () => {
 
             {/* section: Details ------------------------- */}
             <div className="box_radius box_radius editor_box_styles mt-6 w-full p-6">
+              <div className="mt-6f pb-2.5 text-sm font-semibold">
+                Categories<span className="text-red-500"> *</span>
+              </div>
+              <Select
+                isMulti
+                className=" text-sm"
+                placeholder="Select"
+                options={categoriesList}
+                closeMenuOnSelect={false}
+                classNames={{
+                  control: () => 'force_rounded_md editor_border_color',
+                  input: () => 'p-1.5',
+                  placeholder: () => 'p-1.5 py-2',
+                  singleValue: () => 'px-1.5 py-2',
+                  multiValue: () => 'force_rounded_md p-1 text-base',
+                  multiValueLabel: () => 'text-black mr-0.5 font-semibold',
+                  multiValueRemove: () => 'force_rounded_md px-1.5',
+                  option: () => 'px-3 py-1.5',
+                  valueContainer: () => 'force_rounded_lg p-1'
+                }}
+                onChange={(values) => {
+                  setSelectedCategories(values)
+                }}
+                isOptionDisabled={() =>
+                  selectedCategories && selectedCategories.length >= 5
+                }
+              />
+
+              <div className="my-5 w-full border-b" />
+
               <div className="text-sm font-semibold">
                 Venue<span className="text-red-500"> *</span>
               </div>
@@ -483,17 +528,12 @@ const CreatePage = () => {
                   />
                 </div>
                 <div className="w-1/2">
-                  <div className="pb-2.5 text-end text-sm font-semibold">
-                    Can we attend / watch online?
-                  </div>
-                  <div className="mt-1 flex w-full items-center justify-end">
-                    <div
-                      // type="toggle"
-                      className="flex h-6 w-12 cursor-pointer items-center rounded-full bg-neutral-500 p-1 text-sm font-semibold text-neutral-500"
-                    >
-                      <div className="h-4 w-4 rounded-full bg-white" />
-                    </div>
-                  </div>
+                  <div className="pb-2.5 text-sm font-semibold">Event type</div>
+                  <SelectInput
+                    placeholder="In person"
+                    options={eventTypes}
+                    setValue={setEventType}
+                  />
                 </div>
               </div>
 
@@ -511,46 +551,49 @@ const CreatePage = () => {
                   />
                 </div>
                 <div className="w-1/2">
-                  <div className="pb-2.5 text-sm font-semibold">
+                  {/* <div className="pb-2.5 text-sm font-semibold">
                     Prices start at (ZAR)
                   </div>
                   <FormNumberInput
                     value={lowestPrice}
                     placeholder="No cost"
                     setValue={setLowestPrice}
-                  />
+                  /> */}
                 </div>
               </div>
+            </div>
+            {/* section: Prices ------------------------- */}
+            {/* add a new option button to add a name and price item */}
+            {/* create the max number of prices e.g then hide the ones we dont need */}
 
+            <div className="box_radius box_radius editor_box_styles mt-6 w-full p-6">
+              <div className="text-sm font-semibold">
+                Prices<span className="text-red-500"> *</span>
+              </div>
               <div className="my-5 w-full border-b" />
 
-              <div className="mt-6f pb-2.5 text-sm font-semibold">
-                Categories<span className="text-red-500"> *</span>
+              <div className="">
+                <div className="flex w-full gap-5">
+                  <div className="w-1/2 flex-grow">
+                    <FormTextInput title="Name" />
+                  </div>
+                  <div className="w-1/2">
+                    <div className="flex w-56 items-end">
+                      <div>
+                        <FormNumberInput title="Price (ZAR)" />
+                      </div>
+                      <div className="mb-1 ml-2 flex h-9 w-9 flex-shrink-0 cursor-pointer items-center justify-center rounded-lg bg-neutral-200">
+                        <X className="lucide_icon_small" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {titleError && (
+                  <div className="mt-2 w-full text-sm text-red-500">
+                    This field is required
+                  </div>
+                )}
               </div>
-              <Select
-                isMulti
-                className=" text-sm"
-                placeholder="Select"
-                options={categoriesList}
-                closeMenuOnSelect={false}
-                classNames={{
-                  control: () => 'force_rounded_md editor_border_color',
-                  input: () => 'p-1.5',
-                  placeholder: () => 'p-1.5 py-2',
-                  singleValue: () => 'px-1.5 py-2',
-                  multiValue: () => 'force_rounded_md p-1 text-base',
-                  multiValueLabel: () => 'text-black mr-0.5 font-semibold',
-                  multiValueRemove: () => 'force_rounded_md px-1.5',
-                  option: () => 'px-3 py-1.5',
-                  valueContainer: () => 'force_rounded_lg p-1'
-                }}
-                onChange={(values) => {
-                  setSelectedCategories(values)
-                }}
-                isOptionDisabled={() =>
-                  selectedCategories && selectedCategories.length >= 5
-                }
-              />
             </div>
 
             {/* section: Image Select ------------------------- */}

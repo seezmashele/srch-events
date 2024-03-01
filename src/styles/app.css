@@ -109,6 +109,9 @@ iframe {
 }
 
 @layer components {
+  .lucide_icon_small {
+    @apply h-4 w-4;
+  }
   .tag_radius {
     @apply rounded-lg;
   }

@@ -32,6 +32,11 @@ const EventPage = ({ params }) => {
   const [authorProfileLink, setAuthorProfileLink] = useState('')
   const [editorContent, setEditorContent] = useState('')
   const [accountColor, setAccountColor] = useState(accountColorsList[0])
+  const [eventTags, setEventTags] = useState(null)
+  const [ageRequirements, setAgeRequirements] = useState(null)
+  const [pricesStartAt, setPricesStartAt] = useState(null)
+  const [venue, setVenue] = useState('')
+  const [city, setCity] = useState('')
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -49,6 +54,9 @@ const EventPage = ({ params }) => {
         setEditorContent(event.editorContent)
         setEventType(event.eventType)
         setPostTitle(event.title)
+        setEventTags(event.tags)
+        setVenue(event.venue)
+        setCity(event.city)
         setAuthorProfileLink(
           event.authorUsername ? `/profile/${event.authorUsername}` : ''
         )
@@ -57,6 +65,13 @@ const EventPage = ({ params }) => {
     }
     if (params && params.slug) getEvent(params.slug)
   }, [params])
+
+  const timezone = new Date()
+    .toLocaleDateString('en-US', {
+      day: '2-digit',
+      timeZoneName: 'short'
+    })
+    .slice(4)
 
   return (
     <>
@@ -170,11 +185,9 @@ const EventPage = ({ params }) => {
                         <MapPin className="icon_size--lg mr-5" />
                       </div>
                       <div>
-                        <div className="font-semibold">
-                          The Glen Country Club Field
-                        </div>
+                        <div className="font-semibold">{venue}</div>
                         <p className="text-orange-600f mt-0.5 font-semibold text-accent-main">
-                          Clifton, Cape Town
+                          {city}
                         </p>
                       </div>
                     </div>
@@ -199,7 +212,11 @@ const EventPage = ({ params }) => {
               </div>
 
               {/* if the main drawer is open i.e showDesktopDrawer make the hide the sidebar sooner */}
-              <EventSidebar />
+              <EventSidebar
+                eventTags={eventTags}
+                ageRequirements={ageRequirements}
+                authorDisplayName={authorDisplayName}
+              />
             </div>
           </div>
         </main>

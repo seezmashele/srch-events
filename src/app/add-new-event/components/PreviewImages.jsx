@@ -1,25 +1,21 @@
-const PreviewImages = ({
-  croppedImage,
-  resizedCoverURL,
-  resizedThumbnailURL
-}) => (
+const PreviewImages = ({ croppedImage, image1URL, image2URL }) => (
   <div className="mb-50 flex flex-col gap-6 p-6">
     {croppedImage && (
       <div className="box_radius bg-neutral-100 p-6">
-        <div>Cropped</div>
+        {/* <div>Cropped</div> */}
         <img src={croppedImage} alt="resized cover" />
       </div>
     )}
-    {resizedCoverURL && (
+    {image1URL && (
       <div className="box_radius bg-neutral-100 p-6">
-        <div>Cover</div>
-        <img src={resizedCoverURL} alt="resized cover" />
+        {/* <div>image 1</div> */}
+        <img src={image1URL} alt="resized cover" />
       </div>
     )}
-    {resizedThumbnailURL && (
+    {image2URL && (
       <div className="box_radius bg-neutral-100 p-6">
-        <div>thumbnail</div>
-        <img src={resizedThumbnailURL} alt="resized thumbnail" />
+        {/* <div>image 2</div> */}
+        <img src={image2URL} alt="resized thumbnail" />
       </div>
     )}
   </div>

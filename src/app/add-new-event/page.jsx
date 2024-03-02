@@ -701,8 +701,8 @@ const CreatePage = () => {
 
         {/* <PreviewImages
           croppedImage={croppedImage}
-          resizedCoverURL={resizedCoverURL}
-          resizedThumbnailURL={resizedThumbnailURL}
+          image1URL={resizedCoverURL}
+          image2URL={resizedThumbnailURL}
         /> */}
       </BodyWrapper>
     </>

@@ -23,3 +23,25 @@ export const uploadSupabaseImage = async (img, filename, bucket) => {
   if (error) return error
   return null
 }
+
+export const uploadProfileImages = async (slug, image, smallImage) => {
+  if (slug && image && smallImage) {
+    const imagePath = await uploadSupabaseImage(
+      image,
+      `${slug}profile`,
+      'user-images'
+    )
+    const smallImagePath = await uploadSupabaseImage(
+      smallImage,
+      `${slug}profile-thumb`,
+      'user-images'
+    )
+    if (
+      (imagePath && imagePath.error) ||
+      (smallImagePath && smallImagePath.error)
+    )
+      return null
+    return { success: true, imagePath, smallImagePath }
+  }
+  return null
+}

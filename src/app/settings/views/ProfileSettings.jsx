@@ -5,6 +5,8 @@ import FormTextInput from '../../../components/inputs/FormTextInput'
 import { useAuth } from '../../../context/AuthContext'
 import UserImageCropper from '../../../components/modals/UserImageCropper'
 import PreviewImages from '../../add-new-event/components/PreviewImages'
+import { uploadProfileImages } from '../../../utils/supabase/storage/images'
+import { getProfileImageSlug } from '../../../utils/helpers/strings'
 
 const ProfileSettings = () => {
   const {
@@ -16,7 +18,7 @@ const ProfileSettings = () => {
   } = useAuth()
 
   const [imageToCrop, setImageToCrop] = useState(null)
-  const [croppedImage, setCroppedImage] = useState(null)
+  // const [croppedImage, setCroppedImage] = useState(null)
   const [resizedProfileImage, setResizedProfileImage] = useState(null)
   const [showCropperModal, setShowCropperModal] = useState(false)
   const [resizedCoverURL, setResizedCoverURL] = useState(null)
@@ -29,6 +31,35 @@ const ProfileSettings = () => {
   const hideCropperModal = () => {
     setShowCropperModal(false)
     clearSelectedImageFile()
+  }
+
+  const getRandomWords = (name) => {
+    const randomWords = 'majesticrainbow'
+    const slicedName = name && name.slice ? name.slice(0, 5) : ''
+    return `${slicedName || ''}${randomWords}`
+  }
+
+  // TODO: make cropped image round
+  // TODO: make small profile image
+
+  const handleProfileImageUpload = async () => {
+    if (!resizedProfileImage) return null
+
+    // TODO: generate 2 random fun words e.g 'sunshine-rabbit'
+    const randomString = getRandomWords(accountUsername)
+    const imageSlug = getProfileImageSlug(randomString)
+    const result = await uploadProfileImages(
+      imageSlug,
+      resizedProfileImage,
+      resizedProfileImage
+    )
+
+    if (result && result.success) {
+      // console.log('profile images uploaded', result)
+      // TODO: update supabase user profile
+      return { success: true }
+    }
+    return null
   }
 
   async function createResizedImages(croppedImageURL) {
@@ -83,7 +114,7 @@ const ProfileSettings = () => {
 
   const updateCroppedImage = (img) => {
     if (img) {
-      setCroppedImage(img)
+      // setCroppedImage(img)
       createResizedImages(img)
     }
   }
@@ -156,9 +187,20 @@ const ProfileSettings = () => {
           </div>
 
           <PreviewImages
-            croppedImage={croppedImage}
-            resizedCoverURL={resizedCoverURL}
+            // croppedImage={croppedImage}
+            image1URL={resizedCoverURL}
           />
+          {resizedProfileImage && (
+            <div className="flexf hidden justify-end">
+              <button
+                type="button"
+                className="base_button_styles button_colors--filled"
+                onClick={handleProfileImageUpload}
+              >
+                upload image
+              </button>
+            </div>
+          )}
 
           {/* section: User Details ------------------------- */}
           <h3 className="mb-2 mt-6 text-sm font-semibold">Name</h3>

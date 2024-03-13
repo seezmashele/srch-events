@@ -1,7 +1,14 @@
 import Link from 'next/link'
 
-const RecommendedButtons = ({ recommendedProfiles, hideTitle = false }) => (
+const RecommendedButtons = ({
+  recommendedProfiles,
+  hideTitle = false,
+  showDividerAbove = false
+}) => (
   <>
+    {showDividerAbove && (
+      <div className="main_border_color my-2 w-full border-b" />
+    )}
     <div
       className={`${!hideTitle && 'lg:block'} drawer_section_title xs:hidden`}
     >

@@ -1,5 +1,5 @@
 import { Gear, QuestionCircle } from 'react-bootstrap-icons'
-import { CalendarRange, Home, Library, User } from 'lucide-react'
+import { CalendarRange, Gamepad2, Home, Library, Tv, User } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import DrawerButtons from './MainDrawer/DrawerButtons'
@@ -37,6 +37,20 @@ const MainDrawer = ({ selectedPageIndex = -1, selectedPageTitle = '' }) => {
       icon: <User className="icon_size--base" />,
       title: 'Your profile',
       link: accountUsername ? userProfileLink : ''
+    }
+  ]
+
+  const drawerItemsOnline = [
+    { divider: true },
+    {
+      icon: <Gamepad2 className="icon_size--base" />,
+      title: 'Tournaments',
+      link: '/online/tournaments'
+    },
+    {
+      icon: <Tv className="icon_size--base" />,
+      title: 'Live streams',
+      link: '/online/live-streams'
     }
   ]
 
@@ -116,10 +130,19 @@ const MainDrawer = ({ selectedPageIndex = -1, selectedPageTitle = '' }) => {
           selectedItemIndex={-1}
         /> */}
 
+        {/* online options ---------------------------------------- */}
+
+        <DrawerButtons
+          title="Online"
+          showDividerAbove
+          drawerItems={drawerItemsOnline}
+          selectedItemIndex={selectedPageIndex}
+        />
+
         {/* recommended ---------------------------------------- */}
 
-        <div className="main_border_color my-2 w-full border-b" />
         <RecommendedButtons
+          showDividerAbove
           hideTitle={!showDesktopDrawer}
           recommendedProfiles={recommendedProfiles}
         />

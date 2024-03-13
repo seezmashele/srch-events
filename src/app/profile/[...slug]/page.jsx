@@ -30,6 +30,8 @@ import { accountColorsList } from '../../../utils/constants/colors'
 //   }
 // }
 
+// todo: hide events tab if the user's account can't create events, i.e only show their saved events
+
 const HomePage = ({ params }) => {
   const [profileDisplayName, setProfileDisplayName] = useState('')
   const [profileImage, setProfileImage] = useState('')

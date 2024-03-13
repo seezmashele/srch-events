@@ -80,7 +80,7 @@ const EventPage = ({ params }) => {
       <BodyWrapper>
         <MainDrawer />
         <main className="event_page_padding_x w-full">
-          <div className="mx-auto xs:mt-3 md:mt-5">
+          <div className="mx-auto xs:mt-2 md:mt-5">
             {/* wide cover image */}
             <div className="box_radius flex h-96 flex-col items-center justify-center overflow-hidden">
               <div className="h-0 w-full">
@@ -114,9 +114,9 @@ const EventPage = ({ params }) => {
               <div className="w-full max-w-2xl xs:mr-0 lg:mr-7">
                 {/* cover image */}
 
-                <div className=" xs:px-4 md:px-0">
+                <div className=" xs:px-3 md:px-0">
                   {/* event title */}
-                  <div className="card_title mt-7 select-text font-bold hover:cursor-default hover:no-underline xs:text-3xl md:text-3xl">
+                  <div className="card_title mt-7 select-text font-bold hover:cursor-default hover:no-underline xs:text-2xl md:text-3xl">
                     {postTitle}
                   </div>
 

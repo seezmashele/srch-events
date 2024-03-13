@@ -2,7 +2,7 @@
 import { customAlphabet } from 'nanoid'
 
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 8)
-const nanoidLong = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 16)
+const nanoidLong = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 24)
 
 export const shortenFileName = (filename) => {
   if (filename) {
@@ -15,7 +15,7 @@ export const shortenFileName = (filename) => {
 }
 
 export const getProfileImageSlug = (string) => {
-  if (string) {
+  if (string && string.replace) {
     const removeApostrophes = string.replace(/'|\u2019/g, '')
     const normalString = removeApostrophes
       .normalize('NFD')

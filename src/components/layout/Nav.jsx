@@ -82,7 +82,7 @@ const Nav = ({
               )}
 
               {currentUser && showEventSubmitButton && (
-                <div className="pr-3">
+                <div className="pr-1.5">
                   <FilledTextButton
                     label="Upload event"
                     ariaLabel="upload event"
@@ -97,9 +97,6 @@ const Nav = ({
                     path="/add-new-event"
                     label="Create event"
                     ariaLabel="Create event"
-                    icon={
-                      <PlusCircle className="icon_size--base flex-shrink-0" />
-                    }
                   />
                   <MobileIconLinkButton
                     path="/add-new-event"

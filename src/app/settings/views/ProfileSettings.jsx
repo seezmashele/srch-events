@@ -33,21 +33,13 @@ const ProfileSettings = () => {
     clearSelectedImageFile()
   }
 
-  const getRandomWords = (name) => {
-    const randomWords = 'majesticrainbow'
-    const slicedName = name && name.slice ? name.slice(0, 5) : ''
-    return `${slicedName || ''}${randomWords}`
-  }
-
   // TODO: make cropped image round
   // TODO: make small profile image
 
   const handleProfileImageUpload = async () => {
     if (!resizedProfileImage) return null
 
-    // TODO: generate 2 random fun words e.g 'sunshine-rabbit'
-    const randomString = getRandomWords(accountUsername)
-    const imageSlug = getProfileImageSlug(randomString)
+    const imageSlug = getProfileImageSlug(accountUsername || '')
     const result = await uploadProfileImages(
       imageSlug,
       resizedProfileImage,

@@ -39,7 +39,7 @@ const EventCard = ({ data }) => {
           <div className="relative inline-block w-1/2 flex-grow">
             <div className="mt-2 text-sm">
               <Link href={cardLink} passHref>
-                <div className="card_title max-h-12 select-text overflow-hidden pt-0 text-lg leading-snug text-black">
+                <div className="card_title max-h-12 select-text overflow-hidden pt-0 text-base leading-snug text-black">
                   {eventTitle}
                 </div>
               </Link>

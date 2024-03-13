@@ -82,9 +82,9 @@ const EventPage = ({ params }) => {
         <main className="event_page_padding_x w-full">
           <div className="mx-auto xs:mt-2 md:mt-5">
             {/* wide cover image */}
-            <div className="box_radius flex h-96 flex-col items-center justify-center overflow-hidden">
+            <div className="box_radius h-96f xs:min-h-72f  flex flex-col items-center justify-center overflow-hidden xs:h-72 xs:max-h-96 md:h-96">
               <div className="h-0 w-full">
-                <div className="h-96 w-full overflow-hidden opacity-40 blur-3xl">
+                <div className="w-full overflow-hidden opacity-40 blur-3xl xs:h-72 xs:max-h-96 xs:min-h-72 md:h-96">
                   <img
                     draggable="false"
                     className={`absolute left-0 h-full w-full object-cover transition-opacity duration-500 ${

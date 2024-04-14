@@ -17,8 +17,8 @@ import MobileIconLinkButton from '../buttons/MobileIconLinkButton'
 import DesktopIconLinkButton from '../buttons/DesktopIconLinkButton'
 
 const Nav = ({
-  hideSearch = true,
-  showLoginButton = false,
+  hideSearch = false,
+  showLoginButton = true,
   showEventSubmitButton = false,
   hideCreateEventButton = false,
   handleEventUpload
@@ -56,7 +56,7 @@ const Nav = ({
               <Link
                 href="/"
                 passHref
-                className="flex h-5 w-44 flex-shrink-0 cursor-pointer select-none"
+                className="flex h-6 w-48 flex-shrink-0 cursor-pointer select-none"
               >
                 <img
                   draggable="false"

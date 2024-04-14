@@ -10,11 +10,12 @@ const UpcomingHolidaysBar = () => {
 
   // eslint-disable-next-line no-unused-vars
   const [holidays, setHolidays] = useState([
-    { title: 'Easter', slug: 'hello' },
-    { title: 'Good Friday', slug: 'hello' },
-    { title: 'Labor Day', slug: 'hello' },
-    { title: 'Independence Day', slug: 'hello' },
-    { title: 'New Years', slug: 'hello' },
+    { title: 'All', slug: 'all' },
+    { title: 'Easter', slug: 'easter' },
+    { title: 'Good Friday', slug: 'goodfriday' },
+    { title: 'Labor Day', slug: 'laborday' },
+    { title: 'Independence Day', slug: 'independenceday' },
+    { title: 'New Years', slug: 'newyears' },
     { title: 'Childrens Day', slug: 'hello' },
     { title: 'Christmas', slug: 'hello' }
   ])

@@ -13,7 +13,9 @@ module.exports = {
     // rename breakpoints similar to xl, 2xl, 3xl. e.g md, md2, lg, lg2
     screens: {
       xs: '0',
-      'md-ish': '900px',
+      'mui_mobile': '400px',
+      'mui_sm': '600px',
+      'mui_md': '900px',
       lg2: '1100px',
       ...defaultTheme.screens
     },

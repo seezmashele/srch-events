@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Drawer from '@mui/material/Drawer'
 import { useState } from 'react'
-import { Menu, PlusCircle, Search } from 'lucide-react'
+import { CircleUser, Menu, PlusCircle, Search, User } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { useApp } from '../../context/AppContext'
 import AccountMenu from '../dropdowns/AccountMenu'
@@ -15,6 +15,7 @@ import FilledTextButton from '../buttons/FilledTextButton'
 import MobileIconButton from '../buttons/MobileIconButton'
 import MobileIconLinkButton from '../buttons/MobileIconLinkButton'
 import DesktopIconLinkButton from '../buttons/DesktopIconLinkButton'
+import DesktopTextButton from '../buttons/DesktopTextButton'
 
 const Nav = ({
   hideSearch = false,
@@ -123,17 +124,20 @@ const Nav = ({
 
               {showLoginButton && !currentUser && (
                 <div className="text-[.9375rem]f flex font-semibold">
-                  <button
-                    type="button"
-                    aria-label="Login"
+                  <MobileIconButton
+                  ariaLabel="Login"
+                  icon={<CircleUser className="icon_size--base flex-shrink-0"  />}
+                  onClick={() => {
+                      setSignupMode(false)
+                      setOpenLoginModal(true)
+                    }} />
+                    <DesktopTextButton
+                    ariaLabel="Login"
+                    label="Log in"
                     onClick={() => {
                       setSignupMode(false)
                       setOpenLoginModal(true)
-                    }}
-                    className="base_button_styles button_colors--filled button_min_width"
-                  >
-                    Log in
-                  </button>
+                    }} />
                 </div>
               )}
             </div>

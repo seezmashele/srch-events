@@ -31,9 +31,7 @@ const Home = () => {
     if (data && data.events) setHomePageEvents(data.events)
   }, [data])
 
-  // useEffect(() => {
-  //   if (isLoading) setHomePageEvents([{ placeholder: true }])
-  // }, [isLoading])
+  // clicking home in drawer or main logo should reset to all events category
 
   return (
     <>
@@ -46,7 +44,7 @@ const Home = () => {
           <FeaturedTagsBar />
 
           <div
-            className={`${isLoading && 'pointer-events-none opacity-60'} mt-8 w-full transition-opacity`}
+            className={`${isLoading && 'pointer-events-none opacity-60'} xs:mt-6 mui_mobile:mt-8 w-full transition-opacity`}
           >
             {homePageEvents && <EventsBlock events={homePageEvents} title="" />}
           </div>

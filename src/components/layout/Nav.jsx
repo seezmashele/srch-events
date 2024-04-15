@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import Drawer from '@mui/material/Drawer'
 import { useState } from 'react'
-import { CircleUser, Menu, PlusCircle, Search, User } from 'lucide-react'
+import { Menu, PlusCircle, Search, User } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { useApp } from '../../context/AppContext'
 import AccountMenu from '../dropdowns/AccountMenu'
@@ -126,7 +126,7 @@ const Nav = ({
                 <div className="text-[.9375rem]f flex font-semibold">
                   <MobileIconButton
                   ariaLabel="Login"
-                  icon={<CircleUser className="icon_size--base flex-shrink-0"  />}
+                  icon={<User className="icon_size--base flex-shrink-0"  />}
                   onClick={() => {
                       setSignupMode(false)
                       setOpenLoginModal(true)

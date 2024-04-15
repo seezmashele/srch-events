@@ -77,7 +77,7 @@ const EventCard = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className='w-full mui_mobile:hidden xs:flex border-b mt-3 main_border_color'></div>
+        <div className='w-full mui_mobile:hidden xs:flex border-b mt-3 main_border_color' />
       </div>
     </Grid>
   )

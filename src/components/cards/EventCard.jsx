@@ -17,7 +17,7 @@ const EventCard = ({ data }) => {
 
   return (
     <Grid item xs={12} mobile={6} sm={6} md={4} lg={4}>
-      <div className="card_container relative overflow-hidden xs:mb-1 mui_mobile:mb-6">
+      <div className="card_container relative overflow-hidden xs:mb-0.5 mui_mobile:mb-6">
         <Link
           href={cardLink}
           passHref
@@ -44,8 +44,8 @@ const EventCard = ({ data }) => {
                 </div>
               </Link>
 
-              <div className='mt-2.5 flex items-centerf'>
-                <div className='w-7 h-7 bg-orange-600 mt-0.5f text-md flex items-center justify-center text-white flex-shrink-0 rounded-full mr-1.5'>B</div>
+              <div className='mt-2.5 flex items-center'>
+                <div className='w-8 h-8 bg-orange-600 mt-0.5f text-md flex items-center justify-center text-white flex-shrink-0 rounded-full mr-2'>B</div>
               <div className="w-full text-neutral-600">
                 <div className="font-semiboldf text-blackf flex w-full items-center overflow-hidden">
                   <p className="flex-shrink-0 text-nowrap">
@@ -77,7 +77,7 @@ const EventCard = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className='w-full mui_mobile:hidden xs:flex border-b mt-3 main_border_color' />
+        <div className='w-full mui_mobile:hidden xs:flex border-b mt-3.5 main_border_color' />
       </div>
     </Grid>
   )

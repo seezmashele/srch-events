@@ -57,7 +57,7 @@ const Nav = ({
               <Link
                 href="/"
                 passHref
-                className="flex h-6 w-48 flex-shrink-0 cursor-pointer select-none"
+                className="flex h-6 w-44 flex-shrink-0 cursor-pointer select-none"
               >
                 <img
                   draggable="false"
@@ -109,8 +109,12 @@ const Nav = ({
                 </>
               )}
 
+                    {/* <div className='xs:block md:hiddenf pl-1.5 pr-1'>
+              <div className='h-6 border-l' />
+                    </div> */}
+
               {currentUser && (
-                <div className="flex pl-2.5">
+                <div className="flex xs:pl-2 md:pl-2.5">
                   <AccountMenu />
                 </div>
               )}

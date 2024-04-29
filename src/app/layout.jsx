@@ -10,7 +10,7 @@ import theme from '../utils/config/mui'
 import ReactQueryClientProvider from '../components/providers/ReactQueryClientProvider'
 
 // export const metadata = {
-//   title: 'Eventlist',
+//   title: 'Srch Events',
 //   description: 'Find and share events',
 //   icons: {
 //     icon: '/favicon.png',
@@ -21,14 +21,13 @@ import ReactQueryClientProvider from '../components/providers/ReactQueryClientPr
 const RootLayout = ({ children }) => (
   <html lang="en">
     <body>
-    <ThemeProvider theme={theme}>
-      <ReactQueryClientProvider>
-        <AuthProvider>
-          <AppProvider>{children}
-          </AppProvider>
-        </AuthProvider>
-      </ReactQueryClientProvider>
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <ReactQueryClientProvider>
+          <AuthProvider>
+            <AppProvider>{children}</AppProvider>
+          </AuthProvider>
+        </ReactQueryClientProvider>
+      </ThemeProvider>
     </body>
   </html>
 )

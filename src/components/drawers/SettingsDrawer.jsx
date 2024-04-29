@@ -20,7 +20,7 @@ const SettingsDrawer = ({ currentPage = -1, setCurrentPage }) => {
   ]
 
   return (
-    <div className="bg-neutral-50f relative h-full min-h-screen w-56  flex-shrink-0 select-none border-x px-3 py-7">
+    <div className="bg-neutral-50f relative h-full min-h-screen w-60 top-7  flex-shrink-0 select-none border-r pr-3 pt-1 pb-7">
       <div className="mb-5 px-3 font-semibold">Settings</div>
       {/* <div className="border-tf my-3 w-full" /> */}
       {settingsOptions.map((item, index) => {

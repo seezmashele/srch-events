@@ -57,7 +57,7 @@ const Nav = ({
               <Link
                 href="/"
                 passHref
-                className="flex h-6 w-44 flex-shrink-0 cursor-pointer select-none"
+                className="flex h-7 w-40 flex-shrink-0 cursor-pointer select-none"
               >
                 <img
                   draggable="false"
@@ -109,7 +109,7 @@ const Nav = ({
                 </>
               )}
 
-                    {/* <div className='xs:block md:hiddenf pl-1.5 pr-1'>
+              {/* <div className='xs:block md:hiddenf pl-1.5 pr-1'>
               <div className='h-6 border-l' />
                     </div> */}
 
@@ -129,19 +129,21 @@ const Nav = ({
               {showLoginButton && !currentUser && (
                 <div className="text-[.9375rem]f flex font-semibold">
                   <MobileIconButton
-                  ariaLabel="Login"
-                  icon={<User className="icon_size--base flex-shrink-0"  />}
-                  onClick={() => {
+                    ariaLabel="Login"
+                    icon={<User className="icon_size--base flex-shrink-0" />}
+                    onClick={() => {
                       setSignupMode(false)
                       setOpenLoginModal(true)
-                    }} />
-                    <DesktopTextButton
+                    }}
+                  />
+                  <DesktopTextButton
                     ariaLabel="Login"
                     label="Log in"
                     onClick={() => {
                       setSignupMode(false)
                       setOpenLoginModal(true)
-                    }} />
+                    }}
+                  />
                 </div>
               )}
             </div>

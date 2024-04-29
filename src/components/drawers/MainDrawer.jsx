@@ -1,5 +1,5 @@
 import { Gear, QuestionCircle } from 'react-bootstrap-icons'
-import { CalendarRange, Gamepad2, Home, Tv, User } from 'lucide-react'
+import { Bookmark, Gamepad2, Home, Tv, User } from 'lucide-react'
 import { useApp } from '../../context/AppContext'
 import { useAuth } from '../../context/AuthContext'
 import DrawerButtons from './MainDrawer/DrawerButtons'
@@ -24,8 +24,8 @@ const MainDrawer = ({ selectedPageIndex = -1, selectedPageTitle = '' }) => {
     //   link: '/promotions'
     // },
     {
-      icon: <CalendarRange className="icon_size--base" />,
-      title: 'Saved events',
+      icon: <Bookmark className="icon_size--base" />,
+      title: 'Bookmarks',
       link: accountUsername ? savedEventsLink : ''
     },
     {

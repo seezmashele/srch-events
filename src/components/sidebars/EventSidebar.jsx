@@ -9,9 +9,11 @@ const EventSidebar = ({
 }) => {
   const { showDesktopDrawer } = useApp()
 
+  // TODO: show trending tags under event details like twitter
+
   return (
     <aside
-      className={`${showDesktopDrawer && 'md:hidden lg:block'} box_radius sticky top-[4.75rem] mb-10 mt-5 h-full w-80 flex-shrink-0 bg-neutral-100 p-5 pb-10 text-sm xs:hidden md:block`}
+      className={`${showDesktopDrawer && 'md:hidden lg:block'} box_radius sticky top-[4.75rem] mb-10 ml-5 mt-5 h-full w-80 flex-shrink-0 bg-neutral-100 p-5 pb-10 text-sm xs:hidden md:block`}
     >
       {eventTags && (
         <div className="mt-2f flex select-none space-x-1.5 text-sm">

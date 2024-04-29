@@ -4,7 +4,7 @@ import FormTextArea from '../../../components/inputs/FormTextArea'
 import FormTextInput from '../../../components/inputs/FormTextInput'
 import { useAuth } from '../../../context/AuthContext'
 import UserImageCropper from '../../../components/modals/UserImageCropper'
-import PreviewImages from '../../add-new-event/components/PreviewImages'
+// import PreviewImages from '../../add-new-event/components/PreviewImages'
 import { uploadProfileImages } from '../../../utils/supabase/storage/images'
 import { getProfileImageSlug } from '../../../utils/helpers/strings'
 
@@ -21,7 +21,7 @@ const ProfileSettings = () => {
   // const [croppedImage, setCroppedImage] = useState(null)
   const [resizedProfileImage, setResizedProfileImage] = useState(null)
   const [showCropperModal, setShowCropperModal] = useState(false)
-  const [resizedCoverURL, setResizedCoverURL] = useState(null)
+  // const [resizedCoverURL, setResizedCoverURL] = useState(null)
 
   const clearSelectedImageFile = () => {
     const fileButton = document.getElementById('profile_image_file_input')
@@ -74,12 +74,12 @@ const ProfileSettings = () => {
               coverOptions
             )
 
-            const coverURL = URL.createObjectURL(compressedCoverFile)
+            // const coverURL = URL.createObjectURL(compressedCoverFile)
 
             setResizedProfileImage(compressedCoverFile)
 
             // these are only used in dev to show the images
-            setResizedCoverURL(coverURL)
+            // setResizedCoverURL(coverURL)
           } catch (error) {
             return error
           }
@@ -119,11 +119,11 @@ const ProfileSettings = () => {
         showCropperModal={showCropperModal}
         hideCropperModal={hideCropperModal}
       />
-      <div className="select-none">
+      <div className="select-none pt-1">
         <h1 className="text-base font-semibold">Edit Profile</h1>
         <div className="border-tf my-3 w-full" />
 
-        <div className="bg-neutral-100f h-80f box_radius px-4f w-full pb-20 ">
+        <div className="bg-neutral-100f h-80f box_radius px-4f w-full pb-16 ">
           <div className="bg-green-100f pt-2f mt-6 flex items-center">
             <div
               style={{
@@ -167,7 +167,7 @@ const ProfileSettings = () => {
             </div>
           </div>
 
-          <div className="w-full">
+          <div className="w-full bg-blue-200">
             <input
               id="profile_image_file_input"
               type="file"
@@ -178,10 +178,11 @@ const ProfileSettings = () => {
             />
           </div>
 
-          <PreviewImages
+          {/* <PreviewImages
             // croppedImage={croppedImage}
             image1URL={resizedCoverURL}
-          />
+          /> */}
+
           {resizedProfileImage && (
             <div className="flexf hidden justify-end">
               <button
@@ -194,8 +195,10 @@ const ProfileSettings = () => {
             </div>
           )}
 
+          {/* <div className='w-full my-6 border-t' /> */}
+
           {/* section: User Details ------------------------- */}
-          <h3 className="mb-2 mt-6 text-sm font-semibold">Name</h3>
+          <h3 className="mb-2 mt-8 text-sm font-semibold">Name</h3>
           <FormTextInput placeholder={accountDisplayName} />
           <p className="mt-2 text-xs text-neutral-400">
             Name can only be changed once a month.
@@ -221,7 +224,7 @@ const ProfileSettings = () => {
           <div className="mt-6 flex w-full items-center justify-end">
             <button
               type="button"
-              className="base_button_styles button_colors--filled"
+              className="base_button_styles button_colors--filled min-w-36"
             >
               Save changes
             </button>

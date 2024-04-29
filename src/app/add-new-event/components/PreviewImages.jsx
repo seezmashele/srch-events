@@ -1,5 +1,5 @@
 const PreviewImages = ({ croppedImage, image1URL, image2URL }) => (
-  <div className="mb-50 flex flex-col gap-6 p-6">
+  <div className="mb-50 flex flex-col gap-6 p-6 bg-red-200">
     {croppedImage && (
       <div className="box_radius bg-neutral-100 p-6">
         {/* <div>Cropped</div> */}
